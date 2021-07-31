@@ -1,5 +1,4 @@
 import { graphql, Link } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import * as React from 'react'
 import Layout from '../../components/layout'
 
