@@ -2,6 +2,9 @@
     margin: auto;
     max-width: 500px;
     font-family: sans-serif;
+    color: #232129;
+    padding: 96px;
+    fontFamily: "-apple-system, Roboto, sans-serif, serif";
 }
 
 .heading {

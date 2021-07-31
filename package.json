@@ -15,10 +15,17 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "gatsby": "^3.10.2",
+    "@mdx-js/mdx": "^1.0.1",
+    "@mdx-js/react": "^1.6.22",
+    "gatsby": "^3.0.0",
     "gatsby-plugin-image": "^1.10.1",
+    "gatsby-plugin-mdx": "^2.10.1",
     "gatsby-plugin-sharp": "^3.10.2",
+    "gatsby-remark-autolink-headers": "^4.7.0",
+    "gatsby-remark-images": "^5.7.0",
+    "gatsby-remark-prismjs": "^5.7.0",
     "gatsby-source-filesystem": "^3.10.0",
+    "gatsby-transformer-remark": "^4.7.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }
