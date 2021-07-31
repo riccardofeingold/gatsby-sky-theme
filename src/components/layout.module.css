@@ -1,14 +1,31 @@
-.container {
-    margin: auto;
-    max-width: 500px;
-    font-family: sans-serif;
-    color: #232129;
-    padding: 96px;
-    fontFamily: "-apple-system, Roboto, sans-serif, serif";
+html {
+    font-family: "Source Sans Pro";
+}
+
+p {
+    color: #8B91A7;
+}
+
+h1, h2 {
+    color: #3D4661;
+}
+
+h3, h4 {
+    color: #5D657E;
+}
+
+strong {
+    color: #3D4661;
+}
+
+a {
+    color: #385AE6;
+    text-decoration: none;
 }
 
 .heading {
-    color: rebeccapurple;
+    color: #0084FF;
+    text-decoration-line: underline;
 }
 .nav-links {
     display: flex;
@@ -26,4 +43,8 @@
     font-size: 3rem;
     color: gray;
     font-weight: 700;
-  }
+}
+
+img {
+    max-width: 100%;
+}
