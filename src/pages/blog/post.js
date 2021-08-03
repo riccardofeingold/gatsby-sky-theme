@@ -16,8 +16,10 @@ const BlogPost = ({ data }) => {
   )
 }
 
+export default BlogPost
+
 export const postQuery = graphql`
-  query($slug: String!) {
+  query($slug: String) {
     ghostPost(slug: { eq: $slug }) {
       title
       slug
@@ -26,5 +28,3 @@ export const postQuery = graphql`
     }
   }
 `
-
-export default BlogPost
