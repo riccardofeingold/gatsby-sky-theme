@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from "react";
 import { useStaticQuery, graphql } from 'gatsby'
 import * as styles from './layout.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,6 +15,12 @@ const Layout = ({pageTitle, children}) => {
         }      
     `)
 
+    const [isActive, setActive] = useState("false");
+
+
+    const ToggleClass = () => {
+        setActive(!isActive);
+    }
     return (
         <main>
             <title>{pageTitle} | {data.site.siteMetadata.title}</title>
@@ -50,9 +56,9 @@ const Layout = ({pageTitle, children}) => {
                         </li>
                         </ul>
 
-                        <div className={styles.search}>
-                        <input type="search" className={styles.searchBox}></input>
-                        <span className={styles.searchButton}>
+                        <div className={`${styles.search} ${isActive ? null : styles.open}`}>
+                        <input type="search" className={`${styles.searchBox} ${isActive ? styles.blur : styles.focus}`}></input>
+                        <span role="searchbox" className={styles.searchButton} onClick={ToggleClass} onKeyDown={ToggleClass} tabIndex={0}>
                             <FontAwesomeIcon icon={faSearch} className={styles.searchIcon}/>
                         </span>
                         </div>
