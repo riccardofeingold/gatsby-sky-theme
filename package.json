@@ -28,6 +28,7 @@
     "gatsby": "^3.0.0",
     "gatsby-plugin-image": "^1.10.1",
     "gatsby-plugin-mdx": "^2.10.1",
+    "gatsby-plugin-sass": "^4.11.0",
     "gatsby-plugin-sharp": "^3.10.2",
     "gatsby-remark-autolink-headers": "^4.7.0",
     "gatsby-remark-images": "^5.7.0",
@@ -36,8 +37,10 @@
     "gatsby-source-ghost": "^4.2.4",
     "gatsby-transformer-remark": "^4.7.0",
     "jquery": "^3.6.0",
+    "node-sass": "^6.0.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0"
   }
 }

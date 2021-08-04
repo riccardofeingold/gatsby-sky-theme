@@ -1,0 +1,146 @@
+// search bar variables
+$background-color: #007bff;
+$search-bg-color: #FFFFFF;
+$icon-color: #007bff;
+$transition: all .5s ease;
+
+// font variables
+$title-color: #3D4661;
+$subheading-color: #5D657E;
+$content-color: #8B91A7;
+
+// removes all search bar stylings added by the browsers
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+html {
+  font-family: "Source Sans Pro";
+}
+
+p {
+  color: #8B91A7;
+}
+
+h1, h2 {
+  color: #3D4661;
+}
+
+h3, h4 {
+  color: #5D657E;
+}
+
+strong {
+  color: #3D4661;
+}
+
+a {
+  color: #385AE6;
+  text-decoration: none;
+}
+
+.heading {
+  color: #0084FF;
+  text-decoration-line: underline;
+}
+
+.header-logo {
+  font-family: Impact;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 35px;
+  line-height: 43px;
+  color: #FFFFFF;
+}
+
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 15px;
+  letter-spacing: 2.5px;
+}
+  
+.navbar-nav li a:hover {
+  color: #FFFFFF !important;
+}
+  
+.social-media-btn {
+  border-radius: 5px;
+}
+
+.img-thumbnail {
+  border: 0;
+}
+  
+// Search-box
+
+.search {
+  width: 50px;
+  height: 50px;
+  background-color: $search-bg-color;
+  position: relative;
+  overflow: hidden;
+  border-radius: 25px;
+  transition: $transition;
+  &:before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 100%;
+    position: relative;
+    transition: $transition;
+  }
+  &.open {
+    @media only screen and (min-width: 400px) {
+      width: 350px;
+    }
+
+    @media only screen and (max-width: 400px) {
+      width: 250px;
+    }
+    &:before {
+      height: 30px;
+      margin: 10px 0 10px 20px;
+      background-color: $icon-color;
+      position: absolute;
+    }
+  }
+}
+
+.search-box {
+  width: 100%;
+  height: 100%;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  color: $icon-color;
+  padding: 20px 50px 20px 45px;
+  font-size: 25px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.search-button {
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.search-icon {
+  font-size: 25px;
+  color: $icon-color;
+  display: block;
+  position: relative;
+}
