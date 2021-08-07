@@ -104,6 +104,11 @@ module.exports = {
                         // Pass in "v2" if your Ghost install is not on 3.0 yet!!!
       }
     },
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("node-sass"),
+      },
+    },
   ],
 };

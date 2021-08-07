@@ -23,7 +23,7 @@
     "@mdx-js/mdx": "^1.0.1",
     "@mdx-js/react": "^1.6.22",
     "@popperjs/core": "^2.9.2",
-    "bootstrap": "^5.0.2",
+    "bootstrap": "^5.1.0",
     "cjs": "^0.0.11",
     "gatsby": "^3.0.0",
     "gatsby-plugin-image": "^1.10.1",
@@ -41,6 +41,8 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "sass": "^1.37.5",
+    "stringifier": "^2.1.0"
   }
 }

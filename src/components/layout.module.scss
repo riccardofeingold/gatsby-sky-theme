@@ -9,6 +9,10 @@ $title-color: #3D4661;
 $subheading-color: #5D657E;
 $content-color: #8B91A7;
 
+// theming bootstrap
+// colors
+$primary: #007bff;
+
 // removes all search bar stylings added by the browsers
 input[type=search]::-webkit-search-decoration,
 input[type=search]::-webkit-search-cancel-button,
@@ -17,20 +21,27 @@ input[type=search]::-webkit-search-results-decoration {
     -webkit-appearance: none;
 }
 
-html {
-  font-family: "Source Sans Pro";
+h1 {
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 46px;
+  color: $title-color;
+}
+
+h2 {
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-size: 36px;
+  color: $subheading-color;
 }
 
 p {
-  color: #8B91A7;
-}
-
-h1, h2 {
-  color: #3D4661;
-}
-
-h3, h4 {
-  color: #5D657E;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: $content-color;
 }
 
 strong {
@@ -47,15 +58,6 @@ a {
   text-decoration-line: underline;
 }
 
-.header-logo {
-  font-family: Impact;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 35px;
-  line-height: 43px;
-  color: #FFFFFF;
-}
-
 .navbar {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -66,17 +68,13 @@ a {
   letter-spacing: 2.5px;
 }
   
-.navbar-nav li a:hover {
-  color: #FFFFFF !important;
-}
-  
-.social-media-btn {
-  border-radius: 5px;
-}
+// .social-media-btn {
+//   border-radius: 5px;
+// }
 
-.img-thumbnail {
-  border: 0;
-}
+// .img-thumbnail {
+//   border: 0;
+// }
   
 // Search-box
 
@@ -144,3 +142,5 @@ a {
   display: block;
   position: relative;
 }
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
