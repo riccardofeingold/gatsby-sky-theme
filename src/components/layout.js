@@ -14,7 +14,7 @@ const HeaderLogo = {
     fontWeight: "900",
     fontSize: "35px",
     lineHeight: "43px",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
 };
 
 function HomeTitleImage(props) {
@@ -22,16 +22,14 @@ function HomeTitleImage(props) {
     if (isHome === "Home") {
       return (
           <section id="welcome-section">
-              <div className="container-fluid px-0"><StaticImage alt="Riccardorion Branding Imgae © Riccardo Orion Feingold" src="../images/banner-blue-bg.png"/></div>
+              <div className="container-fluid p-0"><StaticImage layout="fullWidth" alt="Riccardorion Branding Imgae © Riccardo Orion Feingold" src="../images/banner-blue-bg.png"/></div>
           </section>
       )
     } else {
         return null
     }
 }
-const styleTest = {
-    backgroundColor: "#007bff !important",
-}
+
 const Layout = ({pageTitle, children}) => {
     const searchField = useRef(null);
     const data = useStaticQuery(graphql`
@@ -58,14 +56,14 @@ const Layout = ({pageTitle, children}) => {
                 <link rel='icon' href={favicon}></link>
             </Helmet>
             <title>{pageTitle} | {data.site.siteMetadata.title}</title>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary" style={styleTest}>
-                <div className="container-fluid">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div className="container p-3">
                     <a className="navbar-brand header-logo" href="/" style={HeaderLogo}>RICCARDORION</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <FontAwesomeIcon icon={faBars}/>
                     </button>
 
-                    <div className="collapse navbar-collapse justify-content-center text-uppercase p" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse text-uppercase" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
                             <a className="nav-link" href="/">Home</a>
