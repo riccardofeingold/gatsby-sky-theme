@@ -1,5 +1,6 @@
 import { StaticImage } from "gatsby-plugin-image"
 import * as React from "react"
+import * as styles from "../scss/index.module.scss"
 import Layout from "../components/layout"
 
 const impactFontStyle = {
@@ -18,24 +19,22 @@ const IndexPage = () => {
             <h1 className="text-center" style={impactFontStyle}>About Me</h1>
             <div className="row">
               <div className="col-md-6">
-                <StaticImage alt="Riccardo Orion Feingold - Profile" className="" src="../images/profile.png"/>
+                <StaticImage alt="Riccardo Orion Feingold - Profile" className="img-thumbnail" src="../images/profile-rect.jpeg"/>
               </div>
               <div className="col-md-6">
-                <p>
-                  aölsdaölskdjföalkjsdöfalksdjölakjsdöflaksjdfa
-                  asöldfkjaösdlfkjaölsdkfjaölsdkjföalsdkjfa
-                  dfaölsdkjfaölsdf
-                  asöldfkjaösdlfkjaölsdkfjaölsdkjföalsdkjfaa
-                  sdfadöfalsdkjföalskdj
+                <p style={{fontSize: `20px`}}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper viverra nam libero justo laoreet sit amet cursus. Libero id faucibus nisl tincidunt. Sed arcu non odio euismod. Euismod lacinia at quis risus. In nisl nisi scelerisque eu. 
                 </p>
               </div>
+
+              <button type="button" className="btn btn-outline-dark" style={{width: `auto`}}>More Details</button>
             </div>
           </div>
         </section>
 
-        <section id="portfolio">
+        <section className={styles.homeSection}>
           <div className="container py-5">
-            <h1 className="text-center" style={impactFontStyle}>Portfolio</h1>
+            <h1 className="text-center text-light" style={impactFontStyle}>Portfolio</h1>
           </div>
         </section>
 
@@ -45,9 +44,9 @@ const IndexPage = () => {
           </div>
         </section>
 
-        <section id="contact">
+        <section className={styles.homeSection}>
           <div className="container py-5">
-            <h1 className="text-center" style={impactFontStyle}>Contact Me</h1>
+            <h1 className="text-center text-light" style={impactFontStyle}>Contact Me</h1>
           </div>
         </section>
 

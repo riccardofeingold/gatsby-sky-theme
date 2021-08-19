@@ -1,11 +1,12 @@
 import React, {useRef, useState } from "react";
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, Link} from 'gatsby'
 import * as styles from './layout.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 import favicon from '../images/favicon.ico'
 import { StaticImage } from 'gatsby-plugin-image'
+import { faGithub, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 // styles for components 
 const HeaderLogo = {
@@ -52,6 +53,7 @@ const Layout = ({pageTitle, children}) => {
     }
     return (
         <main>
+            {/* Header */}
             <Helmet>
                 <link rel='icon' href={favicon}></link>
             </Helmet>
@@ -102,8 +104,28 @@ const Layout = ({pageTitle, children}) => {
 
             <HomeTitleImage isHome={pageTitle}/>
 
-            <div className="container">
+            {/* Content */}
+            <div className="container-fluid p-0">
                 {children}
+            </div>
+
+            {/* Footer */}
+            <div className="container-fluid text-center text-white py-3" style={{backgroundColor: `#3D4661`}}>
+                <div className="row align-items-center">
+                    <div className="col">
+                        <span className="align-middle">© Riccardo Orion Feingold</span>
+                    </div>
+
+                    <div className="col">
+                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://twitter.com/riccardorion"><FontAwesomeIcon icon={faTwitter}/></Link>
+
+                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://www.instagram.com/riccardorion/"><FontAwesomeIcon icon={faInstagram}/></Link>
+
+                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://www.linkedin.com/in/riccardofeingold/"><FontAwesomeIcon icon={faLinkedin}/></Link>
+
+                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://github.com/riccardofeingold"><FontAwesomeIcon icon={faGithub}/></Link>
+                    </div>
+                </div>
             </div>
         </main>
     )

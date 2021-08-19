@@ -11,7 +11,12 @@ $content-color: #8B91A7;
 
 // theming bootstrap
 // colors
-$primary: #007bff;
+$gray-900: #3D4661;
+
+$theme-colors: (
+  "primary": #007bff,
+  "dark": $gray-900
+);
 
 // removes all search bar stylings added by the browsers
 input[type=search]::-webkit-search-decoration,
@@ -67,17 +72,20 @@ a {
   font-size: 15px;
   letter-spacing: 2.5px;
 }
-  
-// .social-media-btn {
-//   border-radius: 5px;
-// }
 
-// .img-thumbnail {
-//   border: 0;
-// }
-  
+// footer 
+.social-media-btn {
+  border-radius: 5px;
+}
+
+// Home
+//Section Portfolio
+.portfolio {
+  background-color: $background-color;
+}
+
+
 // Search-box
-
 .search {
   width: 50px;
   height: 50px;
