@@ -1,7 +1,7 @@
 import React, {useRef, useState } from "react";
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql, Link} from 'gatsby'
-import * as styles from './layout.module.scss'
+import { useStaticQuery, graphql} from 'gatsby'
+import './layout.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 import favicon from '../images/favicon.ico'
@@ -45,7 +45,6 @@ const Layout = ({pageTitle, children}) => {
 
     const [isActive, setActive] = useState("false");
 
-
     const ToggleClass = () => {
         searchField.current.value = '';
         searchField.current.focus();
@@ -58,15 +57,14 @@ const Layout = ({pageTitle, children}) => {
                 <link rel='icon' href={favicon}></link>
             </Helmet>
             <title>{pageTitle} | {data.site.siteMetadata.title}</title>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div className="container p-3">
-                    <a className="navbar-brand header-logo" href="/" style={HeaderLogo}>RICCARDORION</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <FontAwesomeIcon icon={faBars}/>
-                    </button>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary p-3">
+                <a className="navbar-brand header-logo" href="/" style={HeaderLogo}>RICCARDORION</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <FontAwesomeIcon icon={faBars}/>
+                </button>
 
-                    <div className="collapse navbar-collapse text-uppercase" id="navbarSupportedContent">
-                        <ul className="navbar-nav mx-auto">
+                <div className="collapse navbar-collapse text-uppercase" id="navbarSupportedContent">
+                    <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
                             <a className="nav-link" href="/">Home</a>
                         </li>
@@ -88,17 +86,18 @@ const Layout = ({pageTitle, children}) => {
                         <li className="nav-item">
                             <a className="nav-link" href="/#contact">Hire Me</a>
                         </li>
-                        </ul>
+                    </ul>
 
-                        <div className={`${styles.search} ${isActive ? null : styles.open}`}>
-                        <input type="search" className={styles.searchBox} ref={(element) => {
-                            searchField.current = element;
-                        }}></input>
-                        <span role="searchbox" className={styles.searchButton} onClick={ToggleClass} onKeyDown={ToggleClass} tabIndex={0}>
-                            <FontAwesomeIcon icon={faSearch} className={styles.searchIcon}/>
-                        </span>
+                    <form className="form-inline d-flex position-search-bar" style={{width: `350px`}}>
+                        <div className={`search ${isActive ? null : `open`}`}>
+                            <input type="search" className="search-box" ref={(element) => {
+                                searchField.current = element;
+                            }}></input>
+                            <span role="searchbox" className="search-button" onClick={ToggleClass} onKeyDown={ToggleClass} tabIndex={0}>
+                                <FontAwesomeIcon icon={faSearch} className="search-icon"/>
+                            </span>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </nav>
 
@@ -117,13 +116,13 @@ const Layout = ({pageTitle, children}) => {
                     </div>
 
                     <div className="col">
-                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://twitter.com/riccardorion"><FontAwesomeIcon icon={faTwitter}/></Link>
+                        <a className="btn btn-outline-light social-media-btn m-1" href="https://twitter.com/riccardorion" aria-label="Twitter"><FontAwesomeIcon icon={faTwitter}/></a>
 
-                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://www.instagram.com/riccardorion/"><FontAwesomeIcon icon={faInstagram}/></Link>
+                        <a className="btn btn-outline-light social-media-btn m-1" href="https://www.instagram.com/riccardorion/" aria-label="Instagram"><FontAwesomeIcon icon={faInstagram}/></a>
 
-                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://www.linkedin.com/in/riccardofeingold/"><FontAwesomeIcon icon={faLinkedin}/></Link>
+                        <a className="btn btn-outline-light social-media-btn m-1" href="https://www.linkedin.com/in/riccardofeingold/" aria-label="Linkedin"><FontAwesomeIcon icon={faLinkedin}/></a>
 
-                        <Link className="btn btn-outline-light social-media-btn m-1" to="https://github.com/riccardofeingold"><FontAwesomeIcon icon={faGithub}/></Link>
+                        <a className="btn btn-outline-light social-media-btn m-1" href="https://github.com/riccardofeingold" aria-label="GitHub"><FontAwesomeIcon icon={faGithub}/></a>
                     </div>
                 </div>
             </div>

@@ -1,22 +1,6 @@
-// search bar variables
-$background-color: #007bff;
-$search-bg-color: #FFFFFF;
-$icon-color: #007bff;
-$transition: all .5s ease;
+@import "../scss/variables.scss";
 
-// font variables
-$title-color: #3D4661;
-$subheading-color: #5D657E;
-$content-color: #8B91A7;
-
-// theming bootstrap
-// colors
-$gray-900: #3D4661;
-
-$theme-colors: (
-  "primary": #007bff,
-  "dark": $gray-900
-);
+@import "~bootstrap/scss/bootstrap";
 
 // removes all search bar stylings added by the browsers
 input[type=search]::-webkit-search-decoration,
@@ -84,8 +68,16 @@ a {
   background-color: $background-color;
 }
 
-
 // Search-box
+.position-search-bar {
+  @media screen and (min-width: 400px) {
+    justify-content: right;
+  }
+
+  @media only screen and (max-width: 400px) {
+    justify-content: left;
+  }
+}
 .search {
   width: 50px;
   height: 50px;
@@ -150,5 +142,3 @@ a {
   display: block;
   position: relative;
 }
-
-@import "../../node_modules/bootstrap/scss/bootstrap";
