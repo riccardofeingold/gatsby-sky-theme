@@ -6,8 +6,7 @@ import Layout from "../components/layout"
 
 const impactFontStyle = {
   fontFamily: "Impact",
-  fontSize: "60px",
-  marginBottom: "30px"
+  marginBottom: "30px",
 }
 
 // markup
@@ -40,33 +39,40 @@ const IndexPage = () => {
             <h1 className="text-center text-light" style={impactFontStyle}>Portfolio</h1>
             <h1 className="text-light pb-2">My Recent Projects</h1>
             
-            <div className="row">
+            <div className="row row-cols-1 row-cols-md-3 g-4">
               <div className="col">
-                <div className="card shadow" style={{border: `none`}}>
-                  <StaticImage className="card-img-top" src="../images/banner-blue-bg.png" alt="Card image cap"/>
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
                 </div>
               </div>
-
               <div className="col">
-                <div className="card shadow" style={{border: `none`}}>
-                  <StaticImage className="card-img-top" src="../images/banner-blue-bg.png" alt="Card image cap"/>
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p className="card-text">This is a short card.</p>
                   </div>
                 </div>
               </div>
-
               <div className="col">
-                <div className="card shadow" style={{border: `none`}}>
-                  <StaticImage className="card-img-top" src="../images/banner-blue-bg.png" alt="Card image cap"/>
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
+                  <div className="card-body">
+                    <h5 className="card-title">Card title</h5>
+                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
                 </div>
               </div>
@@ -81,35 +87,42 @@ const IndexPage = () => {
         <section id="blog">
           <div className="container py-5">
             <h1 className="text-center" style={impactFontStyle}>Blog</h1>
-            <h1 className="pb-2">My Recent Projects</h1>
+            <h1 className="pb-2">My Recent Posts</h1>
             
-            <div className="row">
+            <div className="row row-cols-1 row-cols-md-3 g-4">
               <div className="col">
-                <div className="card shadow" style={{border: `none`}}>
-                  <StaticImage className="card-img-top" src="../images/banner-blue-bg.png" alt="Card image cap"/>
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
                 </div>
               </div>
-
               <div className="col">
-                <div className="card shadow" style={{border: `none`}}>
-                  <StaticImage className="card-img-top" src="../images/banner-blue-bg.png" alt="Card image cap"/>
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p className="card-text">This is a short card.</p>
                   </div>
                 </div>
               </div>
-
               <div className="col">
-                <div className="card shadow" style={{border: `none`}}>
-                  <StaticImage className="card-img-top" src="../images/banner-blue-bg.png" alt="Card image cap"/>
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card shadow h-100" style={{border: `none`}}>
+                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
+                  <div className="card-body">
+                    <h5 className="card-title">Card title</h5>
+                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
                 </div>
               </div>
@@ -126,7 +139,7 @@ const IndexPage = () => {
             <h1 className="text-center text-light" style={impactFontStyle}>Contact Me</h1>
             <h3 className="text-light text-center pb-2">For questions, hirements or cooperations, feel free to contact me.</h3>
 
-            <div className="card shadow p-5">
+            <div className="card shadow p-5" style={{margin: "0 15em 0 15em"}}>
               <form className="pb-4">
                 <h4><strong>Full Name</strong></h4>
                 <input></input>
