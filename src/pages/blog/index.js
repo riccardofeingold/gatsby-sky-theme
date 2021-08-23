@@ -40,6 +40,7 @@ export const pageQuery = graphql`
           title
           slug
           excerpt
+          feature_image
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
         }
       }

@@ -1,8 +1,9 @@
 import { StaticImage } from "gatsby-plugin-image"
-import { Link } from 'gatsby'
+import { Link, graphql} from 'gatsby'
 import * as React from "react"
 import "../scss/home.scss"
 import Layout from "../components/layout"
+import Card from "../components/card"
 
 const impactFontStyle = {
   fontFamily: "Impact",
@@ -10,10 +11,14 @@ const impactFontStyle = {
 }
 
 // markup
-const IndexPage = () => {
+const IndexPage = ({data}) => {
+  const posts = data.allGhostPost.edges
   return (
     <main>
       <Layout pageTitle="Home">
+
+        {/* About Me */}
+
         <section id="about-me">
           <div className="container py-5">
             <h1 className="text-center" style={impactFontStyle}>About Me</h1>
@@ -34,12 +39,15 @@ const IndexPage = () => {
           </div>
         </section>
 
+        {/* Portfolio */}
+
         <section className="home-section">
           <div className="container py-5">
             <h1 className="text-center text-light" style={impactFontStyle}>Portfolio</h1>
             <h1 className="text-light pb-2">My Recent Projects</h1>
             
             <div className="row row-cols-1 row-cols-md-3 g-4">
+              <Card cardTitle="Humanoid Robot" cardText="How humanoid robots are going to change the world!"/>
               <div className="col">
                 <div className="card shadow h-100" style={{border: `none`}}>
                   <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
@@ -71,7 +79,7 @@ const IndexPage = () => {
                 <div className="card shadow h-100" style={{border: `none`}}>
                   <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
                   <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+                    <h5 className="card-title">Hello World</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
                 </div>
@@ -84,48 +92,21 @@ const IndexPage = () => {
           </div>
         </section>
 
+        {/* Blog */}
+
         <section id="blog">
           <div className="container py-5">
             <h1 className="text-center" style={impactFontStyle}>Blog</h1>
             <h1 className="pb-2">My Recent Posts</h1>
             
             <div className="row row-cols-1 row-cols-md-3 g-4">
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a short card.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
-                </div>
-              </div>
+              {
+                posts.map(posts => (
+                  <article key={posts.node.id}>
+                    <Card cardTitle={posts.node.title} cardText={posts.node.excerpt} cardLink={`/blog/${posts.node.slug}`}/>
+                  </article>
+                ))
+              }
             </div>
 
             <div className="d-flex justify-content-center pt-5">
@@ -133,6 +114,8 @@ const IndexPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Contact Me */}
 
         <section className="home-section">
           <div className="container py-5">
@@ -160,6 +143,8 @@ const IndexPage = () => {
           </div>
         </section>
 
+        {/* My Mantra */}
+
         <section id="slogan">
           <div className="container py-5">
             <h1 className="text-center" style={impactFontStyle}>My Mantra</h1>
@@ -172,3 +157,20 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const postsQuery = graphql`
+  query {
+    allGhostPost(sort: { fields: [published_at], order: DESC }) {
+      edges {
+        node {
+          id
+          title
+          slug
+          excerpt
+          feature_image
+          published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
+        }
+      }
+    }
+  }
+`
