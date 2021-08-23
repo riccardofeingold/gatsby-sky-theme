@@ -7,10 +7,15 @@ const BlogPost = ({ data }) => {
   return (
     <Layout pageTitle={post.title}>
       <article className="post">
-        {post.feature_image ? (
-          <img src={post.feature_image} alt={post.title} />
-        ) : null}
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div className="container p-5">
+          {post.feature_image ? (
+            <img src={post.feature_image} className="img-fluid" alt={post.title} />
+          ) : null}
+        </div>
+
+        <div className="container post-full-content">
+          <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        </div>
       </article>
     </Layout>
   )

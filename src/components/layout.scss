@@ -139,3 +139,15 @@ a {
   display: block;
   position: relative;
 }
+
+// Ghost styling
+.kg-image {
+  width: 100%;
+  height: auto;
+}
+
+.post-full-content {
+  background: #fff;
+  margin: 0 auto;
+  max-width: 720px;
+}

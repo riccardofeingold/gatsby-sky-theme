@@ -13,6 +13,8 @@ const impactFontStyle = {
 // markup
 const IndexPage = ({data}) => {
   const posts = data.allGhostPost.edges
+  const portfolio = data.allMdx.edges
+
   return (
     <main>
       <Layout pageTitle="Home">
@@ -47,10 +49,16 @@ const IndexPage = ({data}) => {
             <h1 className="text-light pb-2">My Recent Projects</h1>
             
             <div className="row row-cols-1 row-cols-md-3 g-4">
-              <Card cardTitle="Humanoid Robot" cardText="How humanoid robots are going to change the world!"/>
+              {
+                portfolio.map(p => (
+                  <article key={p.node.id}>
+                    <Card cardTitle={p.node.frontmatter.title} cardImageSrc={p.node.frontmatter.featured_image} cardLink={`/portfolio/${p.node.slug}`}/>
+                  </article>
+                ))
+              }
               <div className="col">
                 <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
+                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -59,7 +67,7 @@ const IndexPage = ({data}) => {
               </div>
               <div className="col">
                 <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
+                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
                     <p className="card-text">This is a short card.</p>
@@ -68,7 +76,7 @@ const IndexPage = ({data}) => {
               </div>
               <div className="col">
                 <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
+                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
@@ -77,7 +85,7 @@ const IndexPage = ({data}) => {
               </div>
               <div className="col">
                 <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" className="card-img-top" alt="..."/>
+                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Hello World</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -101,9 +109,9 @@ const IndexPage = ({data}) => {
             
             <div className="row row-cols-1 row-cols-md-3 g-4">
               {
-                posts.map(posts => (
-                  <article key={posts.node.id}>
-                    <Card cardTitle={posts.node.title} cardText={posts.node.excerpt} cardLink={`/blog/${posts.node.slug}`}/>
+                posts.map(post => (
+                  <article key={post.node.id}>
+                    <Card cardTitle={post.node.title} cardImageSrc={post.node.feature_image} cardLink={`/blog/${post.node.slug}`}/>
                   </article>
                 ))
               }
@@ -169,6 +177,18 @@ export const postsQuery = graphql`
           excerpt
           feature_image
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
+        }
+      }
+    }
+    allMdx {
+      edges {
+        node {
+          frontmatter {
+            title
+            featured_image
+          }
+          id
+          slug
         }
       }
     }
