@@ -52,13 +52,13 @@ const IndexPage = ({data}) => {
               {
                 portfolio.map(p => (
                   <article key={p.node.id}>
-                    <Card cardTitle={p.node.frontmatter.title} cardImageSrc={p.node.frontmatter.featured_image} cardLink={`/portfolio/${p.node.slug}`}/>
+                    <Card cardTitle={p.node.frontmatter.title} cardImageSrc={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
                   </article>
                 ))
               }
               <div className="col">
                 <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
+                  <StaticImage src="../../portfolio/img/app.png" layout="fullWidth" className="card-img-top" alt="..."/>
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -125,7 +125,7 @@ const IndexPage = ({data}) => {
 
         {/* Contact Me */}
 
-        <section className="home-section">
+        <section id="contact" className="home-section">
           <div className="container py-5">
             <h1 className="text-center text-light" style={impactFontStyle}>Contact Me</h1>
             <h3 className="text-light text-center pb-2">For questions, hirements or cooperations, feel free to contact me.</h3>
@@ -185,7 +185,9 @@ export const postsQuery = graphql`
         node {
           frontmatter {
             title
-            featured_image
+            featuredImage {
+              publicURL
+            }
           }
           id
           slug

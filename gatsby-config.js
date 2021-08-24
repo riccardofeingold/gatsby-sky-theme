@@ -13,6 +13,13 @@ module.exports = {
         path: `${__dirname}/portfolio`,
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `projectImages`,
+        path: `${__dirname}/portfolio/img`,
+      },
+    },
     "gatsby-plugin-mdx",
     {
       resolve: "gatsby-remark-images",
