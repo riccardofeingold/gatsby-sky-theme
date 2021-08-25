@@ -59,7 +59,7 @@ const IndexPage = ({data}) => {
             </div>
 
             <div className="d-flex justify-content-center pt-5">
-                <Link type="button" className="btn btn-outline-light btn-lg" to="/about">See All</Link>
+                <Link type="button" className="btn btn-outline-light btn-lg" to="/portfolio">See All</Link>
             </div>
           </div>
         </section>
@@ -73,7 +73,7 @@ const IndexPage = ({data}) => {
             
             <div className="row row-cols-1 row-cols-md-3 g-4">
               {
-                posts.map(post => (
+                posts.slice(0,3).map(post => (
                   <article key={post.node.id}>
                     <Card cardTitle={post.node.title} cardImageSrc={post.node.feature_image} cardLink={`/blog/${post.node.slug}`}/>
                   </article>
@@ -82,7 +82,7 @@ const IndexPage = ({data}) => {
             </div>
 
             <div className="d-flex justify-content-center pt-5">
-                <Link type="button" className="btn btn-outline-dark btn-lg" to="/about">See All</Link>
+                <Link type="button" className="btn btn-outline-dark btn-lg" to="/blog">See All</Link>
             </div>
           </div>
         </section>
@@ -94,23 +94,40 @@ const IndexPage = ({data}) => {
             <h1 className="text-center text-light" style={impactFontStyle}>Contact Me</h1>
             <h5 className="text-light text-center pb-2">For questions, hirements or cooperations, feel free to contact me.</h5>
 
-            <div className="card shadow p-5" style={{margin: "0 15em 0 15em"}}>
+            <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
               <form className="pb-4">
-                <h4><strong>Full Name</strong></h4>
-                <input></input>
+                <div className="form-group">
+                  <label htmlFor="exampleInputPassword1"><strong>Full Name</strong></label>
+                  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Your Name"/>
+                </div>
               </form>
 
               <form className="pb-4">
-                <h4><strong>Email Address</strong></h4>
-                <input></input>
+                <div className="form-group">
+                  <label htmlFor="exampleInputEmail1"><strong>Email address</strong></label>
+                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                  <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
               </form>
 
               <form className="pb-4">
-                <h4><strong>Message</strong></h4>
-                <input></input>
+                <div className="form-group">
+                  <label htmlFor="exampleFormControlTextarea1"><strong>Message</strong></label>
+                  <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
               </form>
 
-              <h4><strong>Services</strong></h4>
+              <strong>How can I help you with?</strong>
+              <ul>
+                <li>Get a Website Created Frontend and Backend</li>
+                <li>Get a Professional App or Web Design for your company</li>
+                <li>Need a New Song? I can write one for you</li>
+              </ul>
+
+              <div className="btn btn-primary">
+                Send
+              </div>
+
             </div>
           </div>
         </section>

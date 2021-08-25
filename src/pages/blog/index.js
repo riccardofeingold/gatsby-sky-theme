@@ -1,25 +1,24 @@
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import * as React from 'react'
 import Layout from '../../components/layout'
+import Card from '../../components/card'
 
 const BlogPage = ( {data} ) => {
   const posts = data.allGhostPost.edges
   return (
     <Layout pageTitle="My Blog Posts">
-      <ul>
-      {
-          posts.map(post => (
+      <div className="container py-3">
+        <h1>Blog</h1>
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+          {
+            posts.map(post => (
               <article key={post.node.id}>
-                  <h2>
-                    <Link to={`/blog/${post.node.slug}`}>
-                      {post.node.title}
-                    </Link>
-                  </h2>
-                  <h4>{post.node.published_at_pretty}</h4>
-              </article>
-          ))
-      }
-      </ul>
+                  <Card cardTitle={post.node.title} cardImageSrc={post.node.feature_image} cardLink={`/blog/${post.node.slug}`}/>
+                </article>
+              ))
+            }
+        </div>
+      </div>
     </Layout>
   )
 }

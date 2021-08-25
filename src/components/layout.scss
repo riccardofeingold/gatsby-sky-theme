@@ -55,6 +55,7 @@ a {
   text-decoration-line: underline;
 }
 
+// bootstrap changes
 .navbar {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -63,6 +64,43 @@ a {
   margin-bottom: 0;
   font-size: 15px;
   letter-spacing: 2.5px;
+}
+
+.btn-primary {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+// Divider styling
+hr {
+  &:not([size]) {
+    height: 2px;
+  }
+}
+
+hr.hr-text {
+  position: relative;
+    border: none;
+    height: 2px;
+    background: $title-color;
+}
+
+hr.hr-text::before {
+    content: attr(data-content);
+    display: inline-block;
+    background: #fff;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: $title-color;
+    border-radius: 30rem;
+    padding: 0.2rem 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 // footer 
