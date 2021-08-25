@@ -56,42 +56,6 @@ const IndexPage = ({data}) => {
                   </article>
                 ))
               }
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../../portfolio/img/app.png" layout="fullWidth" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a short card.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card shadow h-100" style={{border: `none`}}>
-                  <StaticImage src="../images/banner-blue-bg.png" layout="fullWidth" className="card-img-top" alt="..."/>
-                  <div className="card-body">
-                    <h5 className="card-title">Hello World</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="d-flex justify-content-center pt-5">
@@ -128,7 +92,7 @@ const IndexPage = ({data}) => {
         <section id="contact" className="home-section">
           <div className="container py-5">
             <h1 className="text-center text-light" style={impactFontStyle}>Contact Me</h1>
-            <h3 className="text-light text-center pb-2">For questions, hirements or cooperations, feel free to contact me.</h3>
+            <h5 className="text-light text-center pb-2">For questions, hirements or cooperations, feel free to contact me.</h5>
 
             <div className="card shadow p-5" style={{margin: "0 15em 0 15em"}}>
               <form className="pb-4">
@@ -154,9 +118,11 @@ const IndexPage = ({data}) => {
         {/* My Mantra */}
 
         <section id="slogan">
-          <div className="container py-5">
-            <h1 className="text-center" style={impactFontStyle}>My Mantra</h1>
-            
+          <h1 className="text-center pt-5 pb-2" style={impactFontStyle}>My Mantra</h1>
+          <div className="d-flex pb-5 justify-content-center">
+            <div className="fancy-border-box p-4">
+                <h2 className="text-center mantra-slogan">I learn, I craft, I live!</h2>
+            </div>
           </div>
         </section>
       </Layout>
