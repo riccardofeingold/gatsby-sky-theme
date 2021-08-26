@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/layout'
-import Card from "../../components/card"
+import Card from "../../components/blogcard"
 
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
@@ -20,7 +20,7 @@ const BlogPost = ({ data }) => {
 
           <div className="row row-cols-1 row-cols-md-3 g-4">
               {
-                allPosts.map(p => (
+                allPosts.slice(0,4).map(p => (
                   <article key={p.node.id}>
                     <Card cardTitle={p.node.title} cardImageSrc={p.node.feature_image} cardLink={`/blog/${p.node.slug}`}/>
                   </article>

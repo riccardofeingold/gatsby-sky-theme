@@ -14,7 +14,7 @@ const Portfolio = ({data}) => {
                     {
                         portfolio.map(p => (
                         <article key={p.node.id}>
-                            <Card cardTitle={p.node.frontmatter.title} cardImageSrc={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
+                            <Card cardTitle={p.node.frontmatter.title} featuredImage={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
                         </article>
                         ))
                     }

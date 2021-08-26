@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import Layout from '../../components/layout'
-import Card from '../../components/card'
+import BlogCard from '../../components/blogcard'
 
 const BlogPage = ( {data} ) => {
   const posts = data.allGhostPost.edges
@@ -13,7 +13,7 @@ const BlogPage = ( {data} ) => {
           {
             posts.map(post => (
               <article key={post.node.id}>
-                  <Card cardTitle={post.node.title} cardImageSrc={post.node.feature_image} cardLink={`/blog/${post.node.slug}`}/>
+                  <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
                 </article>
               ))
             }
@@ -40,7 +40,12 @@ export const pageQuery = graphql`
           slug
           excerpt
           feature_image
+          reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
+          authors {
+            profile_image
+            name
+          }
         }
       }
     }

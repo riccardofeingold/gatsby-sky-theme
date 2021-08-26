@@ -3,6 +3,7 @@ import { Link, graphql} from 'gatsby'
 import * as React from "react"
 import "../scss/home.scss"
 import Layout from "../components/layout"
+import BlogCard from "../components/blogcard"
 import Card from "../components/card"
 
 const impactFontStyle = {
@@ -51,11 +52,12 @@ const IndexPage = ({data}) => {
             <div className="row row-cols-1 row-cols-md-3 g-4">
               {
                 portfolio.map(p => (
-                  <article key={p.node.id}>
-                    <Card cardTitle={p.node.frontmatter.title} cardImageSrc={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
-                  </article>
+                  <div key={p.node.id} className="col">
+                    <Card cardTitle={p.node.frontmatter.title} featuredImage={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
+                  </div>
                 ))
               }
+
             </div>
 
             <div className="d-flex justify-content-center pt-5">
@@ -75,7 +77,7 @@ const IndexPage = ({data}) => {
               {
                 posts.slice(0,3).map(post => (
                   <article key={post.node.id}>
-                    <Card cardTitle={post.node.title} cardImageSrc={post.node.feature_image} cardLink={`/blog/${post.node.slug}`}/>
+                    <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
                   </article>
                 ))
               }
@@ -98,7 +100,7 @@ const IndexPage = ({data}) => {
               <form className="pb-4">
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1"><strong>Full Name</strong></label>
-                  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Your Name"/>
+                  <input className="form-control" id="exampleInputPassword1" placeholder="Your Name"/>
                 </div>
               </form>
 
@@ -154,11 +156,16 @@ export const postsQuery = graphql`
     allGhostPost(sort: { fields: [published_at], order: DESC }) {
       edges {
         node {
+          authors {
+            profile_image
+            name
+          }
           id
           title
           slug
           excerpt
           feature_image
+          reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
         }
       }
