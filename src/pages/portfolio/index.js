@@ -10,7 +10,7 @@ const Portfolio = ({data}) => {
         <Layout pageTitle="Portfolio">
             <div className="container py-3">
                 <h1>Portfolio</h1>
-                <div className="row row-cols-1 row-cols-md-3 g-4">
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {
                         portfolio.map(p => (
                         <article key={p.node.id}>

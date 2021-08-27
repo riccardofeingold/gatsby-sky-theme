@@ -57,7 +57,7 @@ const Layout = ({pageTitle, children}) => {
                 <link rel='icon' href={favicon}></link>
             </Helmet>
             <title>{pageTitle} | {data.site.siteMetadata.title}</title>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary p-3">
+            <nav className="navbar navbar-expand-xl navbar-dark bg-primary p-3">
                 <a className="navbar-brand header-logo" href="/" style={HeaderLogo}>RICCARDORION</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <FontAwesomeIcon icon={faBars}/>
