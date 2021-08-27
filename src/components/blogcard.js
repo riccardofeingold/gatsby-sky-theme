@@ -15,8 +15,8 @@ const BlogCard = ({cardTitle, featuredImage, cardLink, cardExcerpt, authorImage,
                         <img className="rounded-circle" style={{maxWidth: `36px`, maxHeight: `36px`}} src={authorImage} alt={`Author: ${authorName}`}></img>
                     </div>
                     <div className="flex-grow-1 ms-3">
-                        <h6 style={{marginBottom: `0px`, fontSize: `15px`}}>{authorName}</h6>
-                        <p style={{marginBottom: `0px`, fontSize: `15px`}}>{`${published} • ${readingTime} min`}</p>
+                        <h6 style={{marginBottom: `0px`, fontSize: `14px`}}>{authorName}</h6>
+                        <p style={{marginBottom: `0px`, fontSize: `13px`}}>{`${published} • ${readingTime} min`}</p>
                     </div>
                 </div>
                 <Link to={cardLink} className="stretched-link"></Link>

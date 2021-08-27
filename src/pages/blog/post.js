@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/layout'
-import Card from "../../components/blogcard"
+import BlogCard from "../../components/blogcard"
 
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
@@ -15,19 +15,28 @@ const BlogPost = ({ data }) => {
               <img src={post.feature_image} className="img-fluid py-3" alt={post.title}/>
             ) : null}
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
-
-          <hr data-content="OTHER POSTS" className="hr-text"></hr>
-
-          <div className="row row-cols-1 row-cols-md-3 g-4">
-              {
-                allPosts.slice(0,4).map(p => (
-                  <article key={p.node.id}>
-                    <Card cardTitle={p.node.title} cardImageSrc={p.node.feature_image} cardLink={`/blog/${p.node.slug}`}/>
-                  </article>
-                ))
-              }
-            </div>
         </div>
+
+        <aside className="read-more-wrap py-3">
+          <h2 className="text-light text-center py-3">Sign up for more like this.</h2>
+
+          <div className="container">
+            <div class="input-group mb-3 inner" style={{maxWidth: `500px`}}>
+              <input type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2"/>
+              <button class="btn btn-primary" type="button" id="button-addon2">Button</button>
+            </div>
+          </div>
+
+          <div className="row row-cols-1 row-cols-md-3 g-4 inner">
+            {
+              allPosts.slice(0,3).map(p => (
+                <article key={p.node.id}>
+                  <BlogCard cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+                </article>
+              ))
+            }
+          </div>
+        </aside>
       </article>
     </Layout>
   )
@@ -43,14 +52,19 @@ export const postQuery = graphql`
       feature_image
       html
     }
-    allGhostPost(sort: { fields: [published_at], order: DESC }) {
+    allGhostPost(sort: { fields: [published_at], order: DESC }, filter: { slug: { ne: $slug } }) {
       edges {
         node {
+          authors {
+            profile_image
+            name
+          }
           id
           title
           slug
           excerpt
           feature_image
+          reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
         }
       }

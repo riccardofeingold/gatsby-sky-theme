@@ -90,6 +90,7 @@ const IndexPage = ({data}) => {
         </section>
 
         {/* Contact Me */}
+        {/* Netflifly offers a feature for contact form and sign ups etc. https://docs.netlify.com/forms/setup/ */}
 
         <section id="contact" className="home-section">
           <div className="container py-5">
