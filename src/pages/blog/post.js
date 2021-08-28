@@ -2,6 +2,7 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/layout'
 import BlogCard from "../../components/blogcard"
+import Prism from "prismjs"
 
 // viewport
 const viewportContext = React.createContext({});
@@ -76,6 +77,12 @@ function PostResponsivness(props) {
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
   const allPosts = data.allGhostPost.edges
+
+  React.useEffect(() => {
+    // call the highlightAll() function to style our code blocks
+    Prism.highlightAll()
+  })
+
   return (
     <ViewportProvider>
     <Layout pageTitle={post.title}>

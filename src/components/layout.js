@@ -55,6 +55,7 @@ const Layout = ({pageTitle, children}) => {
             {/* Header */}
             <Helmet>
                 <link rel='icon' href={favicon}></link>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/themes/prism-atom-dark.min.css"/>
             </Helmet>
             <title>{pageTitle} | {data.site.siteMetadata.title}</title>
             <nav className="navbar navbar-expand-xl navbar-dark bg-primary p-3">
@@ -126,6 +127,7 @@ const Layout = ({pageTitle, children}) => {
                     </div>
                 </div>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/index.min.js"></script>
         </main>
     )
 }

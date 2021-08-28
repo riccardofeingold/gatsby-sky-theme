@@ -12,7 +12,7 @@ class BlogPage extends React.Component {
     const { currentPage, numPages } = this.props.pageContext
     const isFirst = currentPage === 1
     const isLast = currentPage === numPages
-    const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
+    const prevPage = currentPage - 1 === 1 ? "/blog" : (currentPage - 1).toString()
     const nextPage = (currentPage + 1).toString()
 
     return (
@@ -32,26 +32,30 @@ class BlogPage extends React.Component {
         </div>
         
         {/* Pagination */}
-        {!isFirst && (
-          <Link to={prevPage} rel="prev">
-            ← Previous Page
-          </Link>
-        )}
-        {!isLast && (
-          <Link to={nextPage} rel="next">
-            Next Page →
-          </Link>
-        )}
         <nav aria-label="Page navigation example">
           <ul className="pagination justify-content-center pt-5">
             <li className="page-item">
-              <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
+              {!isFirst && (
+                <Link to={prevPage} rel="prev" className="page-link">
+                  Previous Page
+                </Link>
+              )}
             </li>
-            <li className="page-item"><a className="page-link" href="#">1</a></li>
-            <li className="page-item"><a className="page-link" href="#">2</a></li>
-            <li className="page-item"><a className="page-link" href="#">3</a></li>
+            
+            {Array.from({ length: numPages }, (_, i) => (
+              <li className="page-item">
+                <Link className="page-link" key={`pagination-number${i + 1}`} to={`/blog/${i === 0 ? "" : i + 1}`}>
+                  {i + 1}
+                </Link>
+              </li>
+            ))}
+
             <li className="page-item">
-              <a className="page-link" href="#">Next</a>
+              {!isLast && (
+                <Link to={nextPage} rel="next" className="page-link">
+                  Next Page
+                </Link>
+              )}
             </li>
           </ul>
         </nav>
