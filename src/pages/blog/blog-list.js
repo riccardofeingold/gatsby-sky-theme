@@ -2,6 +2,7 @@ import { graphql, Link } from 'gatsby'
 import * as React from 'react'
 import Layout from '../../components/layout'
 import BlogCard from '../../components/blogcard'
+import { StaticImage } from 'gatsby-plugin-image'
 
 class BlogPage extends React.Component {
   render() {
@@ -11,14 +12,18 @@ class BlogPage extends React.Component {
     // pagination 
     const { currentPage, numPages } = this.props.pageContext
     const isFirst = currentPage === 1
-    const isLast = currentPage === numPages
+    const isLast = currentPage === numPages || numPages == null
     const prevPage = currentPage - 1 === 1 ? "/blog" : (currentPage - 1).toString()
     const nextPage = (currentPage + 1).toString()
 
     return (
       <Layout pageTitle="My Blog Posts">
+        <div className="container-fluid home-section justify-content-center">
+          <StaticImage alt="Blog Title Page Image" src="../../images/pages/blogging.png" style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+          <h1 className="text-light text-center pt-3 pb-4">📝 Blog</h1>
+          <h5 className="text-light fw-normal text-center pb-5">I like to blog about the stuff I'm interested in. Hopefully you'll find some of it interesting too.</h5>
+        </div>
         <div className="container py-3">
-          <h1>Blog</h1>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {
               posts.map(post => (
@@ -43,8 +48,8 @@ class BlogPage extends React.Component {
             </li>
             
             {Array.from({ length: numPages }, (_, i) => (
-              <li className="page-item">
-                <Link className="page-link" key={`pagination-number${i + 1}`} to={`/blog/${i === 0 ? "" : i + 1}`}>
+              <li className="page-item" key={`pagination-number${i + 1}`}>
+                <Link className="page-link" to={`/blog/${i === 0 ? "" : i + 1}`}>
                   {i + 1}
                 </Link>
               </li>
@@ -67,7 +72,7 @@ class BlogPage extends React.Component {
 export default BlogPage
 
 export const pageQuery = graphql`
-  query pageQuery($skip: Int!, $limit: Int!) {
+  query pageQuery($skip: Int, $limit: Int) {
     site {
       siteMetadata {
         title

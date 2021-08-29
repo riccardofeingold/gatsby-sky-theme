@@ -13,31 +13,34 @@ const impactFontStyle = {
 
 // viewport
 const viewportContext = React.createContext({});
+// const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
-  // This is the exact same logic that we previously had in our hook
+  // if (isBrowser) {
+    const [width, setWidth] = React.useState(window.innerWidth);
+    const [height, setHeight] = React.useState(window.innerHeight);
 
-  const [width, setWidth] = React.useState(window.innerWidth);
-  const [height, setHeight] = React.useState(window.innerHeight);
+    const handleWindowResize = () => {
+      setWidth(window.innerWidth);
+      setHeight(window.innerHeight);
+    }
 
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }
+    React.useEffect(() => {
+      window.addEventListener("resize", handleWindowResize);
+      return () => window.removeEventListener("resize", handleWindowResize);
+    }, []);
 
-  React.useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-    return () => window.removeEventListener("resize", handleWindowResize);
-  }, []);
-
-  /* Now we are dealing with a context instead of a Hook, so instead
-     of returning the width and height we store the values in the
-     value of the Provider */
-  return (
-    <viewportContext.Provider value={{ width, height }}>
-      {children}
-    </viewportContext.Provider>
-  );
+    /* Now we are dealing with a context instead of a Hook, so instead
+      of returning the width and height we store the values in the
+      value of the Provider */
+    return (
+      <viewportContext.Provider value={{ width, height }}>
+        {children}
+      </viewportContext.Provider>
+    );
+  // } else {
+  //   return null
+  // }
 };
 
 /* Rewrite the "useViewport" hook to pull the width and height values
@@ -184,8 +187,8 @@ const IndexPage = ({data}) => {
 
         <section id="contact" className="home-section">
           <div className="container py-5">
-            <h1 className="text-center text-light" style={impactFontStyle}>Contact Me</h1>
-            <h5 className="text-light text-center pb-2">For questions, hirements or cooperations, feel free to contact me.</h5>
+            <h1 className="text-center text-light" style={impactFontStyle}>Get in Touch</h1>
+            <h5 className="text-light text-center pb-2">Any questions? feel free to contact me.</h5>
 
             <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
               <form className="pb-4">

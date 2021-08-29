@@ -52,7 +52,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   Array.from({ length: numPages }).forEach((_, i) => {
     actions.createPage({
       path: i === 0 ? `/blog` : `/blog/${i + 1}`,
-      component: path.resolve("./src/pages/blog/index.js"),
+      component: path.resolve("./src/pages/blog/blog-list.js"),
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
@@ -72,6 +72,23 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: postTemplate,
       context: {
         slug: node.slug,
+      },
+    })
+  })
+
+  // create project list pages
+  const projects = result.data.allMdx.edges
+  const projectPerPage = 6
+  const numProjectPages = Math.ceil(projects.length / projectPerPage)
+  Array.from({ length: numProjectPages }).forEach((_, i) => {
+    actions.createPage({
+      path: i === 0 ? `/portfolio` : `/portfolio/${i + 1}`,
+      component: path.resolve("./src/pages/portfolio/portfolio-list.js"),
+      context: {
+        limit: projectPerPage,
+        skip: i * projectPerPage,
+        numProjectPages,
+        currentPage: i + 1,
       },
     })
   })

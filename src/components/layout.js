@@ -104,29 +104,32 @@ const Layout = ({pageTitle, children}) => {
 
             <HomeTitleImage isHome={pageTitle}/>
 
-            {/* Content */}
-            <div className="container-fluid p-0">
-                {children}
-            </div>
+            <div className="site">
+                {/* Content */}
+                <div className="container-fluid p-0 site-content">
+                    {children}
+                </div>
 
-            {/* Footer */}
-            <div className="container-fluid text-center text-white py-3" style={{backgroundColor: `#3D4661`}}>
-                <div className="row align-items-center">
-                    <div className="col">
-                        <span className="align-middle">© Riccardo Orion Feingold</span>
-                    </div>
+                {/* Footer */}
+                <div className="container-fluid text-center text-white py-3" style={{backgroundColor: `#3D4661`}}>
+                    <div className="row align-items-center">
+                        <div className="col">
+                            <span className="align-middle">© Riccardo Orion Feingold</span>
+                        </div>
 
-                    <div className="col">
-                        <a className="btn btn-outline-light social-media-btn m-1" href="https://twitter.com/riccardorion" aria-label="Twitter"><FontAwesomeIcon icon={faTwitter}/></a>
+                        <div className="col">
+                            <a className="btn btn-outline-light social-media-btn m-1" href="https://twitter.com/riccardorion" aria-label="Twitter"><FontAwesomeIcon icon={faTwitter}/></a>
 
-                        <a className="btn btn-outline-light social-media-btn m-1" href="https://www.instagram.com/riccardorion/" aria-label="Instagram"><FontAwesomeIcon icon={faInstagram}/></a>
+                            <a className="btn btn-outline-light social-media-btn m-1" href="https://www.instagram.com/riccardorion/" aria-label="Instagram"><FontAwesomeIcon icon={faInstagram}/></a>
 
-                        <a className="btn btn-outline-light social-media-btn m-1" href="https://www.linkedin.com/in/riccardofeingold/" aria-label="Linkedin"><FontAwesomeIcon icon={faLinkedin}/></a>
+                            <a className="btn btn-outline-light social-media-btn m-1" href="https://www.linkedin.com/in/riccardofeingold/" aria-label="Linkedin"><FontAwesomeIcon icon={faLinkedin}/></a>
 
-                        <a className="btn btn-outline-light social-media-btn m-1" href="https://github.com/riccardofeingold" aria-label="GitHub"><FontAwesomeIcon icon={faGithub}/></a>
+                            <a className="btn btn-outline-light social-media-btn m-1" href="https://github.com/riccardofeingold" aria-label="GitHub"><FontAwesomeIcon icon={faGithub}/></a>
+                        </div>
                     </div>
                 </div>
             </div>
+            
             <script src="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/index.min.js"></script>
         </main>
     )
