@@ -46,7 +46,7 @@ strong {
 }
 
 a {
-  color: #385AE6;
+  color: $primary;
   text-decoration: none;
 }
 
@@ -75,17 +75,10 @@ a {
   }
 
   // Divider styling
-  hr {
-    &:not([size]) {
-      height: 2px;
-    }
-  }
-
-  hr.hr-text {
-    position: relative;
-      border: none;
-      height: 2px;
-      background: $title-color;
+  .line {
+    max-width: 85px;
+    border-top: 3px solid white;
+    background: none;
   }
 
   // cards
@@ -115,20 +108,6 @@ a {
     font-size: 16px;
   }
   
-  hr.hr-text::before {
-      content: attr(data-content);
-      display: inline-block;
-      background: #fff;
-      font-weight: bold;
-      font-size: 0.85rem;
-      color: $title-color;
-      border-radius: 30rem;
-      padding: 0.2rem 2rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-  }
 
   // froms
   .form-control {
@@ -282,6 +261,9 @@ a {
 }
 
 // Ghost styling
+code {
+  color: $primary;
+}
 .kg-image {
   width: 100%;
   height: auto;

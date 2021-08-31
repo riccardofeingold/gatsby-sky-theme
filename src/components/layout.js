@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql} from 'gatsby'
 import './layout.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import favicon from '../images/favicon.ico'
 import { StaticImage } from 'gatsby-plugin-image'
 import { faGithub, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";

@@ -5,34 +5,27 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 const ProjectPage = ({data}) => {
     const project = data.mdx
-    // const allProject = data.allMdx.edges
 
     return (
         <Layout pageTitle="Projects">
-            <article className="post">
-                <div className="container py-3 post-full-content">
-                <h1>{project.frontmatter.title}</h1>
-                {project.frontmatter.featuredImage.publicURL ? (
-                    <img src={project.frontmatter.featuredImage.publicURL} className="img-fluid py-3" alt={project.frontmatter.title}/>
+          <div className="container-fluid home-section justify-content-center">
+            <div className="bg-primary post-full-content">
+              {project.frontmatter.featuredImage.publicURL ? (
+                    <img src={project.frontmatter.featuredImage.publicURL} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={project.frontmatter.title}/>
                     ) : null}
-                
+              <h1 className="text-light text-center pt-3 pb-4">{project.frontmatter.title}</h1>
+              <h5 className="text-white-50 fw-bold text-center">{project.frontmatter.tags.length > 0 ? project.frontmatter.tags[0] : null}</h5>
+            </div>
+            <hr className="line mx-auto pb-5"></hr>
+          </div>
+          
+          <article className="post">
+              <div className="container py-3 post-full-content">
                 <MDXRenderer>
                     {project.body}
                 </MDXRenderer>
-
-                {/* <hr data-content="OTHER POSTS" className="hr-text"></hr>
-
-                <div className="row row-cols-1 row-cols-md-3 g-4">
-                    {
-                        allProject.map(p => (
-                        <article key={p.node.id}>
-                            <Card cardTitle={p.node.title} cardImageSrc={p.node.feature_image} cardLink={`/blog/${p.node.slug}`}/>
-                        </article>
-                        ))
-                    }
-                    </div> */}
-                </div>
-            </article>
+              </div>
+          </article>
         </Layout>
     )
 }
@@ -47,6 +40,7 @@ query($slug: String) {
           publicURL
         }
         title
+        tags
       }
       body
       slug

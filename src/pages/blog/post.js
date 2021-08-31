@@ -90,12 +90,19 @@ const BlogPost = ({ data }) => {
   return (
     <ViewportProvider>
     <Layout pageTitle={post.title}>
+      <div className="container-fluid home-section justify-content-center">
+        <div className="bg-primary post-full-content">
+          {post.feature_image ? (
+                  <img src={post.feature_image} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={post.title}/>
+                ) : null}
+          <h1 className="text-light text-center pt-3 pb-4">{post.title}</h1>
+          <h5 className="text-white-50 fw-bold text-center">{post.tags.length > 0 ? post.tags[0].name : null}</h5>
+        </div>
+        <hr className="line mx-auto pb-5"></hr>
+      </div>
+
       <article className="post">
         <div className="container py-3 post-full-content">
-          <h1>{post.title}</h1>
-          {post.feature_image ? (
-              <img src={post.feature_image} className="img-fluid py-3" alt={post.title}/>
-            ) : null}
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
 
@@ -127,13 +134,20 @@ export const postQuery = graphql`
       title
       slug
       feature_image
+      excerpt
       html
+      tags {
+        name
+      }
     }
     allGhostPost(sort: { fields: [published_at], order: DESC }, filter: { slug: { ne: $slug } }) {
       edges {
         node {
           authors {
             profile_image
+            name
+          }
+          tags {
             name
           }
           id

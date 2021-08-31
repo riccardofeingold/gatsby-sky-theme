@@ -188,7 +188,7 @@ const IndexPage = ({data}) => {
         <section id="contact" className="home-section">
           <div className="container py-5">
             <h1 className="text-center text-light" style={impactFontStyle}>Get in Touch</h1>
-            <h5 className="text-light text-center pb-2">Any questions? feel free to contact me.</h5>
+            <h5 className="text-light text-center pb-2">Any questions? Feel free to contact me.</h5>
 
             <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
               <form className="pb-4">
