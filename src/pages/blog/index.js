@@ -105,7 +105,7 @@ const BlogPage = ({data}) => {
       <div className="d-flex justify-content-center py-2">
         <form className="form-inline d-flex position-search-bar justify-content-center" style={{width: `350px`}}>
             <div className={`search ${isActive ? null : `open`}`}>
-                <input type="search" className="search-box" placeholder="Search Post" aria-label="Search" value={state.query} onChange={handleInputChange} ref={(element) => {
+                <input type="search" className="search-box" aria-label="Search" value={state.query} onChange={handleInputChange} ref={(element) => {
                     searchField.current = element;
                 }}></input>
                 <span role="searchbox" className="search-button" onClick={ToggleClass} onKeyDown={ToggleClass} tabIndex={0}>

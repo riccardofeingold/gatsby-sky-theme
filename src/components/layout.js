@@ -46,6 +46,7 @@ const Layout = ({pageTitle, children}) => {
         <main>
             {/* Header */}
             <Helmet>
+                <meta charset="UTF-8"></meta>
                 <link rel='icon' href={favicon}></link>
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/themes/prism-atom-dark.min.css"/>
             </Helmet>
