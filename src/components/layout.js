@@ -71,8 +71,13 @@ const Layout = ({pageTitle, children}) => {
                                 <li className="nav-item">
                                     <a className="nav-link" href="/portfolio">Portfolio</a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/blog">Blog</a>
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="/blog" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Blog
+                                    </a>
+                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a className="dropdown-item" href="/blog">All</a>
+                                    </div>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="/#contact">Contact</a>
@@ -117,7 +122,6 @@ const Layout = ({pageTitle, children}) => {
                     </div>
                 </div>
             </div>
-            
             <script src="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/index.min.js"></script>
         </main>
     )

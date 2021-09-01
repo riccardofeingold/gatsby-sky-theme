@@ -36,7 +36,7 @@ const getNestedHeadings = (headingElements) => {
   };
 
 const Headings = ({ headings }) => (
-    <ul>
+    <ul style={{listStyleType: `none`, borderLeft: `3px solid #007bffb5`, paddingLeft: `1rem`}}>
       {headings.map((heading) => (
         <li key={heading.id}>
           <a 
@@ -47,10 +47,11 @@ const Headings = ({ headings }) => (
                     behavior: "smooth"
                 });
             }}
-            style={{color: `#8B91A7`}}
+            className="fw-bold"
+            style={{color: `#454e6b`}}
           >{heading.title}</a>
           {heading.items.length > 0 && (
-                <ul> 
+                <ul style={{listStyleType: `none`}}> 
                     {heading.items.map((child) => (
                         <li key={child.id}>                
                             <a 
@@ -61,7 +62,7 @@ const Headings = ({ headings }) => (
                                         behavior: "smooth"
                                     });
                                 }}
-                                style={{color: `#8B91A7`}}
+                                style={{color: `#454e6b`}}
                             >{child.title}</a>              
                         </li>
                     ))}
@@ -76,9 +77,9 @@ const TableOfContents = () => {
     const { nestedHeadings } = useHeadingsData();
 
     return (
-        <div className={`container post-full-content ${nestedHeadings.length > 0 ? "p-2" : ""}`} aria-label="Table of contents">
+        <div className={`container post-full-content ${nestedHeadings.length > 0 ? "py-3 mb-4" : ""}`} style={{backgroundColor: `#F8FAFC`, borderRadius: `10px`}} aria-label="Table of contents">
             {
-                nestedHeadings.length > 0 ? <h2>Table Of Contents</h2> : null
+                nestedHeadings.length > 0 ? <h3>Table Of Contents</h3> : null
             }
             <Headings headings={nestedHeadings} />
         </div>

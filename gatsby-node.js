@@ -1,8 +1,10 @@
 const path = require(`path`)
+const _ = require("lodash")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const postTemplate = path.resolve(`./src/pages/blog/post.js`)
   const projectTemplate = path.resolve(`./src/pages/portfolio/project.js`)
+  const tagTemplate = path.resolve("./src/templates/tags.js")
 
   // Query Ghost data
   const result = await graphql(`
@@ -12,6 +14,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             slug
           }
+        }
+        group(field: tags___name) {
+          fieldValue
         }
       }
       allMdx {
@@ -59,23 +64,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
-  // create project list pages
-  const projects = result.data.allMdx.edges
-  const projectPerPage = 6
-  const numProjectPages = Math.ceil(projects.length / projectPerPage)
-  Array.from({ length: numProjectPages }).forEach((_, i) => {
-    actions.createPage({
-      path: i === 0 ? `/portfolio` : `/portfolio/${i + 1}`,
-      component: path.resolve("./src/pages/portfolio/portfolio-list.js"),
-      context: {
-        limit: projectPerPage,
-        skip: i * projectPerPage,
-        numProjectPages,
-        currentPage: i + 1,
-      },
-    })
-  })
-
   //create pages for each project
   const projectItems = result.data.allMdx.edges
   projectItems.forEach(({ node }) => {
@@ -87,6 +75,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         slug: node.slug,
       }
+    })
+  })
+
+  // Extract tag data from query
+  const tags = result.data.allGhostPost.group
+
+  // Make tag pages
+  tags.forEach(tag => {
+    actions.createPage({
+      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      component: tagTemplate,
+      context: {
+        tag: tag.fieldValue,
+      },
     })
   })
 }

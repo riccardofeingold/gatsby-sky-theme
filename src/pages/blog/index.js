@@ -28,9 +28,11 @@ const BlogPage = ({data}) => {
       const query = event.target.value;
       const filteredPosts = allPosts.filter(post => {
         const { title, tags } = post.node;
+        const tagNames = tags.map(tag => {return tag.name})
+        console.log(tags)
         return (
           title.toLowerCase().includes(query.toLowerCase()) ||
-          (tags && tags.join("").toLowerCase().includes(query.toLowerCase()))
+          (tagNames && tagNames.join("").toLowerCase().includes(query.toLowerCase()))
         );
       });
       setState({
@@ -161,6 +163,9 @@ export const pageQuery = graphql`
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
           authors {
             profile_image
+            name
+          }
+          tags {
             name
           }
         }
