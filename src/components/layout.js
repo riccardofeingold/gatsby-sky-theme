@@ -31,7 +31,7 @@ function HomeTitleImage(props) {
     }
 }
 
-const Layout = ({pageTitle, children}) => {
+const Layout = ({pageTitle, children, tagNames}) => {
     const data = useStaticQuery(graphql`
     query {
         site {
@@ -76,7 +76,7 @@ const Layout = ({pageTitle, children}) => {
                                     Blog
                                     </a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a className="dropdown-item" href="/blog">All</a>
+                                        <a className="dropdown-item" href="/blog">All Articles</a>
                                     </div>
                                 </li>
                                 <li className="nav-item">

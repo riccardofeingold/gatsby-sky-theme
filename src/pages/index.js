@@ -262,6 +262,10 @@ export const postsQuery = graphql`
           feature_image
           reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
+          tags {
+            name
+            feature_image
+          }
         }
       }
     }
