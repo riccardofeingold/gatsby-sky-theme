@@ -15,8 +15,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
           }
         }
-        group(field: tags___name) {
+        group(field: tags___slug) {
           fieldValue
+          nodes {
+            tags {
+              name
+              feature_image
+              description
+            }
+          }
         }
       }
       allMdx {
@@ -84,10 +91,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Make tag pages
   tags.forEach(tag => {
     actions.createPage({
-      path: `${_.kebabCase(tag.fieldValue)}/`,
+      path: `/${_.kebabCase(tag.fieldValue)}/`,
       component: tagTemplate,
       context: {
-        tag: tag.fieldValue,
+        slug: tag.fieldValue,
+        name: tag.nodes.length ? tag.nodes[0].tags[0].name : "No Posts for this tag!",
+        description: tag.nodes.length ? tag.nodes[0].tags[0].description : "",
+        image: tag.nodes.length ? tag.nodes[0].tags[0].feature_image : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fwingedwolf%2F5471047557&psig=AOvVaw31MJdMToBgk72NXGoIC9RW&ust=1630700299917000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCKj0qJWO4fICFQAAAAAdAAAAABAD",
       },
     })
   })

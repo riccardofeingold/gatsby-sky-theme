@@ -10,12 +10,8 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 
 const Tags = ({ pageContext, data }) => {
-  const { tag } = pageContext
-  const { totalCount } = data.allGhostPost
+  const { name, description, image } = pageContext
   const allPosts = data.allGhostPost.edges
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
 
   // search ability
   const searchField = useRef(null);
@@ -37,7 +33,6 @@ const Tags = ({ pageContext, data }) => {
       const filteredPosts = allPosts.filter(post => {
         const { title, tags } = post.node;
         const tagNames = tags.map(tag => {return tag.name})
-        console.log(tags)
         return (
           title.toLowerCase().includes(query.toLowerCase()) ||
           (tagNames && tagNames.join("").toLowerCase().includes(query.toLowerCase()))
@@ -108,12 +103,12 @@ const Tags = ({ pageContext, data }) => {
   return (
     <Layout pageTitle="My Blog Posts">
     <div className="container-fluid home-section justify-content-center">
-      <StaticImage alt="Blog Title Page Image" src="../images/pages/blogging.png" style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
-      <h1 className="text-light text-center pt-3 pb-4">{tagHeader}</h1>
-      <h5 className="text-light fw-normal text-center pb-5">I like to blog about the stuff I'm interested in. Hopefully you'll find some of it interesting too.</h5>
+      <img alt="Blog Title Page" src={image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"></img>
+      <h1 className="text-light text-center pt-3 pb-4">{name}</h1>
+      <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{description}</h5>
     </div>
 
-    <div className="d-flex justify-content-center py-2">
+    <div className="d-flex justify-content-center pt-3">
       <form className="form-inline d-flex position-search-bar justify-content-center" style={{width: `350px`}}>
           <div className={`search ${isActive ? null : `open`}`}>
               <input type="search" className="search-box" aria-label="Search" value={state.query} onChange={handleInputChange} ref={(element) => {
@@ -153,7 +148,7 @@ const Tags = ({ pageContext, data }) => {
 
 Tags.propTypes = {
   pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
   }),
   data: PropTypes.shape({
     allGhostPost: PropTypes.shape({
@@ -173,10 +168,10 @@ Tags.propTypes = {
 export default Tags
 
 export const tagQuery = graphql`
-query($tag: String) {
+query($slug: String) {
   allGhostPost(
     sort: {fields: published_at, order: DESC}
-    filter: {tags: {elemMatch: {name: {in: [$tag]}}}}
+    filter: {tags: {elemMatch: {slug: {in: [$slug]}}}}
     limit: 2000
   ) {
     totalCount
@@ -195,6 +190,8 @@ query($tag: String) {
         }
         tags {
           name
+          slug
+          description
           feature_image
         }
       }

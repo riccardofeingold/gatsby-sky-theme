@@ -23,7 +23,7 @@ function HomeTitleImage(props) {
     if (isHome === "Home") {
       return (
           <section id="welcome-section">
-              <div className="container-fluid p-0"><StaticImage layout="fullWidth" alt="Riccardorion Branding Imgae © Riccardo Orion Feingold" src="../images/banner-blue-bg.png"/></div>
+              <div className="container-fluid p-0"><StaticImage layout="fullWidth" alt="Riccardorion Branding Imgae © Riccardo Orion Feingold" src="../images/riccardo-cover-image.png"/></div>
           </section>
       )
     } else {
@@ -54,7 +54,7 @@ const Layout = ({pageTitle, children, tagNames}) => {
             <div className="container-fluid bg-primary">
                 <div className="container">
                     <nav className="navbar navbar-expand-xl navbar-dark p-3">
-                        <a className="navbar-brand header-logo" href="/" style={HeaderLogo}>RICCARDORION</a>
+                        <a className="navbar-brand header-logo" href="/" style={HeaderLogo}>RICCARDO</a>
                         
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <FontAwesomeIcon icon={faBars}/>
@@ -72,11 +72,17 @@ const Layout = ({pageTitle, children, tagNames}) => {
                                     <a className="nav-link" href="/portfolio">Portfolio</a>
                                 </li>
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="/blog" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Blog
-                                    </a>
+                                    <a className="nav-link dropdown-toggle" href="/blog" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Tag Dropdown">Blog</a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a className="dropdown-item" href="/blog">All Articles</a>
+                                        <a className="dropdown-item" href="/blog">🔭 All</a>
+                                        <a className="dropdown-item" href="/tech">🛠 Tech</a>
+                                        <a className="dropdown-item" href="/studying">📖 Studying</a>
+                                        <a className="dropdown-item" href="/productivity">🚀 Productivity</a>
+                                        <a className="dropdown-item" href="/music">🎹 Music</a>
+                                        <a className="dropdown-item" href="/journal">📔 Journal</a>
+                                        <a className="dropdown-item" href="/money">🤑 Money</a>
+                                        <a className="dropdown-item" href="/entrepreneurship">💰 Entrepreneurship</a>
+                                        <a className="dropdown-item" href="/books">📚 Books</a>
                                     </div>
                                 </li>
                                 <li className="nav-item">

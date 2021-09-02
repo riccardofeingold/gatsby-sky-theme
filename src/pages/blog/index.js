@@ -29,7 +29,6 @@ const BlogPage = ({data}) => {
       const filteredPosts = allPosts.filter(post => {
         const { title, tags } = post.node;
         const tagNames = tags.map(tag => {return tag.name})
-        console.log(tags)
         return (
           title.toLowerCase().includes(query.toLowerCase()) ||
           (tagNames && tagNames.join("").toLowerCase().includes(query.toLowerCase()))
@@ -101,10 +100,10 @@ const BlogPage = ({data}) => {
       <div className="container-fluid home-section justify-content-center">
         <StaticImage alt="Blog Title Page Image" src="../../images/pages/blogging.png" style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
         <h1 className="text-light text-center pt-3 pb-4">📝 Blog</h1>
-        <h5 className="text-light fw-normal text-center pb-5">I like to blog about the stuff I'm interested in. Hopefully you'll find some of it interesting too.</h5>
+        <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">I like to blog about the stuff I'm interested in. Hopefully you'll find some of it interesting too.</h5>
       </div>
 
-      <div className="d-flex justify-content-center py-2">
+      <div className="d-flex justify-content-center pt-3">
         <form className="form-inline d-flex position-search-bar justify-content-center" style={{width: `350px`}}>
             <div className={`search ${isActive ? null : `open`}`}>
                 <input type="search" className="search-box" aria-label="Search" value={state.query} onChange={handleInputChange} ref={(element) => {
