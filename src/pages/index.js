@@ -132,8 +132,8 @@ const IndexPage = ({data}) => {
           <div className="container py-5">
             <h1 className="text-center" style={impactFontStyle}>About Me</h1>
             <div className="row">
-              <div className="col-md-6">
-                <StaticImage alt="Riccardo Orion Feingold - Profile" className="shadow rounded" src="../images/profile-rect.jpeg"/>
+              <div className="col-md-6 pb-3">
+                <StaticImage alt="Riccardo Orion Feingold - Profile" className="rounded" src="../images/profile-rect.jpeg"/>
               </div>
               <div className="col-md-6">
                 <p style={{fontSize: `20px`}}>

@@ -47,5 +47,11 @@ module.exports = {
       }
     },
     `gatsby-plugin-sass`,
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: 'https://riccardofeingold.us7.list-manage.com/subscribe/post?u=e63d61c6a7d796fa055a300b1&amp;id=8202717079'
+      }
+    }
   ],
 };

@@ -23,7 +23,7 @@ function HomeTitleImage(props) {
     if (isHome === "Home") {
       return (
           <section id="welcome-section">
-              <div className="container-fluid p-0"><StaticImage layout="fullWidth" alt="Riccardorion Branding Imgae © Riccardo Orion Feingold" src="../images/riccardo-cover-image.png"/></div>
+              <div className="container-fluid p-0"><StaticImage alt="Riccardorion Branding Imgae © Riccardo Orion Feingold" src="../images/riccardo-cover-image.png"/></div>
           </section>
       )
     } else {

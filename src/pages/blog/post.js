@@ -1,9 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/layout'
 import BlogCard from "../../components/blogcard"
 import Prism from "prismjs"
 import TableOfContents from '../../components/tableOfContents'
+import addToMailchimp from 'gatsby-plugin-mailchimp';
 
 // viewport
 const viewportContext = React.createContext({});
@@ -78,6 +79,9 @@ function PostResponsivness(props) {
     )
   }
 }
+
+// Sign Up 
+
 
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
