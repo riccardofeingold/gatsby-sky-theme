@@ -82,7 +82,6 @@ function PostResponsivness(props) {
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
   const allPosts = data.allGhostPost.edges
-
   React.useEffect(() => {
     // call the highlightAll() function to style our code blocks
     Prism.highlightAll()
@@ -97,7 +96,7 @@ const BlogPost = ({ data }) => {
                   <img src={post.feature_image} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={post.title}/>
                 ) : null}
           <h1 className="text-light text-center pt-3 pb-4">{post.title}</h1>
-          <h5 className="text-white-50 fw-bold text-center">{post.tags.length > 0 ? post.tags[0].name : null}</h5>
+          <h5 className="fw-bold text-center" style={{color: `#f8f9fa`}}>{post.tags.length ? post.tags[0].name : null}</h5>
         </div>
         <hr className="line mx-auto pb-5"></hr>
       </div>

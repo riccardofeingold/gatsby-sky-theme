@@ -1,7 +1,6 @@
 import React, {useRef, useState, useEffect } from "react"
 import Layout from '../components/layout'
 import BlogCard from '../components/blogcard'
-import { StaticImage } from 'gatsby-plugin-image'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from "prop-types"
@@ -103,9 +102,11 @@ const Tags = ({ pageContext, data }) => {
   return (
     <Layout pageTitle="My Blog Posts">
     <div className="container-fluid home-section justify-content-center">
-      <img alt="Blog Title Page" src={image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"></img>
-      <h1 className="text-light text-center pt-3 pb-4">{name}</h1>
-      <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{description}</h5>
+      <img alt="Tag Title Page" src={image} style={{maxWidth: `300px`, maxHeight: `300px`, color: `white`}} className="mx-auto d-block text-center"></img>
+      <div className="post-full-content text-center bg-primary">
+        <h1 className="text-light pt-3 pb-4">{name}</h1>
+        <h5 className="fw-normal pb-5" style={{color: `#f8f9fa`}}>{description}</h5>
+      </div>
     </div>
 
     <div className="d-flex justify-content-center pt-3">
