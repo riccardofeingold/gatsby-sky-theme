@@ -14,7 +14,7 @@ const ProjectPage = ({data}) => {
                     <img src={project.frontmatter.featuredImage.publicURL} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={project.frontmatter.title}/>
                     ) : null}
               <h1 className="text-light text-center pt-3 pb-4">{project.frontmatter.title}</h1>
-              <h5 className="text-white-50 fw-bold text-center">{project.frontmatter.tags.length > 0 ? project.frontmatter.tags[0] : null}</h5>
+              <h5 className="text-white fw-bold text-center">{project.frontmatter.tags.length > 0 ? project.frontmatter.tags[0] : null}</h5>
             </div>
             <hr className="line mx-auto pb-5"></hr>
           </div>

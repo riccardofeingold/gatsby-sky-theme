@@ -4,7 +4,6 @@ import Layout from '../../components/layout'
 import BlogCard from "../../components/blogcard"
 import Prism from "prismjs"
 import TableOfContents from '../../components/tableOfContents'
-import addToMailchimp from 'gatsby-plugin-mailchimp';
 
 // viewport
 const viewportContext = React.createContext({});
@@ -111,19 +110,11 @@ const BlogPost = ({ data }) => {
         <div className="container py-3 post-full-content">
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
-
       </article>
+      
       <aside className="read-more-wrap py-3">
-        <h2 className="text-light text-center py-3">Sign up for more like this.</h2>
-
-        <div className="container">
-          <div className="input-group mb-3 container" style={{maxWidth: `500px`}}>
-            <input type="text" className="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2"/>
-            <button className="btn btn-primary" type="button" id="button-addon2">Sign Up</button>
-          </div>
-        </div>
-
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 inner">
+        <h2 className="text-center">Other Posts</h2>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 inner">
           <PostResponsivness data={allPosts}/>
         </div>
       </aside>

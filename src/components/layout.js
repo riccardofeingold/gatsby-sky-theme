@@ -7,6 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import favicon from '../images/favicon.ico'
 import { StaticImage } from 'gatsby-plugin-image'
 import { faGithub, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import SubscribeForm from '../components/subscribeForm'
 
 // styles for components 
 const HeaderLogo = {
@@ -110,8 +111,10 @@ const Layout = ({pageTitle, children, tagNames}) => {
                 </div>
 
                 {/* Footer */}
+                <SubscribeForm/>
                 <div className="container-fluid text-center text-white py-3" style={{backgroundColor: `#3D4661`}}>
                     <div className="row align-items-center">
+
                         <div className="col">
                             <span className="align-middle">© Riccardo Orion Feingold</span>
                         </div>
