@@ -5,6 +5,7 @@ import BlogCard from '../../components/blogcard'
 import { StaticImage } from 'gatsby-plugin-image'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Seo from '../../components/seo'
 
 const BlogPage = ({data}) => {
   const allPosts = data.allGhostPost.edges
@@ -97,10 +98,17 @@ const BlogPage = ({data}) => {
 
   return (
     <Layout pageTitle="My Blog Posts">
+      <Seo
+        title={data.ghostPage.title}
+        description={data.ghostPage.excerpt}
+        image={data.ghostPage.feature_image}
+        pathname={data.ghostPage.slug}
+        article 
+      />
       <div className="container-fluid home-section justify-content-center">
         <StaticImage alt="Blog Title Page Image" src="../../images/pages/blogging.png" style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
-        <h1 className="text-light text-center pt-3 pb-4">📝 Blog</h1>
-        <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">I like to blog about the stuff I'm interested in. Hopefully you'll find some of it interesting too.</h5>
+        <h1 className="text-light text-center pt-3 pb-4">{data.ghostPage.title}</h1>
+        <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{data.ghostPage.excerpt}</h5>
       </div>
 
       <div className="d-flex justify-content-center pt-3">
@@ -169,6 +177,12 @@ export const pageQuery = graphql`
           }
         }
       }
+    }
+    ghostPage(slug: {eq: "blog"}) {
+      excerpt
+      title
+      feature_image
+      slug
     }
   }
 `

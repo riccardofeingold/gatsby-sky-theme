@@ -8,6 +8,7 @@ import favicon from '../images/favicon.ico'
 import { StaticImage } from 'gatsby-plugin-image'
 import { faGithub, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import SubscribeForm from '../components/subscribeForm'
+import { BrowserRouter } from "react-router-dom";
 
 // styles for components 
 const HeaderLogo = {
@@ -32,7 +33,7 @@ function HomeTitleImage(props) {
     }
 }
 
-const Layout = ({pageTitle, children, tagNames}) => {
+const Layout = ({pageTitle, children}) => {
     const data = useStaticQuery(graphql`
     query {
         site {
@@ -44,6 +45,7 @@ const Layout = ({pageTitle, children, tagNames}) => {
     `)
 
     return (
+        <BrowserRouter>
         <main>
             {/* Header */}
             <Helmet>
@@ -111,7 +113,7 @@ const Layout = ({pageTitle, children, tagNames}) => {
                 </div>
 
                 {/* Footer */}
-                <SubscribeForm/>
+                {pageTitle === "Newsletter Thank You" ? null : <SubscribeForm/>}
                 <div className="container-fluid text-center text-white py-3" style={{backgroundColor: `#3D4661`}}>
                     <div className="row align-items-center">
 
@@ -133,6 +135,7 @@ const Layout = ({pageTitle, children, tagNames}) => {
             </div>
             <script src="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/index.min.js"></script>
         </main>
+        </BrowserRouter>
     )
 }
 

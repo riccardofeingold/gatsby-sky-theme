@@ -1,7 +1,8 @@
 import React from "react";
 import addToMailchimp from 'gatsby-plugin-mailchimp';
+import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
 
-export default class SubscribeForm extends React.Component {
+class SubscribeForm extends React.Component {
     state = {
         email: '',
         message: '',
@@ -19,6 +20,8 @@ export default class SubscribeForm extends React.Component {
         e.preventDefault();
         const result = await addToMailchimp(this.state.email);
         this.setState({ message: result.msg });
+        this.props.history.push('/thankyou'); // <--- The page you want to redirect your user to.
+        window.location.reload();
     };
     
     render() {
@@ -31,18 +34,27 @@ export default class SubscribeForm extends React.Component {
                     data-netlify="true"
                     id="subscribe-form"
                     className="subscribe-form"
-                    onSubmit={this.handleSubmit}
+                    onSubmit={this.handleSubmit.bind(this)}
                 >
-                    <h2 className="text-center py-3">Sign up for more like this.</h2>
+                    <div className="container" style={{maxWidth: `1040px`}}>
+                        <h2 className="text-center py-3">Sign up for more like this.</h2>
+                        <div className="row">
+                            <div className="col-lg">
+                                <p style={{color: `#3D4661`}}>Join a growing community of more than 120,000 (🤯) friendly readers. Every Sunday I share actionable productivity tips, practical life advice, and high-quality insights from across the web, directly to your inbox.</p>
+                            </div>
 
-                    <div className="container">
-                        <div className="input-group mb-3 container" style={{maxWidth: `500px`}}>
-                            <input type="email" name="email" className="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2" value={this.state.email} onChange={this.handleInputChange}/>
-                            <button className="btn btn-primary" type="submit" id="button-addon2" onClick={this.showThankYou}>Sign Up</button>
+                            <div className="col-lg">
+                                <div className="input-group mb-3 container">
+                                    <input type="email" name="email" className="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2" value={this.state.email} onChange={this.handleInputChange}/>
+                                    <button className="btn btn-primary" type="submit" id="button-addon2" onClick={this.showThankYou}>Sign Up</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         );
     }
-} 
+}
+
+export default withRouter(SubscribeForm)

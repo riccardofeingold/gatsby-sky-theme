@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/layout'
 import Card from "../../components/card"
-import { StaticImage } from 'gatsby-plugin-image'
+import Seo from "../../components/seo"
 
 const Portfolio = ({data}) => {
   const portfolio = data.allMdx.edges
@@ -62,10 +62,17 @@ const Portfolio = ({data}) => {
 
   return (
     <Layout pageTitle="Portfolio">
+        <Seo
+          title={data.ghostPage.title}
+          description={data.ghostPage.excerpt}
+          image={data.ghostPage.image}
+          pathname={data.ghostPage.slug}
+          article
+        />
         <div className="container-fluid home-section justify-content-center">
-          <StaticImage alt="Blog Title Page Image" src="../../images/pages/rocket.png" style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
-          <h1 className="text-light text-center pt-3 pb-4">🚀 Projects</h1>
-          <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">I like to craft web and mobile apps, as well some engineering stuff. Hopefully you'll find some of it interesting too.</h5>
+          <img alt="Projects Title Page" src={data.ghostPage.feature_image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+          <h1 className="text-light text-center pt-3 pb-4">{data.ghostPage.title}</h1>
+          <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{data.ghostPage.excerpt}</h5>
         </div>
         <div className="container py-3">
             <h1>Portfolio</h1>
@@ -105,6 +112,13 @@ query query($skip: Int, $limit: Int) {
           id
         }
       }
+    }
+    ghostPage(slug: {eq: "projects"}) {
+      html
+      slug
+      title
+      excerpt
+      feature_image
     }
   }
 `

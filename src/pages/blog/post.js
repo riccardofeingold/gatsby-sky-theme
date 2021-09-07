@@ -4,6 +4,7 @@ import Layout from '../../components/layout'
 import BlogCard from "../../components/blogcard"
 import Prism from "prismjs"
 import TableOfContents from '../../components/tableOfContents'
+import Seo from '../../components/seo'
 
 // viewport
 const viewportContext = React.createContext({});
@@ -89,10 +90,17 @@ const BlogPost = ({ data }) => {
     // call the highlightAll() function to style our code blocks
     Prism.highlightAll()
   })
-
+  
   return (
     <ViewportProvider>
     <Layout pageTitle={post.title}>
+      <Seo
+        title={post.title}
+        description={post.excerpt}
+        image={post.feature_image}
+        pathname={post.slug}
+        article 
+      />
       <div className="container-fluid home-section justify-content-center">
         <div className="bg-primary post-full-content">
           {post.feature_image ? (

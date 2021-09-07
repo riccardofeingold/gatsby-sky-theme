@@ -1,54 +1,40 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import * as React from 'react'
+import Layout from '../components/layout'
+import { graphql} from 'gatsby'
+import Seo from "../components/seo"
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+const ThankYou = ({data}) => {
+    const image = data.ghostPage.feature_image
+    const title = data.ghostPage.title
+    const excerpt = data.ghostPage.excerpt
+    const slug = data.ghostPage.slug
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-// markup
-const NotFoundPage = () => {
-  return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
+    return (
+        <Layout pageTitle="Page Not Found">
+            <Seo
+                title={title}
+                description={excerpt}
+                image={image}
+                pathname={slug}
+                article
+            />
+            <div className="container-fluid home-section justify-content-center">
+                <img alt="Thank You Title Page" src={image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+                <h1 className="text-light text-center pt-3 pb-4">{title}</h1>
+                <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{excerpt}</h5>
+            </div>
+        </Layout>
+    )
 }
 
-export default NotFoundPage
+export default ThankYou
+export const query = graphql`
+query {
+    ghostPage(slug: {eq: "404"}) {
+        excerpt
+        title
+        feature_image
+        slug
+    }
+  }
+`

@@ -2,12 +2,20 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/layout'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import Seo from "../../components/seo"
 
 const ProjectPage = ({data}) => {
     const project = data.mdx
 
     return (
         <Layout pageTitle="Projects">
+          <Seo
+            title={project.frontmatter.title}
+            description={project.frontmatter.description}
+            image={project.frontmatter.featuredImage.publicURL}
+            pathname={project.slug}
+            article
+          />
           <div className="container-fluid home-section justify-content-center">
             <div className="bg-primary post-full-content">
               {project.frontmatter.featuredImage.publicURL ? (
@@ -41,6 +49,7 @@ query($slug: String) {
         }
         title
         tags
+        description
       }
       body
       slug

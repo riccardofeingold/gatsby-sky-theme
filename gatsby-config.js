@@ -1,7 +1,21 @@
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = 'https://www.riccardofeingold.com',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === 'production'
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.riccardofeingold.com",
-    title: "riccardofeingold",
+    siteUrl,
+    title: "Riccardo Feingold - Personal Blog",
+    titleTemplate: "%s | Riccardo Feingold",
+    description: "Welcome to my personal blog. Here you will find posts about tech, music, designing and engineering.",
+    url: "https://www.riccardofeingold.com",
+    image: "/images/riccardo-cover-image.png",
+    twitterUsername: "@riccardorion",
   },
   plugins: [
     "gatsby-plugin-image",
@@ -51,6 +65,99 @@ module.exports = {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
         endpoint: 'https://riccardofeingold.us7.list-manage.com/subscribe/post?u=e63d61c6a7d796fa055a300b1&amp;id=ad7c75abf1'
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: '*' }],
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
+        },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-advanced-sitemap`,
+      options: {
+        query: `
+        {
+            allGhostPost {
+                edges {
+                    node {
+                        id
+                        slug
+                        updated_at
+                        feature_image
+                    }
+                }
+            }
+            allGhostPage {
+                edges {
+                    node {
+                        id
+                        slug
+                        updated_at
+                        feature_image
+                    }
+                }
+            }
+            allGhostTag {
+                edges {
+                    node {
+                        id
+                        slug
+                        feature_image
+                    }
+                }
+            }
+            allGhostAuthor {
+                edges {
+                    node {
+                        id
+                        slug
+                        profile_image
+                    }
+                }
+            }
+        }`,
+        mapping: {
+          // Each data type can be mapped to a predefined sitemap
+          // Routes can be grouped in one of: posts, tags, authors, pages, or a custom name
+          // The default sitemap - if none is passed - will be pages
+          allGhostPost: {
+            sitemap: `posts`,
+          },
+          allGhostTag: {
+            sitemap: `tags`,
+          },
+          allGhostAuthor: {
+            sitemap: `authors`,
+          },
+          allGhostPage: {
+            sitemap: `pages`,
+          },
+        },
+        exclude: [
+          `/dev-404-page`,
+          `/404`,
+          `/404.html`,
+          `/offline-plugin-app-shell-fallback`,
+          `/thankyou`,
+        ],
+        createLinkInHead: true, // optional: create a link in the `<head>` of your site
+        addUncaughtPages: true, // optional: will fill up pages that are not caught by queries and mapping and list them under `sitemap-pages.xml`
       }
     }
   ],
