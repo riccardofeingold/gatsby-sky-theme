@@ -120,7 +120,7 @@ const BlogPost = ({ data }) => {
         </div>
       </article>
       
-      <aside className="read-more-wrap py-3">
+      <aside className="read-more-wrap pb-5 pt-3">
         <h2 className="text-center">Other Posts</h2>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 inner">
           <PostResponsivness data={allPosts}/>

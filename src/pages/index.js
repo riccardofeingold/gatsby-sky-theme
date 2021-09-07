@@ -199,14 +199,14 @@ const IndexPage = ({data}) => {
 
             <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
               <form className="pb-4" method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact">
-                <div className="form-group">
+                <div className="form-group py-2">
                   <label htmlFor="exampleInputPassword1"><strong>Full Name</strong></label>
                   <input type="hidden" name="bot-field" />
                   <input type="hidden" name="form-name" value="contact" />
                   <input className="form-control" id="exampleInputPassword1" placeholder="Your Name"/>
                 </div>
               
-                <div className="form-group">
+                <div className="form-group py-2">
                   <label htmlFor="exampleInputEmail1"><strong>Email address</strong></label>
                   <input type="hidden" name="bot-field" />
                   <input type="hidden" name="form-name" value="contact" />
@@ -224,9 +224,9 @@ const IndexPage = ({data}) => {
 
               <strong>How can I help you with?</strong>
               <ul>
-                <li>Get a Website Created Frontend and Backend</li>
+                <li>Get a Website Created</li>
                 <li>Get a Professional App or Web Design for your company</li>
-                <li>Need a New Song? I can write one for you</li>
+                <li>You need help in School or University</li>
               </ul>
 
               <div className="btn btn-primary">

@@ -159,6 +159,7 @@ module.exports = {
         createLinkInHead: true, // optional: create a link in the `<head>` of your site
         addUncaughtPages: true, // optional: will fill up pages that are not caught by queries and mapping and list them under `sitemap-pages.xml`
       }
-    }
+    },
+    'gatsby-plugin-offline',
   ],
 };
