@@ -1,3 +1,4 @@
+
 const {
   NODE_ENV,
   URL: NETLIFY_SITE_URL = 'https://www.riccardofeingold.com',
@@ -6,6 +7,10 @@ const {
 } = process.env
 const isNetlifyProduction = NETLIFY_ENV === 'production'
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -54,8 +59,8 @@ module.exports = {
     {
       resolve: `gatsby-source-ghost`,
       options: {
-          apiUrl: `http://localhost:2368`,
-          contentApiKey: `00413922e03b8210ff9c560c8a`,
+          apiUrl: process.env.GATSBY_API_URL,
+          contentApiKey: process.env.API_KEY,
           version: `v3` // Ghost API version, optional, defaults to "v3".
                         // Pass in "v2" if your Ghost install is not on 3.0 yet!!!
       }
