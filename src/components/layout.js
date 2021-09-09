@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql} from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import './layout.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +8,6 @@ import favicon from '../images/favicon.ico'
 import { StaticImage } from 'gatsby-plugin-image'
 import { faGithub, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import SubscribeForm from '../components/subscribeForm'
-import { BrowserRouter } from "react-router-dom";
 
 // styles for components 
 const HeaderLogo = {
@@ -45,7 +44,6 @@ const Layout = ({pageTitle, children}) => {
     `)
 
     return (
-        <BrowserRouter>
         <main>
             {/* Header */}
             <Helmet>
@@ -135,7 +133,6 @@ const Layout = ({pageTitle, children}) => {
             </div>
             <script src="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/index.min.js"></script>
         </main>
-        </BrowserRouter>
     )
 }
 

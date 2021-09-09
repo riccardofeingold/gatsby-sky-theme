@@ -35,7 +35,7 @@ h2, h3 {
   scroll-margin-top: 16px;
 }
 
-/* Safari-only */
+// Only safari
 @supports (-webkit-hyphens:none) {
   h2, h3 {
       padding-top: 16px;
@@ -169,8 +169,8 @@ a {
   $border: 5px;
   color: #FFF;
   background: #FFF;
-  background-clip: padding-box; /* !importanté */
-  border: solid $border transparent; /* !importanté */
+  background-clip: padding-box;
+  border: solid $border transparent;
   border-radius: 1em;
 
   &:before {
@@ -178,8 +178,8 @@ a {
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
     z-index: -1;
-    margin: -$border; /* !importanté */
-    border-radius: inherit; /* !importanté */
+    margin: -$border; 
+    border-radius: inherit;
     background: linear-gradient(to right, #00FFD5, #1300FF);
   }
 }
@@ -377,7 +377,7 @@ figcaption {
 
 .kg-embed-card {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
 
   iframe {

@@ -2,8 +2,8 @@ const path = require(`path`)
 const _ = require("lodash")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const postTemplate = path.resolve(`./src/pages/blog/post.js`)
-  const projectTemplate = path.resolve(`./src/pages/portfolio/project.js`)
+  const postTemplate = path.resolve(`./src/templates/post.js`)
+  const projectTemplate = path.resolve(`./src/templates/project.js`)
   const tagTemplate = path.resolve("./src/templates/tags.js")
 
   // Query Ghost data
@@ -56,6 +56,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   if (!result.data.allMdx) {
     return
   }
+
+  // Create Thankyou page
+  
 
   // Create pages for each Ghost post
   const items = result.data.allGhostPost.edges

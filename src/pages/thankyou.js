@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { graphql } from 'gatsby'
 import Layout from '../components/layout'
-import { graphql} from 'gatsby'
 import Seo from "../components/seo"
 
 const ThankYou = ({data}) => {
@@ -32,14 +32,15 @@ const ThankYou = ({data}) => {
 }
 
 export default ThankYou
+
 export const query = graphql`
-query {
-    ghostPage(slug: {eq: "thankyou"}) {
-        html
-        excerpt
-        title
-        feature_image
-        slug
+    query {
+        ghostPage(slug: {eq: "thankyou"}) {
+            html
+            excerpt
+            title
+            feature_image
+            slug
+        }
     }
-  }
 `

@@ -1,6 +1,5 @@
 import React from "react";
 import addToMailchimp from 'gatsby-plugin-mailchimp';
-import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
 
 class SubscribeForm extends React.Component {
     state = {
@@ -20,8 +19,6 @@ class SubscribeForm extends React.Component {
         e.preventDefault();
         const result = await addToMailchimp(this.state.email);
         this.setState({ message: result.msg });
-        this.props.history.push('/thankyou'); // <--- The page you want to redirect your user to.
-        window.location.reload();
     };
     
     render() {
@@ -46,7 +43,7 @@ class SubscribeForm extends React.Component {
                             <div className="col-lg">
                                 <div className="input-group mb-3 container">
                                     <input type="email" name="email" className="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2" value={this.state.email} onChange={this.handleInputChange}/>
-                                    <button className="btn btn-primary" type="submit" id="button-addon2" onClick={this.showThankYou}>Sign Up</button>
+                                    <button className="btn btn-primary" type="submit" id="button-addon2">Sign Up</button>
                                 </div>
                             </div>
                         </div>
@@ -57,4 +54,4 @@ class SubscribeForm extends React.Component {
     }
 }
 
-export default withRouter(SubscribeForm)
+export default SubscribeForm
