@@ -149,7 +149,7 @@ const IndexPage = ({data}) => {
               </div>
 
               <div className="d-flex justify-content-center pt-5">
-                <Link type="button" className="btn btn-outline-dark btn-lg" to="/about">More Details</Link>
+                <a type="button" className="btn btn-outline-dark btn-lg" href="/about">More Details</a>
               </div>
             </div>
           </div>
@@ -167,7 +167,7 @@ const IndexPage = ({data}) => {
             </div>
 
             <div className="d-flex justify-content-center pt-5">
-                <Link type="button" className="btn btn-outline-light btn-lg" to="/portfolio">See All</Link>
+                <a type="button" className="btn btn-outline-light btn-lg" href="/portfolio">See All</a>
             </div>
           </div>
         </section>
@@ -184,7 +184,7 @@ const IndexPage = ({data}) => {
             </div>
 
             <div className="d-flex justify-content-center pt-5">
-                <Link type="button" className="btn btn-outline-dark btn-lg" to="/blog">See All</Link>
+                <a type="button" className="btn btn-outline-dark btn-lg" href="/blog">See All</a>
             </div>
           </div>
         </section>
