@@ -8,9 +8,24 @@ const {
 const isNetlifyProduction = NETLIFY_ENV === 'production'
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+let ghostConfig
+
+try {
+    ghostConfig = require(`./.ghost`)
+} catch (e) {
+    ghostConfig = {
+        production: {
+            apiUrl: process.env.GHOST_API_URL,
+            contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+        },
+    }
+} finally {
+    const { apiUrl, contentApiKey } = process.env.NODE_ENV === `development` ? ghostConfig.development : ghostConfig.production
+
+    if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
+        throw new Error(`GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build. Check the README.`) // eslint-disable-line
+    }
+}
 
 module.exports = {
   siteMetadata: {
@@ -58,12 +73,9 @@ module.exports = {
     },
     {
       resolve: `gatsby-source-ghost`,
-      options: {
-          apiUrl: process.env.GATSBY_API_URL,
-          contentApiKey: process.env.API_KEY,
-          version: `v3` // Ghost API version, optional, defaults to "v3".
-                        // Pass in "v2" if your Ghost install is not on 3.0 yet!!!
-      }
+      options: process.env.NODE_ENV === `development`
+        ? ghostConfig.development
+        : ghostConfig.production,
     },
     `gatsby-plugin-sass`,
     {
