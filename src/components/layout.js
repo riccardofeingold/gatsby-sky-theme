@@ -76,14 +76,14 @@ const Layout = ({pageTitle, children}) => {
                                     <a className="nav-link dropdown-toggle" href="/blog" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Tag Dropdown">Blog</a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a className="dropdown-item" href="/blog">🔭 All</a>
-                                        <a className="dropdown-item" href="/tech">🛠 Tech</a>
+                                        {/* <a className="dropdown-item" href="/tech">🛠 Tech</a>
                                         <a className="dropdown-item" href="/studying">📖 Studying</a>
                                         <a className="dropdown-item" href="/productivity">🚀 Productivity</a>
                                         <a className="dropdown-item" href="/music">🎹 Music</a>
                                         <a className="dropdown-item" href="/journal">📔 Journal</a>
                                         <a className="dropdown-item" href="/money">🤑 Money</a>
                                         <a className="dropdown-item" href="/entrepreneurship">💰 Entrepreneurship</a>
-                                        <a className="dropdown-item" href="/books">📚 Books</a>
+                                        <a className="dropdown-item" href="/books">📚 Books</a> */}
                                     </div>
                                 </li>
                                 <li className="nav-item">
