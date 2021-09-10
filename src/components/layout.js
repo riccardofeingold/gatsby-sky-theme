@@ -11,7 +11,7 @@ import SubscribeForm from '../components/subscribeForm'
 
 // styles for components 
 const HeaderLogo = {
-    fontFamily: "Impact",
+    fontFamily: "Impact, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     fontStyle: "normal",
     fontWeight: "900",
     fontSize: "35px",
