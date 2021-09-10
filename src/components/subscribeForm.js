@@ -33,7 +33,7 @@ class SubscribeForm extends React.Component {
                     className="subscribe-form"
                     onSubmit={this.handleSubmit.bind(this)}
                 >
-                    <div className="container pb-3" style={{maxWidth: `1040px`}}>
+                    <div className="container py-3" style={{maxWidth: `1040px`}}>
                         <h2 className="text-center py-3">Sign up for more like this.</h2>
                         <div className="row">
                             <div className="col-lg">

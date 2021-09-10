@@ -115,7 +115,7 @@ const BlogPost = ({ data }) => {
       <TableOfContents />
 
       <article className="post">
-        <div className="container py-3 post-full-content">
+        <div className="container p-3 post-full-content">
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
       </article>

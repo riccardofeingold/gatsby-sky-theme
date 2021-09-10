@@ -49,10 +49,9 @@ const Layout = ({pageTitle, children}) => {
             <Helmet>
                 <meta charset="UTF-8"></meta>
                 <link rel='icon' href={favicon}></link>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/themes/prism-atom-dark.min.css"/>
             </Helmet>
             <title>{pageTitle} | {data.site.siteMetadata.title}</title>
-            <div className="container-fluid bg-primary">
+            <div className="./nodecontainer-fluid bg-primary">
                 <div className="container">
                     <nav className="navbar navbar-expand-xl navbar-dark p-3">
                         <a className="navbar-brand header-logo" href="/" style={HeaderLogo}>RICCARDO</a>
@@ -131,7 +130,8 @@ const Layout = ({pageTitle, children}) => {
                     </div>
                 </div>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/index.min.js"></script>
+
+            <script src="prism.js"></script>
         </main>
     )
 }

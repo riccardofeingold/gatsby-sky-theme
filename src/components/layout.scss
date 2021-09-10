@@ -11,13 +11,15 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 // Font sizes
-html {
-  font-size: 1rem;
-}
-
 @include media-breakpoint-up(sm) {
   html {
     font-size: 1.25rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  html {
+    font-size: 1.1rem;
   }
 }
 
@@ -109,7 +111,7 @@ a {
   .card-img-top {
     width: 100%;
     height: 200px;
-    border-radius: 10px 10px 0px 0px;
+    // border-radius: 10px 10px 0px 0px;
     object-fit: cover;
   }
   

@@ -4,7 +4,7 @@
         "contentApiKey": "00413922e03b8210ff9c560c8a"
     },
     "production": {
-        "apiUrl": "http://164.90.165.123",
+        "apiUrl": "https://riccardorion.com",
         "contentApiKey": "271fe846e6a2652f7b2f928d06"
     }
 }
