@@ -221,6 +221,18 @@ module.exports = {
         addUncaughtPages: true, // optional: will fill up pages that are not caught by queries and mapping and list them under `sitemap-pages.xml`
       }
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Riccardo Feingold`,
+        short_name: `Riccardo`,
+        start_url: `/`,
+        background_color: `#007bff`,
+        theme_color: `#007bff`,
+        display: `standalone`,
+        icon: `src/images/profile-rect.jpeg`,
+      },
+    },
     'gatsby-plugin-offline',
   ],
 };
