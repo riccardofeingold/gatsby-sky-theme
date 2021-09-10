@@ -8,16 +8,16 @@ import Card from "../components/card"
 import Seo from "../components/seo"
 
 const impactFontStyle = {
-  fontFamily: "Impact",
+  fontFamily: "Impact, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif", 
   marginBottom: "30px",
 }
 
 // viewport
 const viewportContext = React.createContext({});
-const isBrowser = typeof window !== "undefined"
+// const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
-  if (isBrowser) {
+  // if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -39,9 +39,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  } else {
-    return null
-  }
+  // } else {
+  //   return null
+  // }
 };
 
 /* Rewrite the "useViewport" hook to pull the width and height values
@@ -149,7 +149,7 @@ const IndexPage = ({data}) => {
               </div>
 
               <div className="d-flex justify-content-center pt-5">
-                <a type="button" className="btn btn-outline-dark btn-lg" href="/about">More Details</a>
+                <Link className="btn btn-outline-dark btn-lg" to="/about">More Details</Link>
               </div>
             </div>
           </div>
@@ -167,7 +167,7 @@ const IndexPage = ({data}) => {
             </div>
 
             <div className="d-flex justify-content-center pt-5">
-                <a type="button" className="btn btn-outline-light btn-lg" href="/portfolio">See All</a>
+                <Link className="btn btn-outline-light btn-lg" to="/portfolio">See All</Link>
             </div>
           </div>
         </section>
@@ -184,7 +184,7 @@ const IndexPage = ({data}) => {
             </div>
 
             <div className="d-flex justify-content-center pt-5">
-                <a type="button" className="btn btn-outline-dark btn-lg" href="/blog">See All</a>
+                <Link className="btn btn-outline-dark btn-lg" to="/blog">See All</Link>
             </div>
           </div>
         </section>
