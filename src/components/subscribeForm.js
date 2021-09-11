@@ -33,7 +33,7 @@ class SubscribeForm extends React.Component {
                     data-netlify-honeypot="bot-field"
                     onSubmit={this.handleSubmit.bind(this)}
                 >
-                    <input type="hidden" name="form-name" value="contact" />
+                    <input type="hidden" name="form-name" value="subscribeForm" />
                     <div className="container py-3" style={{maxWidth: `1040px`}}>
                         <h2 className="text-center py-3">Sign up for more like this.</h2>
                         <div className="row">
