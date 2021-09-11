@@ -27,7 +27,7 @@ class SubscribeForm extends React.Component {
                 <form
                     name="subscribeForm"
                     method="POST"
-                    netlifyhoneypot="bot-field"
+                    netlify-honeypot="bot-field"
                     data-netlify="true"
                     id="subscribe-form"
                     className="subscribe-form"
