@@ -198,7 +198,16 @@ const IndexPage = ({data}) => {
             <h5 className="text-light text-center pb-2">Any questions? Feel free to contact me.</h5>
 
             <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
-              <form className="pb-4" method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact">
+              <form 
+                className="pb-4"
+                method="post"
+                data-netlify="true"
+                netlifly-honeypot="bot-field"
+                name="contactForm"
+              >
+                <input type="hidden" name="bot-field" />
+                <input type="hidden" name="form-name" value="contact" />
+                
                 <div className="form-group py-2">
                   <label htmlFor="exampleInputPassword1"><strong>Full Name</strong></label>
                   <input name="name" className="form-control" id="exampleInputPassword1" placeholder="Your Name"/>

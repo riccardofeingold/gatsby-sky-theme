@@ -1,5 +1,6 @@
 import React from "react";
 import addToMailchimp from 'gatsby-plugin-mailchimp';
+import {navigate} from 'gatsby';
 
 class SubscribeForm extends React.Component {
     state = {
@@ -19,6 +20,7 @@ class SubscribeForm extends React.Component {
         e.preventDefault();
         const result = await addToMailchimp(this.state.email);
         this.setState({ message: result.msg });
+        navigate('/thankyou');
     };
     
     render() {
@@ -27,12 +29,14 @@ class SubscribeForm extends React.Component {
                 <form
                     name="subscribeForm"
                     method="POST"
-                    netlify-honeypot="bot-field"
                     data-netlify="true"
+                    netlifly-honeypot="bot-field"
                     id="subscribe-form"
                     className="subscribe-form"
                     onSubmit={this.handleSubmit.bind(this)}
                 >
+                    <input type="hidden" name="bot-field" />
+                    <input type="hidden" name="form-name" value="contact" />
                     <div className="container py-3" style={{maxWidth: `1040px`}}>
                         <h2 className="text-center py-3">Sign up for more like this.</h2>
                         <div className="row">
