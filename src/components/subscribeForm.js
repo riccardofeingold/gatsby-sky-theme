@@ -30,9 +30,7 @@ class SubscribeForm extends React.Component {
                     name="subscribeForm"
                     method="POST"
                     data-netlify="true"
-                    netlifly-honeypot="bot-field"
-                    id="subscribe-form"
-                    className="subscribe-form"
+                    data-netlifly-honeypot="bot-field"
                     onSubmit={this.handleSubmit.bind(this)}
                 >
                     <input type="hidden" name="bot-field" />
@@ -47,7 +45,7 @@ class SubscribeForm extends React.Component {
                             <div className="col-lg">
                                 <div className="input-group mb-3 container">
                                     <input type="email" name="email" className="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2" value={this.state.email} onChange={this.handleInputChange}/>
-                                    <button className="btn btn-primary" type="submit" id="button-addon2">Sign Up</button>
+                                    <button className="btn btn-primary" type="submit" id="button-addon2" name="submitButton">Sign Up</button>
                                 </div>
                             </div>
                         </div>
