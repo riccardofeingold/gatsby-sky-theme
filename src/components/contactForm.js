@@ -2,14 +2,13 @@ import React from "react";
 
 const ContactForm = () => (
     <form 
-        name="contactForm"
-        method="POST"
-        data-netlifly="true"
-        data-netlifly-honeypot="bot-field"
-        action="/success"
+        name="contact"
+        method="post"
+        data-netlify="true" 
+        data-netlify-honeypot="bot-field"
+        // action="/success"
         className="pb-4"
         >
-        <input type="hidden" name="bot-field" />
         <input type="hidden" name="form-name" value="contact" />
 
         <div className="form-group py-2">
