@@ -29,8 +29,8 @@ class SubscribeForm extends React.Component {
                 <form
                     name="subscribeForm"
                     method="POST"
-                    netlifly
-                    netlifly-honeypot="bot-field"
+                    data-netlifly="true"
+                    data-netlifly-honeypot="bot-field"
                     onSubmit={this.handleSubmit.bind(this)}
                 >
                     <input type="hidden" name="bot-field" onChange={this.handleInputChange}/>
