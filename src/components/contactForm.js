@@ -34,12 +34,12 @@ class ContactForm extends React.Component {
     render() {
         return (
             <form 
-                className="pb-4"
-                method="POST"
-                data-netlify="true"
-                data-netlifly-honeypot="bot-field"
                 name="contactForm"
+                method="POST"
+                netlifly
+                netlifly-honeypot="bot-field"
                 onSubmit={this.handleSubmit}
+                className="pb-4"
               >
                 <input type="hidden" name="bot-field" onChange={this.handleChange}/>
                 <input type="hidden" name="form-name" value="contact" />
@@ -68,8 +68,6 @@ class ContactForm extends React.Component {
                 </ul>
 
                 <button className="btn btn-primary" type="submit" name="submitButton">Send</button>
-
-                <div data-netlifly-recaptcha="true"></div>
             </form>
         );
     }
