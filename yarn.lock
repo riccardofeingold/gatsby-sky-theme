@@ -5848,6 +5848,14 @@ gatsby-plugin-advanced-sitemap@^2.0.0:
     moment "2.29.1"
     xml "^1.0.1"
 
+gatsby-plugin-catch-links@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-3.13.0.tgz#cf571293e74b1ec34ff01f9365a9029a095addb3"
+  integrity sha512-IdxpkO6yLUHxFao4lSSDIbvD7UXYFxCBbVvl/PSOUcahMGWuVLudXgP5vrJfq95pbM3M7KjaX8NxuRyaz51OHg==
+  dependencies:
+    "@babel/runtime" "^7.14.8"
+    escape-string-regexp "^1.0.5"
+
 gatsby-plugin-google-gtag@^3.13.0:
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-3.13.0.tgz#150f0719ee7f692b5dc07900439763110cb86b17"
@@ -5973,6 +5981,13 @@ gatsby-plugin-page-creator@^3.13.0:
     gatsby-telemetry "^2.13.0"
     globby "^11.0.4"
     lodash "^4.17.21"
+
+gatsby-plugin-react-helmet@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-4.13.0.tgz#58f50bc9afb0f04a0726453c0827a59d7a159c7a"
+  integrity sha512-GwIqbhFtPDryftM6NEWdjgWNDpWhyifgshDxtIh8PMSEIs7VMg2tgLQf8W8EpSP7yXu3aKDm/pxFXRlPZPk9cA==
+  dependencies:
+    "@babel/runtime" "^7.14.8"
 
 gatsby-plugin-robots-txt@^1.6.10:
   version "1.6.10"

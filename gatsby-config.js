@@ -251,6 +251,8 @@ module.exports = {
         icon: `src/images/profile-rect.jpeg`,
       },
     },
+    'gatsby-plugin-catch-links',
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-offline',
   ],
 };
