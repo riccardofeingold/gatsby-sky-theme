@@ -1,4 +1,7 @@
-
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+ 
 const {
   NODE_ENV,
   URL: NETLIFY_SITE_URL = 'https://www.riccardofeingold.com',
@@ -38,6 +41,20 @@ module.exports = {
     twitterUsername: "@riccardorion",
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          process.env.GOOGLE_ANALYTICS_ID, // Google Analytics / GA
+        ],
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+        },
+      },
+    },
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     {
@@ -125,7 +142,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
-        endpoint: 'https://riccardofeingold.us7.list-manage.com/subscribe/post?u=e63d61c6a7d796fa055a300b1&amp;id=ad7c75abf1'
+        endpoint: process.env.MAILCHIMP_API_URL,
       }
     },
     {

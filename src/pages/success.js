@@ -3,7 +3,7 @@ import Layout from '../components/layout'
 import { graphql} from 'gatsby'
 import Seo from "../components/seo"
 
-const PageNotFound = ({data}) => {
+const Success = ({data}) => {
     const image = data.ghostPage.feature_image
     const title = data.ghostPage.title
     const excerpt = data.ghostPage.excerpt
@@ -27,10 +27,10 @@ const PageNotFound = ({data}) => {
     )
 }
 
-export default PageNotFound
+export default Success
 export const query = graphql`
 query {
-    ghostPage(slug: {eq: "404"}) {
+    ghostPage(slug: {eq: "success"}) {
         excerpt
         title
         feature_image

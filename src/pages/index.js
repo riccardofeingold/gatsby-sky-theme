@@ -198,7 +198,7 @@ const IndexPage = ({data}) => {
             <h5 className="text-light text-center pb-2">Any questions? Feel free to contact me.</h5>
 
             <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
-              <form className="pb-4" method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact">
+              <form className="pb-4" method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact" action="/success">
                 <div className="form-group py-2">
                   <label htmlFor="exampleInputPassword1"><strong>Full Name</strong></label>
                   <input type="hidden" name="bot-field" />
@@ -220,19 +220,16 @@ const IndexPage = ({data}) => {
                   <input type="hidden" name="form-name" value="contact" />
                   <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
+
+                <strong>How can I help you with?</strong>
+                <ul>
+                  <li>Get a Website Created</li>
+                  <li>Get a Professional App or Web Design for your company</li>
+                  <li>You need help in School or University</li>
+                </ul>
+
+                <button className="btn btn-primary" type="submit">Send</button>
               </form>
-
-              <strong>How can I help you with?</strong>
-              <ul>
-                <li>Get a Website Created</li>
-                <li>Get a Professional App or Web Design for your company</li>
-                <li>You need help in School or University</li>
-              </ul>
-
-              <div className="btn btn-primary">
-                Send
-              </div>
-
             </div>
           </div>
         </section>
