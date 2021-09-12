@@ -32,9 +32,9 @@ const ViewportProvider = ({ children }) => {
       return () => window.removeEventListener("resize", handleWindowResize);
     }, []);
 
-    /* Now we are dealing with a context instead of a Hook, so instead
-      of returning the width and height we store the values in the
-      value of the Provider */
+    // Now we are dealing with a context instead of a Hook, so instead
+    // of returning the width and height we store the values in the
+    // value of the Provider 
     return (
       <viewportContext.Provider value={{ width, height }}>
         {children}
@@ -45,11 +45,11 @@ const ViewportProvider = ({ children }) => {
   }
 };
 
-/* Rewrite the "useViewport" hook to pull the width and height values
-   out of the context instead of calculating them itself */
+// Rewrite the "useViewport" hook to pull the width and height values
+// out of the context instead of calculating them itself
 const useViewport = () => {
-  /* We can use the "useContext" Hook to acccess a context from within
-     another Hook, remember, Hooks are composable! */
+  // We can use the "useContext" Hook to acccess a context from within
+  // another Hook, remember, Hooks are composable!
   const { width, height } = React.useContext(viewportContext);
   return { width, height };
 }
@@ -134,7 +134,6 @@ const IndexPage = ({data}) => {
           pathname="home"
           article
         />
-        {/* About Me */}
 
         <section id="about-me">
           <div className="container py-5">
@@ -156,9 +155,7 @@ const IndexPage = ({data}) => {
           </div>
         </section>
 
-        {/* Portfolio */}
-
-        <section className="home-section">
+        <section id="portfolio" className="home-section">
           <div className="container py-5">
             <h1 className="text-center text-light" style={impactFontStyle}>Portfolio</h1>
             <h1 className="text-light pb-2">My Recent Projects</h1>
@@ -172,8 +169,6 @@ const IndexPage = ({data}) => {
             </div>
           </div>
         </section>
-
-        {/* Blog */}
 
         <section id="blog">
           <div className="container py-5">
@@ -190,20 +185,15 @@ const IndexPage = ({data}) => {
           </div>
         </section>
 
-        {/* Contact Me */}
-        {/* Netflifly offers a feature for contact form and sign ups etc. https://docs.netlify.com/forms/setup/ */}
-
         <section id="contact" className="home-section">
           <div className="container py-5">
             <h1 className="text-center text-light" style={impactFontStyle}>Get in Touch</h1>
             <h5 className="text-light text-center pb-2">Any questions? Feel free to contact me.</h5>
 
-            <ContactForm/>
-            
+            <ContactForm/>            
+          
           </div>
         </section>
-
-        {/* My Mantra */}
 
         <section id="slogan">
           <h1 className="text-center pt-5 pb-2" style={impactFontStyle}>My Mantra</h1>

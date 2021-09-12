@@ -45,7 +45,6 @@ const Layout = ({pageTitle, children}) => {
 
     return (
         <main>
-            {/* Header */}
             <Helmet>
                 <meta charset="UTF-8"></meta>
                 <link rel='icon' href={favicon}></link>
@@ -75,14 +74,16 @@ const Layout = ({pageTitle, children}) => {
                                     <a className="nav-link dropdown-toggle" href="/blog" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Tag Dropdown">Blog</a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a className="dropdown-item" href="/blog">🔭 All</a>
-                                        {/* <a className="dropdown-item" href="/tech">🛠 Tech</a>
-                                        <a className="dropdown-item" href="/studying">📖 Studying</a>
-                                        <a className="dropdown-item" href="/productivity">🚀 Productivity</a>
-                                        <a className="dropdown-item" href="/music">🎹 Music</a>
-                                        <a className="dropdown-item" href="/journal">📔 Journal</a>
-                                        <a className="dropdown-item" href="/money">🤑 Money</a>
-                                        <a className="dropdown-item" href="/entrepreneurship">💰 Entrepreneurship</a>
-                                        <a className="dropdown-item" href="/books">📚 Books</a> */}
+                                        {
+                                        // <a className="dropdown-item" href="/tech">🛠 Tech</a>
+                                        // <a className="dropdown-item" href="/studying">📖 Studying</a>
+                                        // <a className="dropdown-item" href="/productivity">🚀 Productivity</a>
+                                        // <a className="dropdown-item" href="/music">🎹 Music</a>
+                                        // <a className="dropdown-item" href="/journal">📔 Journal</a>
+                                        // <a className="dropdown-item" href="/money">🤑 Money</a>
+                                        // <a className="dropdown-item" href="/entrepreneurship">💰 Entrepreneurship</a>
+                                        // <a className="dropdown-item" href="/books">📚 Books</a>
+                                        }
                                     </div>
                                 </li>
                                 <li className="nav-item">
@@ -104,12 +105,11 @@ const Layout = ({pageTitle, children}) => {
             <HomeTitleImage isHome={pageTitle}/>
 
             <div className="site">
-                {/* Content */}
+
                 <div className="container-fluid p-0 site-content">
                     {children}
                 </div>
 
-                {/* Footer */}
                 {pageTitle === "Newsletter Thank You" ? null : <SubscribeForm/>}
                 <div className="container-fluid text-center text-white py-3" style={{backgroundColor: `#3D4661`}}>
                     <div className="row align-items-center">

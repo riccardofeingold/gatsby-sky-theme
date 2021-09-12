@@ -38,8 +38,8 @@ class ContactForm extends React.Component {
                 ...this.state,
             }),
         })
-            .then(() => navigate("/success"))
-            .catch(error => alert(error))
+        .then(() => navigate("/success"))
+        .catch(error => alert(error))
 
         this.setState({
             name: "",
