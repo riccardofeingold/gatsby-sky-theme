@@ -11,13 +11,15 @@ const BlogPage = ({data}) => {
 
   // search ability
   const searchField = useRef(null);
-  // const [isActive, setActive] = useState("false");
+  const [isActive, setActive] = useState("false");
 
-  // const ToggleClass = () => {
-  //     searchField.current.value = '';
-  //     searchField.current.focus();
-  //     setActive(!isActive);
-  // }
+  const ToggleClass = () => {
+      setState({
+        query: "",
+      })
+      isActive ? searchField.current.focus() : searchField.current.blur();
+      setActive(!isActive);
+  }
 
   const [state, setState] = useState({
       filteredPosts: [],
@@ -112,11 +114,11 @@ const BlogPage = ({data}) => {
 
       <div className="d-flex justify-content-center pt-3">
         <form className="form-inline d-flex position-search-bar justify-content-center" style={{width: `350px`}}>
-            <div className={`search open`}>
+            <div className={`search ${isActive ? null : `open`}`}>
                 <input type="search" className="search-box" aria-label="Search" value={state.query} onChange={handleInputChange} ref={(element) => {
                     searchField.current = element;
                 }}></input>
-                <span role="searchbox" className="search-button" tabIndex={0}>
+                <span role="searchbox" className="search-button" onClick={ToggleClass} tabIndex={0}>
                     <FontAwesomeIcon icon={faSearch} className="search-icon"/>
                 </span>
             </div>

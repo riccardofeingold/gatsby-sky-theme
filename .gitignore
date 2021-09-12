@@ -3,3 +3,9 @@ node_modules/
 public
 .ghost.json
 .env.*
+yarn-error.log
+.DS_Store
+.vscode
+current/
+content/
+versions/
