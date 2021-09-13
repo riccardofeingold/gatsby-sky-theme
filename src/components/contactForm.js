@@ -29,12 +29,12 @@ class ContactForm extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        console.log(event.target.getAttribute("name"));
+        const form = event.target;
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: this.encode({
-                "form-name": event.target.getAttribute("name"),
+                "form-name": form.getAttribute("name"),
                 ...this.state,
             }),
         })

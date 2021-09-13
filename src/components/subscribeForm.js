@@ -20,7 +20,7 @@ class SubscribeForm extends React.Component {
         e.preventDefault();
         const result = await addToMailchimp(this.state.email);
         this.setState({ message: result.msg });
-        navigate('/thankyou');
+        navigate('/thankyou/');
     };
     
     render() {

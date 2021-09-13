@@ -110,7 +110,7 @@ const Layout = ({pageTitle, children}) => {
                     {children}
                 </div>
 
-                {pageTitle === "Newsletter Thank You" ? null : <SubscribeForm/>}
+                {pageTitle === "Newsletter Thank You" || pageTitle === "Home" ? null : <SubscribeForm/>}
                 <div className="container-fluid text-center text-white py-3" style={{backgroundColor: `#3D4661`}}>
                     <div className="row align-items-center">
 
