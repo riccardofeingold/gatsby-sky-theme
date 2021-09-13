@@ -1,21 +1,17 @@
 import React from "react";
-import { navigate } from 'gatsby-link'
+import axios from 'axios';
+import { navigate } from "gatsby-link";
 
 class ContactForm extends React.Component {
     constructor(props) {
         super(props)
-        this.ContactForm = React.createRef()
         this.state = {
             name: "",
             email: "",
             message: "",
+            submitting: false,
+            status: null,
         }
-    }
-
-    encode = data => {
-        return Object.keys(data)
-          .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-          .join("&")
     }
 
     handleChange = (event) => {
@@ -27,44 +23,48 @@ class ContactForm extends React.Component {
         });
     };
 
-    handleSubmit = event => {
-        event.preventDefault()
-        const form = event.target;
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: this.encode({
-                "form-name": form.getAttribute("name"),
-                ...this.state,
-            }),
+    handleServerResponse = (ok, msg, form) => {
+        this.setState({
+          submitting: false,
+          status: { ok, msg }
+        });
+        if (ok) {
+          form.reset();
+        }
+    };
+    handleOnSubmit = e => {
+        e.preventDefault();
+        const form = e.target;
+        this.setState({ submitting: true });
+        axios({
+            method: "post",
+            url: "https://getform.io/f/0f996a48-4423-4c56-bf8f-8a149ebb2c77",
+            data: new FormData(form)
         })
-        .then(() => navigate("/success/"))
-        .catch(error => alert(error))
+        .then(r => {
+            this.handleServerResponse(true, "Thanks!", form);
+            navigate("/success/");
+        })
+        .catch(r => {
+            this.handleServerResponse(false, r.response.data.error, form);
+        });
 
         this.setState({
             name: "",
             email: "",
             message: "",
         })
-    }
+    };
 
     render() {
         return (
             <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
-                <form 
-                    data-netlify="true"
+                <form
                     name="contactForm"
                     method="POST"
-                    data-netlify-honeypot="bot-field"
-                    onSubmit={this.handleSubmit}
+                    onSubmit={this.handleOnSubmit}
                     className="pb-4"
                 >
-                    <input type="hidden" name="form-name" value="contactForm" />
-                    <p hidden>
-                        <label>
-                            Don’t fill this out: <input name="bot-field"/>
-                        </label>
-                    </p>
                     <div className="form-group py-2">
                         <label htmlFor="name"><strong>Full Name</strong></label>
                         <input name="name" className="form-control" id="name" placeholder="Your Name" onChange={this.handleChange}/>
