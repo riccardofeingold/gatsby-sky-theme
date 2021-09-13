@@ -29,16 +29,16 @@ class ContactForm extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        const form = this.ContactForm.current
+        console.log(event.target.getAttribute("name"));
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: this.encode({
-                "form-name": form.getAttribute("name"),
+                "form-name": event.target.getAttribute("name"),
                 ...this.state,
             }),
         })
-        .then(() => navigate("/success"))
+        .then(() => navigate("/success/"))
         .catch(error => alert(error))
 
         this.setState({
@@ -52,14 +52,14 @@ class ContactForm extends React.Component {
         return (
             <div className="container p-4 shadow" style={{maxWidth: `720px`, backgroundColor: `#FFF`, borderRadius: `10px`}}>
                 <form 
-                    name="contact"
-                    method="POST"
                     data-netlify="true"
+                    name="contactForm"
+                    method="POST"
                     data-netlify-honeypot="bot-field"
                     onSubmit={this.handleSubmit}
                     className="pb-4"
                 >
-                    <input type="hidden" name="form-name" value="contact" />
+                    <input type="hidden" name="form-name" value="contactForm" />
                     <p hidden>
                         <label>
                             Don’t fill this out: <input name="bot-field"/>
