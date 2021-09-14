@@ -38,7 +38,7 @@ class SubscribeForm extends React.Component {
                         <h2 className="text-center py-3">Sign up for more like this.</h2>
                         <div className="row">
                             <div className="col-lg">
-                                <p style={{color: `#3D4661`}}>Join a growing community of more than 120,000 (🤯) friendly readers. Every Sunday I share actionable productivity tips, practical life advice, and high-quality insights from across the web, directly to your inbox.</p>
+                                <p style={{color: `#3D4661`}}>In my weekly Code Snippets, I share actionable coding tips, practical life advice, as well as high-quality insights from the life of a Mechanical Engineer!</p>
                             </div>
 
                             <div className="col-lg">

@@ -144,7 +144,11 @@ const IndexPage = ({data}) => {
               </div>
               <div className="col-md-6">
                 <p style={{fontSize: `20px`}}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper viverra nam libero justo laoreet sit amet cursus. Libero id faucibus nisl tincidunt. Sed arcu non odio euismod. Euismod lacinia at quis risus. In nisl nisi scelerisque eu. 
+                Hi, my name is Riccardo Feingold!
+                I'm a mechanical engineering student at the ETH of Zürich. And this is my fully self-coded personal blog.
+                A place where I talk about all kinds of topics that interest me. But usually, I will focus on <strong>productivity, entrepreneurship, and engineering</strong>.
+                This means you will definitely see a blog post where I'm going to talk about how I built my website with tools like <strong>Gatsby, Ghost, and React</strong>.
+                If you want to know more about who I'm, feel free to check out my <strong>About Me</strong> page.
                 </p>
               </div>
 
