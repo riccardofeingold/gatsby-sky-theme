@@ -148,7 +148,7 @@ export const postQuery = graphql`
         name
       }
     }
-    allGhostPost(sort: { fields: [published_at], order: DESC }, filter: { slug: { ne: $slug } }) {
+    allGhostPost(sort: { fields: [published_at], order: DESC }, filter: { slug: { ne: $slug }, tags: {elemMatch: {slug: {ne: "portfolio"}}} }) {
       edges {
         node {
           authors {

@@ -118,7 +118,7 @@ const BlogPage = ({data}) => {
                 <input type="search" className="search-box" aria-label="Search" value={state.query} onChange={handleInputChange} ref={(element) => {
                     searchField.current = element;
                 }}></input>
-                <span role="searchbox" className="search-button" onClick={ToggleClass} tabIndex={0}>
+                <span role="searchbox" className="search-button" onClick={ToggleClass} onKeyDown={ToggleClass} tabIndex={0}>
                     <FontAwesomeIcon icon={faSearch} className="search-icon"/>
                 </span>
             </div>

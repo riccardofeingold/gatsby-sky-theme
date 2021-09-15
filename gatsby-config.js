@@ -1,3 +1,5 @@
+const path = require(`path`)
+
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -59,29 +61,18 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: `portfolio`,
-        path: `${__dirname}/portfolio`,
+          path: path.join(__dirname, `src`, `pages`),
+          name: `pages`,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: `projectImages`,
-        path: `${__dirname}/portfolio/img`,
+          path: path.join(__dirname, `src`, `images`),
+          name: `images`,
       },
-    },
-    "gatsby-plugin-mdx",
-    {
-      resolve: "gatsby-remark-images",
-      options: {
-        // It's important to specify the maxWidth (in pixels) of
-        // the content container as this plugin uses this as the
-        // base for generating different widths of each image.
-        maxWidth: 590,
-        wrapperStyle: fluidResult => `flex:${_.round(fluidResult.aspectRatio, 2)};`,
-      }
     },
     {
       resolve: `gatsby-transformer-rehype`,
@@ -92,12 +83,6 @@ module.exports = {
             resolve: `gatsby-rehype-prismjs`,
           },
         ],
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [`gatsby-remark-autolink-headers`],
       },
     },
     {
