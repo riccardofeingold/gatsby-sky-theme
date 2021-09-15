@@ -159,7 +159,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allGhostPost(sort: { fields: [published_at], order: DESC}) {
+    allGhostPost(sort: { fields: [published_at], order: DESC}, filter: {tags: {elemMatch: {slug: {ne: "portfolio"}}}}) {
       edges {
         node {
           id

@@ -15,10 +15,10 @@ const impactFontStyle = {
 
 // viewport
 const viewportContext = React.createContext({});
-const isBrowser = typeof window !== "undefined"
+// const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
-  if (isBrowser) {
+  // if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -40,9 +40,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  } else {
-    return null
-  }
+  // } else {
+  //   return null
+  // }
 };
 
 // Rewrite the "useViewport" hook to pull the width and height values
@@ -95,7 +95,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,3).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.frontmatter.title} featuredImage={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
+          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
         </div>
       ))
     )
@@ -103,7 +103,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,2).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.frontmatter.title} featuredImage={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
+          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
         </div>
       ))
     )
@@ -111,7 +111,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,1).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.frontmatter.title} featuredImage={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
+          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
         </div>
       ))
     )
@@ -120,8 +120,8 @@ function PortfolioResponsivness(props) {
 
 // markup
 const IndexPage = ({data}) => {
-  const posts = data.allGhostPost.edges
-  const portfolio = data.allMdx.edges
+  const posts = data.posts.edges
+  const portfolio = data.projects.edges
 
   return (
     <ViewportProvider>
@@ -217,7 +217,7 @@ export default IndexPage
 
 export const postsQuery = graphql`
   query {
-    allGhostPost(sort: { fields: [published_at], order: DESC }) {
+    posts: allGhostPost(sort: { fields: [published_at], order: DESC }, filter: {tags: {elemMatch: {slug: {ne: "portfolio"}}}}) {
       edges {
         node {
           authors {
@@ -238,17 +238,24 @@ export const postsQuery = graphql`
         }
       }
     }
-    allMdx {
+    projects: allGhostPost(sort: { fields: [published_at], order: DESC }, filter: {tags: {elemMatch: {slug: {eq: "portfolio"}}}}) {
       edges {
         node {
-          frontmatter {
-            title
-            featuredImage {
-              publicURL
-            }
+          authors {
+            profile_image
+            name
           }
           id
+          title
           slug
+          excerpt
+          feature_image
+          reading_time
+          published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
+          tags {
+            name
+            feature_image
+          }
         }
       }
     }

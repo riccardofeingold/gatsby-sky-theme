@@ -7,7 +7,7 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "/Users/riccardofeingold/Desktop/My Websites/gatsby-sites/riccardorion/content/data/ghost-local.db"
+      "filename": "/Users/riccardofeingold/opt/My Websites/gatsby-sites/riccardorion/content/data/ghost-local.db"
     }
   },
   "mail": {
@@ -21,6 +21,6 @@
   },
   "process": "local",
   "paths": {
-    "contentPath": "/Users/riccardofeingold/Desktop/My Websites/gatsby-sites/riccardorion/content"
+    "contentPath": "/Users/riccardofeingold/opt/My Websites/gatsby-sites/riccardorion/content"
   }
 }

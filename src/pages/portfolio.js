@@ -5,7 +5,7 @@ import Card from "../components/card"
 import Seo from "../components/seo"
 
 const Portfolio = ({data}) => {
-  const portfolio = data.allMdx.edges
+  const portfolio = data.allGhostPost.edges
 
   // infinite scroll
   // State for the list
@@ -80,7 +80,7 @@ const Portfolio = ({data}) => {
                 {
                     list.map(p => (
                       <article key={p.node.id}>
-                          <Card cardTitle={p.node.frontmatter.title} featuredImage={p.node.frontmatter.featuredImage.publicURL} cardLink={`/portfolio/${p.node.slug}`}/>
+                          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
                       </article>
                     ))
                 }
@@ -97,19 +97,24 @@ const Portfolio = ({data}) => {
 export default Portfolio 
 
 export const query = graphql`
-query query($skip: Int, $limit: Int) {
-    allMdx(limit: $limit, skip: $skip, sort: {fields: frontmatter___date, order: DESC}) {
+query query {
+    allGhostPost(sort: { fields: [published_at], order: DESC}, filter: {tags: {elemMatch: {slug: {eq: "portfolio"}}}}) {
       edges {
         node {
-          frontmatter {
-            date
-            featuredImage {
-              publicURL
-            }
-            title
-          }
-          slug
           id
+          title
+          slug
+          excerpt
+          feature_image
+          reading_time
+          published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
+          authors {
+            profile_image
+            name
+          }
+          tags {
+            name
+          }
         }
       }
     }

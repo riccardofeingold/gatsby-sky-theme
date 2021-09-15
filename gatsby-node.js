@@ -9,7 +9,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Query Ghost data
   const result = await graphql(`
     {
-      allGhostPost(sort: { order: ASC, fields: published_at }) {
+      posts: allGhostPost(sort: { order: ASC, fields: published_at }, filter: {tags: {elemMatch: {slug: {ne: "portfolio"}}}}) {
         edges {
           node {
             slug
@@ -26,17 +26,32 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      allMdx {
+      projects: allGhostPost(sort: { order: ASC, fields: published_at }, filter: {tags: {elemMatch: {slug: {eq: "portfolio"}}}}) {
         edges {
           node {
-            frontmatter {
-              title
-              featuredImage {
-                publicURL
-              }
-            }
-            id
             slug
+          }
+        }
+        group(field: tags___slug) {
+          fieldValue
+          nodes {
+            tags {
+              name
+              feature_image
+              description
+            }
+          }
+        }
+      }
+      tags: allGhostPost(sort: { order: ASC, fields: published_at }) {
+        group(field: tags___slug) {
+          fieldValue
+          nodes {
+            tags {
+              name
+              feature_image
+              description
+            }
           }
         }
       }
@@ -49,19 +64,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  if (!result.data.allGhostPost) {
+  if (!result.data.projects) {
     return
   }
 
-  if (!result.data.allMdx) {
+  if (!result.data.posts) {
     return
   }
 
+  if (!result.data.tags) {
+    return
+  }
   // Create Thankyou page
   
 
   // Create pages for each Ghost post
-  const items = result.data.allGhostPost.edges
+  const items = result.data.posts.edges
   items.forEach(({ node }) => {
     node.url = `/blog/${node.slug}/`
 
@@ -75,7 +93,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 
   //create pages for each project
-  const projectItems = result.data.allMdx.edges
+  const projectItems = result.data.projects.edges
   projectItems.forEach(({ node }) => {
     node.url = `/portfolio/${node.slug}/`
 
@@ -89,7 +107,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 
   // Extract tag data from query
-  const tags = result.data.allGhostPost.group
+  const tags = result.data.tags.group
 
   // Make tag pages
   tags.forEach(tag => {
