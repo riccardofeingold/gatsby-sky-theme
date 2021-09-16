@@ -2,6 +2,11 @@ import React from "react";
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import {navigate} from 'gatsby';
 
+const activeBtnStyleForDisableState = {
+    color: "#FFF",
+    opacity: 1,
+}
+
 class SubscribeForm extends React.Component {
     state = {
         email: '',
@@ -44,7 +49,7 @@ class SubscribeForm extends React.Component {
                             <div className="col-lg">
                                 <div className="input-group mb-3 container">
                                     <input type="email" name="email" className="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2" value={this.state.email} onChange={this.handleInputChange}/>
-                                    <button className={`btn btn-primary ${this.state.email ? "" : "disabled"}`} type="submit" id="button-addon2">Sign Up</button>
+                                    <button className={`btn btn-primary ${this.state.email ? "" : "disabled"}`} type="submit" id="button-addon2" style={activeBtnStyleForDisableState}>Sign Up</button>
                                 </div>
                             </div>
                         </div>

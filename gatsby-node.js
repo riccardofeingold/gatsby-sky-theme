@@ -15,16 +15,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
           }
         }
-        group(field: tags___slug) {
-          fieldValue
-          nodes {
-            tags {
-              name
-              feature_image
-              description
-            }
-          }
-        }
       }
       projects: allGhostPost(sort: { order: ASC, fields: published_at }, filter: {tags: {elemMatch: {slug: {eq: "portfolio"}}}}) {
         edges {
@@ -32,26 +22,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
           }
         }
-        group(field: tags___slug) {
-          fieldValue
-          nodes {
-            tags {
-              name
-              feature_image
-              description
-            }
-          }
-        }
       }
-      tags: allGhostPost(sort: { order: ASC, fields: published_at }) {
-        group(field: tags___slug) {
-          fieldValue
-          nodes {
-            tags {
-              name
-              feature_image
-              description
-            }
+      tags: allGhostTag(filter: {slug: {ne: "portfolio"}}) {
+        edges {
+          node {
+            slug
+            name
+            feature_image
+            description
           }
         }
       }
@@ -74,9 +52,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (!result.data.tags) {
     return
-  }
-  // Create Thankyou page
-  
+  }  
 
   // Create pages for each Ghost post
   const items = result.data.posts.edges
@@ -107,18 +83,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 
   // Extract tag data from query
-  const tags = result.data.tags.group
-
-  // Make tag pages
-  tags.forEach(tag => {
+  const tags = result.data.tags.edges
+  tags.forEach(({ node }) => {
     actions.createPage({
-      path: `/${_.kebabCase(tag.fieldValue)}/`,
+      path: `/${_.kebabCase(node.slug)}/`,
       component: tagTemplate,
       context: {
-        slug: tag.fieldValue,
-        name: tag.nodes.length ? tag.nodes[0].tags[0].name : "No Posts for this tag!",
-        description: tag.nodes.length ? tag.nodes[0].tags[0].description : "",
-        image: tag.nodes.length ? tag.nodes[0].tags[0].feature_image : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fwingedwolf%2F5471047557&psig=AOvVaw31MJdMToBgk72NXGoIC9RW&ust=1630700299917000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCKj0qJWO4fICFQAAAAAdAAAAABAD",
+        slug: node.slug,
+        name: node.name,
+        description: node.description,
+        image: node.feature_image,
       },
     })
   })

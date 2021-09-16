@@ -15,10 +15,10 @@ const impactFontStyle = {
 
 // viewport
 const viewportContext = React.createContext({});
-// const isBrowser = typeof window !== "undefined"
+const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
-  // if (isBrowser) {
+  if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -40,9 +40,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  // } else {
-  //   return null
-  // }
+  } else {
+    return null
+  }
 };
 
 // Rewrite the "useViewport" hook to pull the width and height values
@@ -140,13 +140,13 @@ const IndexPage = ({data}) => {
             <h1 className="text-center" style={impactFontStyle}>About Me</h1>
             <div className="row">
               <div className="col-md-6 pb-3">
-                <StaticImage alt="Riccardo Orion Feingold - Profile" className="rounded" src="../images/profile-rect.jpeg"/>
+                <StaticImage alt="Riccardo Orion Feingold - Profile" style={{borderRadius: `10px`}} src="../images/profile-rect.jpeg"/>
               </div>
               <div className="col-md-6">
                 <h3>Hi, my name is Riccardo Feingold!</h3>
                 <p style={{fontSize: `20px`}}>
                 I'm a mechanical engineering student at the ETH of Zürich. And this is my fully self-coded personal blog 📝.
-                A place where I talk about all kinds of topics that interest me. But usually, I will focus on <strong>productivity 🚀, entrepreneurship 💰, and engineering 🦾</strong>.
+                A place where I talk about all kinds of topics that interest me. But usually, I will focus on <strong>productivity 🚀, entrepreneurship 💰, music 🎹, and engineering 🦾</strong>.
                 This means you will definitely see a blog post where I'm going to talk about how I built my website with tools like Gatsby, Ghost, and React.
                 If you want to know more about who I'm, feel free to check out my <strong>About Me 🧑‍💻</strong> page.
                 </p>

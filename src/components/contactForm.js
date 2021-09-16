@@ -2,6 +2,11 @@ import React from "react";
 import axios from 'axios';
 import { navigate } from "gatsby-link";
 
+const activeBtnStyleForDisableState = {
+    color: "#FFF",
+    opacity: 1,
+}
+
 class ContactForm extends React.Component {
     constructor(props) {
         super(props)
@@ -88,7 +93,7 @@ class ContactForm extends React.Component {
                         <li>Need help in School or University</li>
                     </ul>
 
-                    <button className={`btn btn-primary ${this.state.message && this.state.name && this.state.email ? "" : "disabled"}`} type="submit">Send</button>
+                    <button className={`btn btn-primary ${this.state.message && this.state.name && this.state.email ? "" : "disabled"}`} type="submit" style={activeBtnStyleForDisableState}>Send</button>
                 </form>
             </div>
         )

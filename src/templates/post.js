@@ -2,17 +2,16 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import BlogCard from "../components/blogcard"
-import Prism from "prismjs"
 import TableOfContents from '../components/tableOfContents'
 import Seo from '../components/seo'
 
 // viewport
 const viewportContext = React.createContext({});
-//const isBrowser = typeof window !== "undefined"
+const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
   // This is the exact same logic that we previously had in our hook
-  //if (isBrowser) {
+  if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -34,9 +33,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  // } else {
-  //   return null
-  // }
+  } else {
+    return null
+  }
 };
 
 /* Rewrite the "useViewport" hook to pull the width and height values
@@ -80,16 +79,9 @@ function PostResponsivness(props) {
   }
 }
 
-// Sign Up 
-
-
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
   const allPosts = data.allGhostPost.edges
-  React.useEffect(() => {
-    // call the highlightAll() function to style our code blocks
-    Prism.highlightAll()
-  })
   
   return (
     <ViewportProvider>
@@ -120,12 +112,17 @@ const BlogPost = ({ data }) => {
         </div>
       </article>
       
-      <aside className="read-more-wrap pb-5 pt-3">
-        <h2 className="text-center">Other Posts</h2>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 inner">
-          <PostResponsivness data={allPosts}/>
-        </div>
-      </aside>
+      {
+        allPosts.length ? 
+          <aside className="read-more-wrap pb-5 pt-3">
+            <h2 className="text-center">Other Posts</h2>
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 inner">
+              <PostResponsivness data={allPosts}/>
+            </div>
+          </aside>
+          :
+          null
+      }
     </Layout>
     </ViewportProvider>
   )

@@ -40,6 +40,17 @@ const Layout = ({pageTitle, children}) => {
                 title
             }
         }
+        allGhostTag(filter: {slug: {ne: "portfolio"}}) {
+            edges {
+                node {
+                    id
+                    slug
+                    name
+                    feature_image
+                    description
+                }
+            }
+        }
     }      
     `)
 
@@ -75,14 +86,9 @@ const Layout = ({pageTitle, children}) => {
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a className="dropdown-item" href="/blog">🔭 All</a>
                                         {
-                                        // <a className="dropdown-item" href="/tech">🛠 Tech</a>
-                                        // <a className="dropdown-item" href="/studying">📖 Studying</a>
-                                        // <a className="dropdown-item" href="/productivity">🚀 Productivity</a>
-                                        // <a className="dropdown-item" href="/music">🎹 Music</a>
-                                        // <a className="dropdown-item" href="/journal">📔 Journal</a>
-                                        // <a className="dropdown-item" href="/money">🤑 Money</a>
-                                        // <a className="dropdown-item" href="/entrepreneurship">💰 Entrepreneurship</a>
-                                        // <a className="dropdown-item" href="/books">📚 Books</a>
+                                            data.allGhostTag.edges.map(({node}) => (
+                                                <a key={node.id} className="dropdown-item" href={`../${node.slug}`}>{node.name}</a>
+                                            ))
                                         }
                                     </div>
                                 </li>
