@@ -95,9 +95,9 @@ const Layout = ({pageTitle, children}) => {
                                 <li className="nav-item">
                                     <a className="nav-link" href="/#contact">Contact</a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link" href="/my-impossible-list">My Impossible List</a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <a className="nav-link" href="/#contact">Hire Me</a>
                                 </li>
