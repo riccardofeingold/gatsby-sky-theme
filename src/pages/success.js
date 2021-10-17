@@ -10,7 +10,7 @@ const Success = ({data}) => {
     const slug = data.ghostPage.slug
 
     return (
-        <Layout pageTitle="Page Not Found">
+        <Layout pageTitle="Thank You Page">
             <Seo
                 title={title}
                 description={excerpt}
