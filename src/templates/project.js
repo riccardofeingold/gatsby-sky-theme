@@ -7,11 +7,11 @@ import Seo from '../components/seo'
 
 // viewport
 const viewportContext = React.createContext({});
-// const isBrowser = typeof window !== "undefined"
+const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
   // This is the exact same logic that we previously had in our hook
-  // if (isBrowser) {
+  if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -33,9 +33,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  // } else {
-  //   return null
-  // }
+  } else {
+    return null
+  }
 };
 
 /* Rewrite the "useViewport" hook to pull the width and height values
