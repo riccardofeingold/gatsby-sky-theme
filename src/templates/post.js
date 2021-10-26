@@ -7,11 +7,11 @@ import Seo from '../components/seo'
 
 // viewport
 const viewportContext = React.createContext({});
-const isBrowser = typeof window !== "undefined"
+// const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
   // This is the exact same logic that we previously had in our hook
-  if (isBrowser) {
+  // if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -33,9 +33,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  } else {
-    return null
-  }
+  // } else {
+  //   return null
+  // }
 };
 
 /* Rewrite the "useViewport" hook to pull the width and height values
@@ -99,7 +99,13 @@ const BlogPost = ({ data }) => {
                   <img src={post.feature_image} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={post.title}/>
                 ) : null}
           <h1 className="text-light text-center pt-3 pb-4">{post.title}</h1>
-          <h5 className="fw-bold text-center" style={{color: `#f8f9fa`}}>{post.tags.length ? post.tags[0].name : null}</h5>
+          <h5 className="fw-bold text-center" style={{color: `#f8f9fa`}}>
+          {
+            post.tags.map(p => (
+              post.tags.length ? <span key={p.id} className="badge text-dark mx-1" style={{background: `#CFE8FF`}}>{p.name}</span> : null
+            ))
+          }
+          </h5>
         </div>
         <hr className="line mx-auto pb-5"></hr>
       </div>
@@ -108,6 +114,8 @@ const BlogPost = ({ data }) => {
 
       <article className="post">
         <div className="container p-3 post-full-content">
+          <span className="badge" style={{background: `#007BFF`}}>{post.published_at}</span>
+          <span className="badge mx-1" style={{background: `#007BFF`}}>{post.reading_time} min</span>
           <section dangerouslySetInnerHTML={{ __html: post.childHtmlRehype.html }} />
         </div>
       </article>
@@ -138,10 +146,13 @@ export const postQuery = graphql`
       feature_image
       excerpt
       html
+      published_at(formatString: "DD.MM.YYYY")
+      reading_time
       childHtmlRehype {
         html
       }
       tags {
+        id
         name
       }
     }
