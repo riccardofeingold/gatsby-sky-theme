@@ -41,6 +41,8 @@ module.exports = {
     url: "https://www.riccardofeingold.com",
     image: "/images/riccardo-cover-image.png",
     twitterUsername: "@riccardorion",
+    author: "Riccardo Orion Feingold",
+    keywords: ["tech", "studying", "productivity", "programming", "engineering", "mechanical engineering", "student", "entrpreneurship"],
   },
   plugins: [
     {
