@@ -54,6 +54,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }  
 
+
   // Create pages for each Ghost post
   const items = result.data.posts.edges
   items.forEach(({ node }) => {
