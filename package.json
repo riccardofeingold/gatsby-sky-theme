@@ -45,6 +45,7 @@
     "gatsby-source-filesystem": "^3.10.0",
     "gatsby-source-ghost": "^4.2.4",
     "gatsby-transformer-rehype": "^2.0.0",
+    "gatsby-transformer-sharp": "^4.1.0",
     "jquery": "^3.6.0",
     "node-sass": "^6.0.1",
     "prismjs": "^1.24.1",
