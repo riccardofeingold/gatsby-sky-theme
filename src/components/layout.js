@@ -87,7 +87,7 @@ const Layout = ({pageTitle, children}) => {
                                         <a className="dropdown-item" href="/blog">🔭 All</a>
                                         {
                                             data.allGhostTag.edges.map(({node}) => (
-                                                <a key={node.id} className="dropdown-item" href={`../${node.slug}`}>{node.name}</a>
+                                                <a key={node.id} className="dropdown-item" href={`/${node.slug}`}>{node.name}</a>
                                             ))
                                         }
                                     </div>

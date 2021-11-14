@@ -4,6 +4,7 @@ import Layout from '../components/layout'
 import BlogCard from "../components/blogcard"
 import TableOfContents from '../components/tableOfContents'
 import Seo from '../components/seo'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 // viewport
 const viewportContext = React.createContext({});
@@ -82,7 +83,8 @@ function PostResponsivness(props) {
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
   const allPosts = data.allGhostPost.edges
-  
+  const featureImage = getImage(data.ghostPost.localFeatureImage)
+
   return (
     <ViewportProvider>
     <Layout pageTitle={post.title}>
@@ -95,9 +97,11 @@ const BlogPost = ({ data }) => {
       />
       <div className="container-fluid home-section justify-content-center">
         <div className="bg-primary post-full-content">
-          {post.feature_image ? (
+          {/* {post.feature_image ? (
                   <img src={post.feature_image} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={post.title}/>
-                ) : null}
+                ) : null} */}
+          <GatsbyImage image={featureImage} alt="hello" className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}}/>
+
           <h1 className="text-light text-center pt-3 pb-4">{post.title}</h1>
           <h5 className="fw-bold text-center" style={{color: `#f8f9fa`}}>
           {
@@ -144,6 +148,14 @@ export const postQuery = graphql`
       title
       slug
       feature_image
+      localFeatureImage {
+        childImageSharp {
+          gatsbyImageData(
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+          )
+        }
+      }
       excerpt
       html
       published_at(formatString: "DD.MM.YYYY")
