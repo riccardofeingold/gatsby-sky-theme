@@ -86,13 +86,6 @@ class ContactForm extends React.Component {
                         <textarea name="message" className="form-control" id="message" rows="3" onChange={this.handleChange}></textarea>
                     </div>
 
-                    <strong>How can I help you with?</strong>
-                    <ul>
-                        <li>Get a Website Created</li>
-                        <li>Get a Professional App or Web Design for your company</li>
-                        <li>Need help in School or University</li>
-                    </ul>
-
                     <button className={`btn btn-primary ${this.state.message && this.state.name && this.state.email ? "" : "disabled"}`} type="submit" style={activeBtnStyleForDisableState}>Send</button>
                 </form>
             </div>
