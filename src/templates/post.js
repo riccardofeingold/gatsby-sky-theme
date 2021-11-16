@@ -57,7 +57,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,3).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -65,7 +65,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,2).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -73,7 +73,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,1).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -97,10 +97,8 @@ const BlogPost = ({ data }) => {
       />
       <div className="container-fluid home-section justify-content-center">
         <div className="bg-primary post-full-content">
-          {/* {post.feature_image ? (
-                  <img src={post.feature_image} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={post.title}/>
-                ) : null} */}
-          <GatsbyImage image={featureImage} alt="hello" className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}}/>
+
+          <GatsbyImage image={featureImage} alt={post.title} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}}/>
 
           <h1 className="text-light text-center pt-3 pb-4">{post.title}</h1>
           <h5 className="fw-bold text-center" style={{color: `#f8f9fa`}}>
@@ -183,6 +181,14 @@ export const postQuery = graphql`
           slug
           excerpt
           feature_image
+          localFeatureImage {
+            childImageSharp {
+              gatsbyImageData(
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
           reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
         }

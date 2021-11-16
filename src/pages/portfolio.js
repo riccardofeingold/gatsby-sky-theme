@@ -106,6 +106,14 @@ query query {
           slug
           excerpt
           feature_image
+          localFeatureImage {
+            childImageSharp {
+              gatsbyImageData(
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
           reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
           authors {
@@ -124,6 +132,14 @@ query query {
       title
       excerpt
       feature_image
+      localFeatureImage {
+        childImageSharp {
+          gatsbyImageData(
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+          )
+        }
+      }
     }
   }
 `

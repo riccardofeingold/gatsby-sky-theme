@@ -7,9 +7,11 @@ import PropTypes from "prop-types"
 
 // Components
 import { graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Tags = ({ pageContext, data }) => {
   const { name, description, image } = pageContext
+  const featuredImage = getImage(image)
   const allPosts = data.allGhostPost.edges
 
   // search ability
@@ -102,7 +104,8 @@ const Tags = ({ pageContext, data }) => {
   return (
     <Layout pageTitle="My Blog Posts">
     <div className="container-fluid home-section justify-content-center">
-      <img alt="Tag Title Page" src={image} style={{maxWidth: `300px`, maxHeight: `300px`, color: `white`}} className="mx-auto d-block text-center"></img>
+      <GatsbyImage alt={name} image={featuredImage} style={{maxWidth: `300px`, maxHeight: `300px`, color: `white`}} className="mx-auto d-block text-center"/>
+
       <div className="post-full-content text-center bg-primary">
         <h1 className="text-light pt-3 pb-4">{name}</h1>
         <h5 className="fw-normal pb-5" style={{color: `#f8f9fa`}}>{description}</h5>
@@ -128,13 +131,13 @@ const Tags = ({ pageContext, data }) => {
           state.query ? 
           posts.map(post => (
             <article key={post.node.id}>
-              <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+              <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
             </article>
           ))
           : 
           list.map(post => (
             <article key={post.node.id}>
-              <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+              <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
             </article>
           ))
         }
@@ -183,6 +186,14 @@ query($slug: String) {
         slug
         excerpt
         feature_image
+        localFeatureImage {
+          childImageSharp {
+            gatsbyImageData(
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
         reading_time
         published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
         authors {
@@ -193,7 +204,6 @@ query($slug: String) {
           name
           slug
           description
-          feature_image
         }
       }
     }

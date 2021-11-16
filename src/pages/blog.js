@@ -5,9 +5,11 @@ import BlogCard from '../components/blogcard'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Seo from '../components/seo'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const BlogPage = ({data}) => {
   const allPosts = data.allGhostPost.edges
+  const featuredImage = getImage(data.ghostPage.localFeatureImage)
 
   // search ability
   const searchField = useRef(null);
@@ -107,7 +109,8 @@ const BlogPage = ({data}) => {
         article 
       />
       <div className="container-fluid home-section justify-content-center">
-        <img alt="Blog Title Page" src={data.ghostPage.feature_image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+        <GatsbyImage alt={data.ghostPage.title} image={featuredImage} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+
         <h1 className="text-light text-center pt-3 pb-4">{data.ghostPage.title}</h1>
         <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{data.ghostPage.excerpt}</h5>
       </div>
@@ -131,13 +134,13 @@ const BlogPage = ({data}) => {
             state.query ? 
             posts.map(post => (
               <article key={post.node.id}>
-                <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+                <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
               </article>
             ))
             : 
             list.map(post => (
               <article key={post.node.id}>
-                <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+                <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
               </article>
             ))
           }
@@ -167,6 +170,14 @@ export const pageQuery = graphql`
           slug
           excerpt
           feature_image
+          localFeatureImage {
+            childImageSharp {
+              gatsbyImageData(
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
           reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
           authors {
@@ -183,6 +194,14 @@ export const pageQuery = graphql`
       excerpt
       title
       feature_image
+      localFeatureImage {
+        childImageSharp {
+          gatsbyImageData(
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+          )
+        }
+      }
       slug
     }
   }

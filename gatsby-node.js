@@ -10,29 +10,44 @@ exports.onCreateNode = async ({
   cache
 }) => {
   // Check that we are modifying right node types.
-  const nodeTypes = [`GhostPost`, `GhostPage`];
+  const nodeTypes = [`GhostPost`, `GhostPage`, `GhostAuthor`, `GhostTag`];
   if (!nodeTypes.includes(node.internal.type)) {
       return;
   }
-
+  
   const { createNode } = actions;
 
   // Download image and create a File node with gatsby-transformer-sharp.
-  const fileNode = await createRemoteFileNode({
-      url: node.feature_image,
-      store,
-      cache,
-      createNode,
-      parentNodeId: node.id,
-      createNodeId
-  });
-
-  if (fileNode) {
+  if (node.internal.type === `GhostAuthor`) {
+    const fileNode = await createRemoteFileNode({
+        url: node.profile_image,
+        store,
+        cache,
+        createNode,
+        parentNodeId: node.id,
+        createNodeId
+    });
+    
+    if (fileNode) {
+      // Link File node to GhostPost node at field image.
+      node.localProfileImage___NODE = fileNode.id;
+    }
+  } else {
+    const fileNode = await createRemoteFileNode({
+        url: node.feature_image,
+        store,
+        cache,
+        createNode,
+        parentNodeId: node.id,
+        createNodeId
+    });
+    
+    if (fileNode) {
       // Link File node to GhostPost node at field image.
       node.localFeatureImage___NODE = fileNode.id;
+    }
   }
 };
-
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const postTemplate = path.resolve(`./src/templates/post.js`)
@@ -62,6 +77,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
             name
             feature_image
+            localFeatureImage {
+              childImageSharp {
+                gatsbyImageData(
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                )
+              }
+            }
             description
           }
         }
@@ -126,7 +149,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         slug: node.slug,
         name: node.name,
         description: node.description,
-        image: node.feature_image,
+        image: node.localFeatureImage,
       },
     })
   })
