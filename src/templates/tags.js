@@ -185,13 +185,9 @@ query($slug: String) {
         title
         slug
         excerpt
-        feature_image
         localFeatureImage {
           childImageSharp {
-            gatsbyImageData(
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
+            gatsbyImageData
           }
         }
         reading_time

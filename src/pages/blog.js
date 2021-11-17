@@ -169,13 +169,9 @@ export const pageQuery = graphql`
           title
           slug
           excerpt
-          feature_image
           localFeatureImage {
             childImageSharp {
-              gatsbyImageData(
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
+              gatsbyImageData
             }
           }
           reading_time
@@ -193,13 +189,9 @@ export const pageQuery = graphql`
     ghostPage(slug: {eq: "blog"}) {
       excerpt
       title
-      feature_image
       localFeatureImage {
         childImageSharp {
-          gatsbyImageData(
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
+          gatsbyImageData
         }
       }
       slug

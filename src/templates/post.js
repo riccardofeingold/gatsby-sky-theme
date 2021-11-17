@@ -145,13 +145,9 @@ export const postQuery = graphql`
     ghostPost(slug: { eq: $slug }) {
       title
       slug
-      feature_image
       localFeatureImage {
         childImageSharp {
-          gatsbyImageData(
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
+          gatsbyImageData
         }
       }
       excerpt
@@ -180,13 +176,9 @@ export const postQuery = graphql`
           title
           slug
           excerpt
-          feature_image
           localFeatureImage {
             childImageSharp {
-              gatsbyImageData(
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
+              gatsbyImageData
             }
           }
           reading_time

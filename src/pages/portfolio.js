@@ -3,10 +3,11 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Card from "../components/card"
 import Seo from "../components/seo"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const Portfolio = ({data}) => {
   const portfolio = data.allGhostPost.edges
-
+  const featuredImage = getImage(data.ghostPage.localFeatureImage)
   // infinite scroll
   // State for the list
   const [list, setList] = useState([...portfolio.slice(0, 10)])
@@ -70,7 +71,8 @@ const Portfolio = ({data}) => {
           article
         />
         <div className="container-fluid home-section justify-content-center">
-          <img alt="Projects Title Page" src={data.ghostPage.feature_image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+          <GatsbyImage image={featuredImage} alt={data.ghostPage.title} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+
           <h1 className="text-light text-center pt-3 pb-4">{data.ghostPage.title}</h1>
           <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{data.ghostPage.excerpt}</h5>
         </div>
@@ -80,7 +82,7 @@ const Portfolio = ({data}) => {
                 {
                     list.map(p => (
                       <article key={p.node.id}>
-                          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
+                          <Card cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/portfolio/${p.node.slug}`}/>
                       </article>
                     ))
                 }
@@ -105,7 +107,6 @@ query query {
           title
           slug
           excerpt
-          feature_image
           localFeatureImage {
             childImageSharp {
               gatsbyImageData(
@@ -131,7 +132,6 @@ query query {
       slug
       title
       excerpt
-      feature_image
       localFeatureImage {
         childImageSharp {
           gatsbyImageData(

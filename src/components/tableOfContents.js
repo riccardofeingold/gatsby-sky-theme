@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react'
 
+const generateRandomNumber = (min, max) =>  {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
 const useHeadingsData = () => {
     const [nestedHeadings, setNestedHeadings] = useState([]);
   
@@ -19,7 +23,7 @@ const useHeadingsData = () => {
 const getNestedHeadings = (headingElements) => {
     const nestedHeadings = [];
   
-    headingElements.forEach((heading, index) => {
+    headingElements.forEach((heading) => {
       const { innerText: title, id } = heading;
   
       if (heading.nodeName === "H2") {
@@ -38,7 +42,7 @@ const getNestedHeadings = (headingElements) => {
 const Headings = ({ headings }) => (
     <ul style={{listStyleType: `none`, borderLeft: `3px solid #007bffb5`, paddingLeft: `1rem`}}>
       {headings.map((heading) => (
-        <li key={heading.id}>
+        <li key={heading.id} style={{padding: `0.25rem`}}>
           <a 
             href={`#${heading.id}`}
             onClick={(e) => {
@@ -48,12 +52,12 @@ const Headings = ({ headings }) => (
                 });
             }}
             className="fw-bold"
-            style={{color: `#454e6b`}}
+            style={{color: `#454e6b`, textDecoration: `underline`, textDecorationColor: `rgb(${generateRandomNumber(0, 255)}, ${generateRandomNumber(0, 255)}, ${generateRandomNumber(0, 255)}, 0.3)`}}
           >{heading.title}</a>
           {heading.items.length > 0 && (
                 <ul style={{listStyleType: `none`}}> 
                     {heading.items.map((child) => (
-                        <li key={child.id}>                
+                        <li key={child.id} style={{padding: `0.25rem`}}>                
                             <a 
                                 href={`#${child.id}`}
                                 onClick={(e) => {
