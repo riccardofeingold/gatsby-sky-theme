@@ -2,10 +2,11 @@ import * as React from 'react'
 import Layout from '../components/layout'
 import { graphql } from 'gatsby'
 import Seo from "../components/seo"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const MyImpossibleList = ({data}) => {
     const page = data.ghostPage
-
+    const featureImage = getImage(data.ghostPage.localFeatureImage)
     return (
         <Layout pageTitle="My Impossible List">
             <Seo
@@ -17,7 +18,8 @@ const MyImpossibleList = ({data}) => {
             />
 
             <div className="container-fluid home-section justify-content-center">
-                <img alt="My Impossible List Title Page" src={page.feature_image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+                <GatsbyImage image={featureImage} alt={page.title} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block" />
+
                 <h1 className="text-light text-center pt-3 pb-4">{page.title}</h1>
                 <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{page.excerpt}</h5>
 
@@ -38,6 +40,11 @@ query {
         title
         excerpt
         feature_image
+        localFeatureImage {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
     }
   }
 `

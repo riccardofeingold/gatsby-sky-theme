@@ -131,13 +131,13 @@ const Tags = ({ pageContext, data }) => {
           state.query ? 
           posts.map(post => (
             <article key={post.node.id}>
-              <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+              <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
             </article>
           ))
           : 
           list.map(post => (
             <article key={post.node.id}>
-              <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+              <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
             </article>
           ))
         }
@@ -193,7 +193,11 @@ query($slug: String) {
         reading_time
         published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
         authors {
-          profile_image
+          localProfileImage {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
           name
         }
         tags {

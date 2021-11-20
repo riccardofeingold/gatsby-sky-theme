@@ -57,7 +57,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,3).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -65,7 +65,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,2).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -73,7 +73,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,1).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -145,6 +145,7 @@ export const postQuery = graphql`
     ghostPost(slug: { eq: $slug }) {
       title
       slug
+      feature_image
       localFeatureImage {
         childImageSharp {
           gatsbyImageData
@@ -166,7 +167,11 @@ export const postQuery = graphql`
       edges {
         node {
           authors {
-            profile_image
+            localProfileImage {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
             name
           }
           tags {
@@ -176,6 +181,7 @@ export const postQuery = graphql`
           title
           slug
           excerpt
+          feature_image
           localFeatureImage {
             childImageSharp {
               gatsbyImageData

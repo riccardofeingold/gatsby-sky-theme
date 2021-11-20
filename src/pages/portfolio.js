@@ -134,10 +134,7 @@ query query {
       excerpt
       localFeatureImage {
         childImageSharp {
-          gatsbyImageData(
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
+          gatsbyImageData
         }
       }
     }

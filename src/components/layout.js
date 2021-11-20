@@ -79,7 +79,7 @@ const Layout = ({pageTitle, children}) => {
                                     <a className="nav-link" href="/about">About Me</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/portfolio">Portfolio</a>
+                                    <a className="nav-link" href="/portfolio">Projects</a>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="/blog" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Tag Dropdown">Blog</a>
@@ -97,9 +97,6 @@ const Layout = ({pageTitle, children}) => {
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="/my-impossible-list">My Impossible List</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/#contact">Hire Me</a>
                                 </li>
                             </ul>
                         </div>

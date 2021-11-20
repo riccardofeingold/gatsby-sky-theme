@@ -4,6 +4,7 @@ import Layout from '../components/layout'
 import BlogCard from "../components/blogcard"
 import TableOfContents from '../components/tableOfContents'
 import Seo from '../components/seo'
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
 // viewport
 const viewportContext = React.createContext({});
@@ -56,7 +57,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,3).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -64,7 +65,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,2).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -72,7 +73,7 @@ function PostResponsivness(props) {
     return (
       allPosts.slice(0,1).map(p => (
         <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].profile_image} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </article>
       ))
     )
@@ -82,7 +83,8 @@ function PostResponsivness(props) {
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
   const allPosts = data.allGhostPost.edges
-  
+  const featureImage = getImage(data.ghostPost.localFeatureImage)
+
   return (
     <ViewportProvider>
     <Layout pageTitle={post.title}>
@@ -95,9 +97,8 @@ const BlogPost = ({ data }) => {
       />
       <div className="container-fluid home-section justify-content-center">
         <div className="bg-primary post-full-content">
-          {post.feature_image ? (
-                  <img src={post.feature_image} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} alt={post.title}/>
-                ) : null}
+          <GatsbyImage image={featureImage} alt={post.title} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}} />
+
           <h1 className="text-light text-center pt-3 pb-4">{post.title}</h1>
           <h5 className="fw-bold text-center" style={{color: `#f8f9fa`}}>
           {
@@ -145,6 +146,11 @@ export const postQuery = graphql`
       title
       slug
       feature_image
+      localFeatureImage {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
       excerpt
       html
       published_at(formatString: "DD.MM.YYYY")
@@ -153,6 +159,7 @@ export const postQuery = graphql`
         html
       }
       tags {
+        id
         name
       }
     }
@@ -160,7 +167,11 @@ export const postQuery = graphql`
       edges {
         node {
           authors {
-            profile_image
+            localProfileImage {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
             name
           }
           tags {
@@ -171,6 +182,11 @@ export const postQuery = graphql`
           slug
           excerpt
           feature_image
+          localFeatureImage {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
           reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
         }

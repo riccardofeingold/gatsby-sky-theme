@@ -147,7 +147,7 @@ const IndexPage = ({data}) => {
                 <p style={{fontSize: `20px`}}>
                   I'm a mechanical engineering student, musician, and developer. 
                   And this is my fully self-coded personal blog 📝. 
-                  A place where I talk about <strong>science 🔭, programming 🖥 and engineering 🦾 </strong>.   
+                  A place where I talk about <strong>science 🔭, programming 🖥, and engineering 🦾</strong>.
                 </p>
                 <p style={{fontSize: `20px`}}>
                   <strong>Why I'm blogging?</strong>
@@ -165,6 +165,7 @@ const IndexPage = ({data}) => {
                   <strong> If it is a humanoid robot, a python snippet that throws people out of the internet, or just a simple sterling motor sitting on your coffee mug that powers a small Christmas tree. </strong>
                   I'm going to build it, explain it to you, and hopefully inspire you to get creative too.
                 </p>
+
                 <p style={{fontSize: `20px`}}>
                   I'm really dope to tell you about my engineering projects on my blog, as well as on my YouTube channel. 
                   For that and more, see you in my posts and vids! Peace ✌🏻!

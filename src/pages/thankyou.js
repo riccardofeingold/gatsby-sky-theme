@@ -2,9 +2,11 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Seo from "../components/seo"
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
 const ThankYou = ({data}) => {
     const pageHtml = data.ghostPage.html
+    const feature_image = getImage(data.ghostPage.localFeatureImage)
     const image = data.ghostPage.feature_image
     const title = data.ghostPage.title
     const excerpt = data.ghostPage.excerpt
@@ -19,7 +21,8 @@ const ThankYou = ({data}) => {
                 article
             />
             <div className="container-fluid home-section justify-content-center">
-                <img alt="Thank You Title Page" src={image} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
+                <GatsbyImage image={feature_image} alt={title} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/> 
+
                 <h1 className="text-light text-center pt-3 pb-4">{title}</h1>
                 <h5 className="text-light fw-normal text-center pb-5 post-full-content bg-primary">{excerpt}</h5>
             </div>
@@ -41,6 +44,11 @@ export const query = graphql`
             title
             feature_image
             slug
+            localFeatureImage {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
         }
     }
 `
