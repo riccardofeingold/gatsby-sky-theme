@@ -63,7 +63,7 @@ function PostResponsivness(props) {
     return (
       posts.slice(0,3).map(post => (
         <article key={post.node.id}>
-          <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+          <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
         </article>
       ))
     )
@@ -71,7 +71,7 @@ function PostResponsivness(props) {
     return (
       posts.slice(0,2).map(post => (
         <article key={post.node.id}>
-          <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+          <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
         </article>
       ))
     )
@@ -79,7 +79,7 @@ function PostResponsivness(props) {
     return (
       posts.slice(0,1).map(post => (
         <article key={post.node.id}>
-          <BlogCard cardTitle={post.node.title} featuredImage={post.node.feature_image} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].profile_image} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+          <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
         </article>
       ))
     )
@@ -95,7 +95,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,3).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
+          <Card cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/portfolio/${p.node.slug}`}/>
         </div>
       ))
     )
@@ -103,7 +103,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,2).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
+          <Card cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/portfolio/${p.node.slug}`}/>
         </div>
       ))
     )
@@ -111,7 +111,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,1).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.title} featuredImage={p.node.feature_image} cardLink={`/portfolio/${p.node.slug}`}/>
+          <Card cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/portfolio/${p.node.slug}`}/>
         </div>
       ))
     )
@@ -137,7 +137,7 @@ const IndexPage = ({data}) => {
 
         <section id="about-me">
           <div className="container py-5">
-            <h1 className="text-center" style={impactFontStyle}>About Me</h1>
+            <h1 className="text-center" style={impactFontStyle}>👨🏻‍🎓 About Me</h1>
             <div className="row">
               <div className="col-md-6 pb-3">
                 <StaticImage alt="Riccardo Orion Feingold - Profile" style={{borderRadius: `10px`}} src="../images/profile-rect.jpeg"/>
@@ -145,11 +145,39 @@ const IndexPage = ({data}) => {
               <div className="col-md-6">
                 <h3>Hi, my name is Riccardo Feingold!</h3>
                 <p style={{fontSize: `20px`}}>
-                I'm a mechanical engineering student at the ETH of Zürich. And this is my fully self-coded personal blog 📝.
-                A place where I talk about all kinds of topics that interest me. But usually, I will focus on <strong>productivity 🚀, entrepreneurship 💰, music 🎹, and engineering 🦾</strong>.
-                This means you will definitely see a blog post where I'm going to talk about how I built my website with tools like Gatsby, Ghost, and React.
+                  I'm a mechanical engineering student, musician, and developer. 
+                  And this is my fully self-coded personal blog 📝. 
+                  A place where I talk about <strong>science 🔭, programming 🖥 and engineering 🦾 </strong>.   
+                </p>
+                <p style={{fontSize: `20px`}}>
+                  <strong>Why I'm blogging?</strong>
+                </p>
+                <p style={{fontSize: `20px`}}>
+                  When I started my studies at college, I had all these imaginations of projects I would craft during my studies. 
+                  But the whole course of studies is built upon theory after theory. Nothing wrong with that. To be fair, I love to learn theory. 
+                  I feel like I would be having a conversation with the actual inventor of the theorem I try to understand. 
+                  But theorems are nothing special if we don't apply them in reality. 
+                  And I thought this is what engineers are for. 
+                </p>
+                <p style={{fontSize: `20px`}}>
+                  Long story short, this is basically the purpose of my blog. 
+                  I want to apply the theory I'm learning on projects. 
+                  <strong> If it is a humanoid robot, a python snippet that throws people out of the internet, or just a simple sterling motor sitting on your coffee mug that powers a small Christmas tree. </strong>
+                  I'm going to build it, explain it to you, and hopefully inspire you to get creative too.
+                </p>
+                <p style={{fontSize: `20px`}}>
+                  I'm really dope to tell you about my engineering projects on my blog, as well as on my YouTube channel. 
+                  For that and more, see you in my posts and vids! Peace ✌🏻!
+                </p>
+                <p style={{fontSize: `20px`}}>
                 If you want to know more about who I'm, feel free to check out my <strong>About Me 🧑‍💻</strong> page.
                 </p>
+              </div>
+
+              <div className="d-flex mt-4 justify-content-center">
+                <div className="fancy-border-box p-4">
+                    <h2 className="text-center mantra-slogan">I learn, I craft, I live!</h2>
+                </div>
               </div>
 
               <div className="d-flex justify-content-center pt-5">
@@ -159,10 +187,25 @@ const IndexPage = ({data}) => {
           </div>
         </section>
 
-        <section id="portfolio" className="home-section">
+        <section id="blog" className="home-section">
           <div className="container py-5">
-            <h1 className="text-center text-light" style={impactFontStyle}>Portfolio</h1>
-            <h1 className="text-light pb-2">My Recent Projects</h1>
+            <h1 className="text-center text-light" style={impactFontStyle}>✏️ Blog</h1>
+            <h1 className="text-light pb-2">My Recent Posts</h1>
+            
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+              <PostResponsivness data={posts}/>
+            </div>
+
+            <div className="d-flex justify-content-center pt-5">
+                <Link className="btn btn-outline-light btn-lg" to="/blog">See All</Link>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects">
+          <div className="container py-5">
+            <h1 className="text-center" style={impactFontStyle}>🚀 Projects</h1>
+            <h1 className="pb-2">My Recent Projects</h1>
             
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
               <PortfolioResponsivness data={portfolio}/>
@@ -174,37 +217,13 @@ const IndexPage = ({data}) => {
           </div>
         </section>
 
-        <section id="blog">
-          <div className="container py-5">
-            <h1 className="text-center" style={impactFontStyle}>Blog</h1>
-            <h1 className="pb-2">My Recent Posts</h1>
-            
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              <PostResponsivness data={posts}/>
-            </div>
-
-            <div className="d-flex justify-content-center pt-5">
-                <Link className="btn btn-outline-dark btn-lg" to="/blog">See All</Link>
-            </div>
-          </div>
-        </section>
-
         <section id="contact" className="home-section">
           <div className="container py-5">
-            <h1 className="text-center text-light" style={impactFontStyle}>Get in Touch</h1>
-            <h5 className="text-light text-center pb-2">Any questions? Feel free to contact me.</h5>
+            <h1 className="text-center text-light" style={impactFontStyle}>👋🏻 Get in Touch</h1>
+            <h5 className="text-center text-light pb-2">Any questions? Feel free to contact me.</h5>
 
             <ContactForm/>            
           
-          </div>
-        </section>
-
-        <section id="slogan">
-          <h1 className="text-center pt-5 pb-2" style={impactFontStyle}>My Mantra</h1>
-          <div className="d-flex pb-5 justify-content-center">
-            <div className="fancy-border-box p-4">
-                <h2 className="text-center mantra-slogan">I learn, I craft, I live!</h2>
-            </div>
           </div>
         </section>
       </Layout>
@@ -221,20 +240,24 @@ export const postsQuery = graphql`
       edges {
         node {
           authors {
-            profile_image
+            localProfileImage {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
             name
           }
           id
           title
           slug
           excerpt
-          feature_image
+          localFeatureImage {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
           reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
-          tags {
-            name
-            feature_image
-          }
         }
       }
     }
@@ -242,7 +265,11 @@ export const postsQuery = graphql`
       edges {
         node {
           authors {
-            profile_image
+            localProfileImage {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
             name
           }
           id
@@ -250,12 +277,13 @@ export const postsQuery = graphql`
           slug
           excerpt
           feature_image
+          localFeatureImage {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
           reading_time
           published_at_pretty: published_at(formatString: "DD MMMM, YYYY")
-          tags {
-            name
-            feature_image
-          }
         }
       }
     }

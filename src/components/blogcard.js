@@ -3,10 +3,11 @@ import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const BlogCard = ({cardTitle, featuredImage, cardLink, cardExcerpt, authorImage, authorName, published, readingTime}) => {
-    const image = getImage(featuredImage)
+    const fImage = getImage(featuredImage)
+    const aImage = getImage(authorImage)
     return (
         <div className="card shadow" style={{border: `none`}}>
-            <GatsbyImage image={image} alt={cardTitle} className="card-img-top"/>
+            <GatsbyImage image={fImage} alt={cardTitle} className="card-img-top"/>
 
             <div className="card-body">
                 <h5 className="card-title">{cardTitle}</h5>
@@ -14,7 +15,7 @@ const BlogCard = ({cardTitle, featuredImage, cardLink, cardExcerpt, authorImage,
                 
                 <div className="d-flex align-items-center">
                     <div className="d-flex-shrink-0">
-                        <img className="rounded-circle" style={{maxWidth: `36px`, maxHeight: `36px`}} src={authorImage} alt={`Author: ${authorName}`}></img>
+                        <GatsbyImage image={aImage} className="rounded-circle" style={{maxWidth: `36px`, maxHeight: `36px`}} alt={`Author: ${authorName}`}/>
                     </div>
                     <div className="flex-grow-1 ms-3">
                         <h6 style={{marginBottom: `0px`, fontSize: `14px`}}>{authorName}</h6>
