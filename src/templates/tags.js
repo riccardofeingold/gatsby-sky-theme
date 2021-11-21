@@ -175,7 +175,7 @@ export const tagQuery = graphql`
 query($slug: String) {
   allGhostPost(
     sort: {fields: published_at, order: DESC}
-    filter: {tags: {elemMatch: {slug: {in: [$slug], ne: "portfolio"}}}}
+    filter: {tags: {elemMatch: {slug: {in: [$slug]}}}}
     limit: 2000
   ) {
     totalCount

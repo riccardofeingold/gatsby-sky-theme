@@ -15,10 +15,10 @@ const impactFontStyle = {
 
 // viewport
 const viewportContext = React.createContext({});
-// const isBrowser = typeof window !== "undefined"
+const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
-  // if (isBrowser) {
+  if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -40,9 +40,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  // } else {
-  //   return null
-  // }
+  } else {
+    return null
+  }
 };
 
 // Rewrite the "useViewport" hook to pull the width and height values
@@ -147,31 +147,36 @@ const IndexPage = ({data}) => {
                 <p style={{fontSize: `20px`}}>
                   I'm a mechanical engineering student, musician, and developer. 
                   And this is my fully self-coded personal blog 📝. 
-                  A place where I talk about <strong>science 🔭, programming 🖥, and engineering 🦾</strong>.
-                </p>
-                <p style={{fontSize: `20px`}}>
-                  <strong>Why I'm blogging?</strong>
-                </p>
-                <p style={{fontSize: `20px`}}>
-                  When I started my studies at college, I had all these imaginations of projects I would craft during my studies. 
-                  But the whole course of studies is built upon theory after theory. Nothing wrong with that. To be fair, I love to learn theory. 
-                  I feel like I would be having a conversation with the actual inventor of the theorem I try to understand. 
-                  But theorems are nothing special if we don't apply them in reality. 
-                  And I thought this is what engineers are for. 
-                </p>
-                <p style={{fontSize: `20px`}}>
-                  Long story short, this is basically the purpose of my blog. 
-                  I want to apply the theory I'm learning on projects. 
-                  <strong> If it is a humanoid robot, a python snippet that throws people out of the internet, or just a simple sterling motor sitting on your coffee mug that powers a small Christmas tree. </strong>
-                  I'm going to build it, explain it to you, and hopefully inspire you to get creative too.
+                  A place where I talk about <strong> music 🎹, programming 🖥 and engineering 🦾</strong>.
                 </p>
 
                 <p style={{fontSize: `20px`}}>
-                  I'm really dope to tell you about my engineering projects on my blog, as well as on my YouTube channel. 
-                  For that and more, see you in my posts and vids! Peace ✌🏻!
+                  <strong>Why I'm blogging?</strong>
+                </p>
+
+                <p style={{fontSize: `20px`}}>
+                  When I started college, I had all these imaginations of projects I would craft during my studies.
+                  But the whole course of studies is built upon theory after theory. 
+                  Nothing wrong with that. To be fair, I love to learn theory. 
+                  But theorems are nothing special if we don't apply them in reality. 
+                  And I thought this is what engineers are for. 
+                  They build innovative things out of pure theory.
                 </p>
                 <p style={{fontSize: `20px`}}>
-                If you want to know more about who I'm, feel free to check out my <strong>About Me 🧑‍💻</strong> page.
+                  But engineering is not the only love in my life. 
+                  Growing up with two musicians as parents, I've been living for music since I was born. 
+                  Even the first salary I earned was from playing the piano in the church. 
+                  Music is heavily rooted in me, and I actually can not live without it. 
+                  That's why it's going to be a part of my blog too. 
+                </p>
+
+                <p style={{fontSize: `20px`}}>
+                  In short, my blog is a way to express myself in engineering and music. 
+                  If it is a song, a python snippet that throws people out of the internet, or a piano robot that plays a duet with me, I'm going to share it with you. 
+                </p>
+
+                <p style={{fontSize: `20px`}}>
+                  For that and more, see you in my posts and vids! Peace ✌🏻!
                 </p>
               </div>
 
