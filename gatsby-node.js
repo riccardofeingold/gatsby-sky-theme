@@ -63,13 +63,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      projects: allGhostPost(sort: { order: ASC, fields: published_at }, filter: {tags: {elemMatch: {slug: {eq: "portfolio"}}}}) {
-        edges {
-          node {
-            slug
-          }
-        }
-      }
       tags: allGhostTag {
         edges {
           node {
@@ -96,11 +89,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
-
-  if (!result.data.projects) {
-    return
-  }
-
+  
   if (!result.data.posts) {
     return
   }
@@ -123,20 +112,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
   })
-
-  // //create pages for each project
-  // const projectItems = result.data.projects.edges
-  // projectItems.forEach(({ node }) => {
-  //   node.url = `/portfolio/${node.slug}/`
-
-  //   actions.createPage({
-  //     path: node.url,
-  //     component: projectTemplate,
-  //     context: {
-  //       slug: node.slug,
-  //     }
-  //   })
-  // })
 
   // Extract tag data from query
   const tags = result.data.tags.edges
