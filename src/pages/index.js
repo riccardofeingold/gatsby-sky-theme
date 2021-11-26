@@ -14,10 +14,10 @@ const impactFontStyle = {
 
 // viewport
 const viewportContext = React.createContext({});
-// const isBrowser = typeof window !== "undefined"
+const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
-  // if (isBrowser) {
+  if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -39,9 +39,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  // } else {
-  //   return null
-  // }
+  } else {
+    return null
+  }
 };
 
 // Rewrite the "useViewport" hook to pull the width and height values
@@ -129,7 +129,7 @@ const IndexPage = ({data}) => {
         <Seo
           title={data.ghostPage.title}
           description={data.ghostPage.excerpt}
-          image={data.ghostPage.localFeatureImage.publicURL}
+          image={data.ghostPage.localFeatureImage.childImageSharp.resize}
           pathname={data.ghostPage.slug}
         />
 
