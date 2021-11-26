@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import { graphql } from 'gatsby'
-import Seo from "../components/seo"
+import Seo from "../components/seo2"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const MyImpossibleList = ({data}) => {
@@ -12,9 +12,8 @@ const MyImpossibleList = ({data}) => {
             <Seo
                 title={page.title}
                 description={page.excerpt}
-                image={page.feature_image}
+                image={page.localFeatureImage.childImageSharp.resize}
                 pathname={page.slug}
-                article
             />
 
             <div className="container-fluid home-section justify-content-center">
@@ -43,6 +42,11 @@ query {
         localFeatureImage {
             childImageSharp {
               gatsbyImageData
+              resize {
+                src
+                width
+                height
+              }
             }
           }
     }

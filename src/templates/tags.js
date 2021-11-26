@@ -4,13 +4,15 @@ import BlogCard from '../components/blogcard'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from "prop-types"
+import Seo from "../components/seo2"
+
 
 // Components
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Tags = ({ pageContext, data }) => {
-  const { name, description, image } = pageContext
+  const { name, description, image, slug } = pageContext
   const featuredImage = getImage(image)
   const allPosts = data.allGhostPost.edges
 
@@ -103,6 +105,12 @@ const Tags = ({ pageContext, data }) => {
 
   return (
     <Layout pageTitle="My Blog Posts">
+      <Seo
+        title={name}
+        description={description}
+        image={image.childImageSharp.resize}
+        pathname={slug}
+      />
     <div className="container-fluid home-section justify-content-center">
       <GatsbyImage alt={name} image={featuredImage} style={{maxWidth: `300px`, maxHeight: `300px`, color: `white`}} className="mx-auto d-block text-center"/>
 

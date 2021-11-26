@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import BlogCard from "../components/blogcard"
 import TableOfContents from '../components/tableOfContents'
-import Seo from '../components/seo'
+import Seo from '../components/seo2'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 // viewport
@@ -91,9 +91,8 @@ const BlogPost = ({ data }) => {
       <Seo
         title={post.title}
         description={post.excerpt}
-        image={post.feature_image}
+        image={post.localFeatureImage.childImageSharp.resize}
         pathname={post.slug}
-        article 
       />
       <div className="container-fluid home-section justify-content-center">
         <div className="bg-primary post-full-content">
@@ -149,6 +148,11 @@ export const postQuery = graphql`
       localFeatureImage {
         childImageSharp {
           gatsbyImageData
+          resize {
+            src
+            width
+            height
+          }
         }
       }
       excerpt

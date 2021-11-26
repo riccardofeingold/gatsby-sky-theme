@@ -243,9 +243,13 @@ export const postsQuery = graphql`
     ghostPage(title: {eq: "Home"}) {
       title
       localFeatureImage {
-        publicURL
         childImageSharp {
           gatsbyImageData
+          resize {
+            src
+            width
+            height
+          }
         }
       }
       excerpt

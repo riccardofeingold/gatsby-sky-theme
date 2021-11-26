@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 import BlogCard from '../components/blogcard'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Seo from '../components/seo'
+import Seo from '../components/seo2'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const BlogPage = ({data}) => {
@@ -104,9 +104,8 @@ const BlogPage = ({data}) => {
       <Seo
         title={data.ghostPage.title}
         description={data.ghostPage.excerpt}
-        image={data.ghostPage.feature_image}
-        pathname={data.ghostPage.slug}
-        article 
+        image={data.ghostPage.localFeatureImage.childImageSharp.resize}
+        pathname={data.ghostPage.slug} 
       />
       <div className="container-fluid home-section justify-content-center">
         <GatsbyImage alt={data.ghostPage.title} image={featuredImage} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block"/>
@@ -198,6 +197,11 @@ export const pageQuery = graphql`
       localFeatureImage {
         childImageSharp {
           gatsbyImageData
+          resize {
+            src
+            width
+            height
+          }
         }
       }
       slug

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import { graphql} from 'gatsby'
-import Seo from "../components/seo"
+import Seo from "../components/seo2"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const PageNotFound = ({data}) => {
@@ -15,9 +15,8 @@ const PageNotFound = ({data}) => {
             <Seo
                 title={title}
                 description={excerpt}
-                image={data.ghostPage.feature_image}
+                image={data.ghostPage.localFeatureImage.childImageSharp.resize}
                 pathname={slug}
-                article
             />
             <div className="container-fluid home-section justify-content-center">
                 <GatsbyImage image={image} alt={title} style={{maxWidth: `300px`, maxHeight: `300px`}} className="mx-auto d-block" />
@@ -39,6 +38,11 @@ query {
         localFeatureImage {
             childImageSharp {
               gatsbyImageData
+              resize {
+                src
+                width
+                height
+              }
             }
           }
         slug

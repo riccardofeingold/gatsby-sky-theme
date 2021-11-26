@@ -75,6 +75,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   placeholder: BLURRED
                   formats: [AUTO, WEBP, AVIF]
                 )
+                resize {
+                  src
+                  width
+                  height
+                }
               }
             }
             description
