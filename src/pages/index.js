@@ -95,7 +95,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,3).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/portfolio/${p.node.slug}`}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </div>
       ))
     )
@@ -103,7 +103,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,2).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/portfolio/${p.node.slug}`}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </div>
       ))
     )
@@ -111,7 +111,7 @@ function PortfolioResponsivness(props) {
     return (
       portfolio.slice(0,1).map(p => (
         <div key={p.node.id} className="col">
-          <Card cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/portfolio/${p.node.slug}`}/>
+          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
         </div>
       ))
     )
