@@ -1,12 +1,11 @@
-import { StaticImage } from "gatsby-plugin-image"
 import { Link, graphql} from 'gatsby'
 import * as React from "react"
 import "../scss/home.scss"
 import Layout from "../components/layout"
 import BlogCard from "../components/blogcard"
-import Card from "../components/card"
-import Seo from "../components/seo"
+import Seo from "../components/seo2"
 import ContactForm from "../components/contactForm"
+import { StaticImage } from "gatsby-plugin-image"
 
 const impactFontStyle = {
   fontFamily: "Impact, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif", 
@@ -15,10 +14,10 @@ const impactFontStyle = {
 
 // viewport
 const viewportContext = React.createContext({});
-const isBrowser = typeof window !== "undefined"
+// const isBrowser = typeof window !== "undefined"
 
 const ViewportProvider = ({ children }) => {
-  if (isBrowser) {
+  // if (isBrowser) {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
 
@@ -40,9 +39,9 @@ const ViewportProvider = ({ children }) => {
         {children}
       </viewportContext.Provider>
     );
-  } else {
-    return null
-  }
+  // } else {
+  //   return null
+  // }
 };
 
 // Rewrite the "useViewport" hook to pull the width and height values
@@ -90,7 +89,7 @@ function PostResponsivness(props) {
 function PortfolioResponsivness(props) {
   const { width } = useViewport()
   const portfolio = props.data;
-
+  
   if (width >= 992) {
     return (
       portfolio.slice(0,3).map(p => (
@@ -128,11 +127,10 @@ const IndexPage = ({data}) => {
     <main>
       <Layout pageTitle="Home">
         <Seo
-          title="Home"
-          description="Welcome to my personal blog! Where I talk about tech, engineering, designing and music!"
-          image="../images/riccardo-cover-image.png"
-          pathname="home"
-          article
+          title={data.ghostPage.title}
+          description={data.ghostPage.excerpt}
+          image={data.ghostPage.localFeatureImage.publicURL}
+          pathname={data.ghostPage.slug}
         />
 
         <section id="about-me">
@@ -242,6 +240,17 @@ export default IndexPage
 
 export const postsQuery = graphql`
   query {
+    ghostPage(title: {eq: "Home"}) {
+      title
+      localFeatureImage {
+        publicURL
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      excerpt
+      slug
+    }
     posts: allGhostPost(sort: { fields: [published_at], order: DESC }, filter: {tags: {elemMatch: {slug: {ne: "portfolio"}}}}) {
       edges {
         node {
