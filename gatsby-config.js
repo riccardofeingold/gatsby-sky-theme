@@ -42,7 +42,7 @@ module.exports = {
     image: "/images/riccardo-cover-image.png",
     twitterUsername: "@riccardorion",
     author: "Riccardo Orion Feingold",
-    keywords: ["tech", "studying", "productivity", "programming", "engineering", "mechanical engineering", "student", "entrpreneurship"],
+    keywords: ["tech", "studying", "productivity", "programming", "engineering", "mechanical engineering", "student", "entrpreneurship", "money"],
   },
   plugins: [
     {
@@ -206,6 +206,7 @@ module.exports = {
           `/404.html`,
           `/offline-plugin-app-shell-fallback`,
           `/thankyou`,
+          `/success`,
         ],
         createLinkInHead: true, // optional: create a link in the `<head>` of your site
         addUncaughtPages: true, // optional: will fill up pages that are not caught by queries and mapping and list them under `sitemap-pages.xml`

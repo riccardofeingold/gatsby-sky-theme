@@ -12,6 +12,7 @@ function SEO({ description, lang, meta, image: metaImage, title, pathname }) {
             title
             description
             author
+            twitterUsername
             keywords
             siteUrl
           }
@@ -67,7 +68,7 @@ function SEO({ description, lang, meta, image: metaImage, title, pathname }) {
         },
         {
             name: `twitter:creator`,
-            content: site.siteMetadata.author,
+            content: site.siteMetadata.twitterUsername,
         },
         {
             name: `twitter:title`,
@@ -114,12 +115,16 @@ SEO.defaultProps = {
     lang: `en`,
     meta: [],
     description: ``,
+    keywords: [],
+    pathname: ``,
   }
 
 SEO.propTypes = {
     description: PropTypes.string,
     lang: PropTypes.string,
     meta: PropTypes.arrayOf(PropTypes.object),
+    keywords: PropTypes.arrayOf(PropTypes.string),
+    pathname: PropTypes.string,
     title: PropTypes.string.isRequired,
     image: PropTypes.shape({
       src: PropTypes.string.isRequired,
