@@ -12,118 +12,12 @@ const impactFontStyle = {
   marginBottom: "30px",
 }
 
-// viewport
-const viewportContext = React.createContext({});
-const isBrowser = typeof window !== "undefined"
-
-const ViewportProvider = ({ children }) => {
-  if (isBrowser) {
-    const [width, setWidth] = React.useState(window.innerWidth);
-    const [height, setHeight] = React.useState(window.innerHeight);
-
-    const handleWindowResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
-    }
-
-    React.useEffect(() => {
-      window.addEventListener("resize", handleWindowResize);
-      return () => window.removeEventListener("resize", handleWindowResize);
-    }, []);
-
-    // Now we are dealing with a context instead of a Hook, so instead
-    // of returning the width and height we store the values in the
-    // value of the Provider 
-    return (
-      <viewportContext.Provider value={{ width, height }}>
-        {children}
-      </viewportContext.Provider>
-    );
-  } else {
-    return null
-  }
-};
-
-// Rewrite the "useViewport" hook to pull the width and height values
-// out of the context instead of calculating them itself
-const useViewport = () => {
-  // We can use the "useContext" Hook to acccess a context from within
-  // another Hook, remember, Hooks are composable!
-  const { width, height } = React.useContext(viewportContext);
-  return { width, height };
-}
-
-// posts responsiveness
-function PostResponsivness(props) {
-  const { width } = useViewport()
-  const posts = props.data;
-
-  if (width >= 992) {
-    return (
-      posts.slice(0,3).map(post => (
-        <article key={post.node.id}>
-          <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
-        </article>
-      ))
-    )
-  } else if (width >= 768) {
-    return (
-      posts.slice(0,2).map(post => (
-        <article key={post.node.id}>
-          <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
-        </article>
-      ))
-    )
-  } else {
-    return (
-      posts.slice(0,1).map(post => (
-        <article key={post.node.id}>
-          <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
-        </article>
-      ))
-    )
-  }
-}
-
-// portfolio responsiveness
-function PortfolioResponsivness(props) {
-  const { width } = useViewport()
-  const portfolio = props.data;
-  
-  if (width >= 992) {
-    return (
-      portfolio.slice(0,3).map(p => (
-        <div key={p.node.id} className="col">
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
-        </div>
-      ))
-    )
-  } else if (width >= 768) {
-    return (
-      portfolio.slice(0,2).map(p => (
-        <div key={p.node.id} className="col">
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
-        </div>
-      ))
-    )
-  } else {
-    return (
-      portfolio.slice(0,1).map(p => (
-        <div key={p.node.id} className="col">
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
-        </div>
-      ))
-    )
-  }
-}
-
 // markup
 const IndexPage = ({data}) => {
   const posts = data.posts.edges
   const portfolio = data.projects.edges
 
   return (
-    <ViewportProvider>
     <main>
       <Layout pageTitle="Home">
         <Seo
@@ -196,8 +90,14 @@ const IndexPage = ({data}) => {
             <h1 className="text-center text-light" style={impactFontStyle}>✏️ Blog</h1>
             <h1 className="text-light pb-2">My Recent Posts</h1>
             
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              <PostResponsivness data={posts}/>
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 responsive">
+              {
+                posts.slice(0,3).map(post => (
+                  <article key={post.node.id}>
+                    <BlogCard cardTitle={post.node.title} featuredImage={post.node.localFeatureImage} cardLink={`/blog/${post.node.slug}`} cardExcerpt={post.node.excerpt} authorImage={post.node.authors[0].localProfileImage} authorName={post.node.authors[0].name} published={post.node.published_at_pretty} readingTime={post.node.reading_time}/>
+                  </article>
+                ))
+              }
             </div>
 
             <div className="d-flex justify-content-center pt-5">
@@ -211,8 +111,14 @@ const IndexPage = ({data}) => {
             <h1 className="text-center" style={impactFontStyle}>🚀 Projects</h1>
             <h1 className="pb-2">My Recent Projects</h1>
             
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              <PortfolioResponsivness data={portfolio}/>
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 responsive">
+              {
+                portfolio.slice(0,3).map(p => (
+                  <article key={p.node.id}>
+                    <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+                  </article>
+                ))
+              }
             </div>
 
             <div className="d-flex justify-content-center pt-5">
@@ -232,7 +138,6 @@ const IndexPage = ({data}) => {
         </section>
       </Layout>
     </main>
-    </ViewportProvider>
   )
 }
 

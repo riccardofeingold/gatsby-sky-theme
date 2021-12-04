@@ -131,7 +131,6 @@ SEO.propTypes = {
       height: PropTypes.number.isRequired,
       width: PropTypes.number.isRequired,
     }),
-    pathname: PropTypes.string,
   }
 
 export default SEO

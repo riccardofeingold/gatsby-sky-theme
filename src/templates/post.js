@@ -6,79 +6,6 @@ import TableOfContents from '../components/tableOfContents'
 import Seo from '../components/seo2'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-// viewport
-const viewportContext = React.createContext({});
-const isBrowser = typeof window !== "undefined"
-
-const ViewportProvider = ({ children }) => {
-  // This is the exact same logic that we previously had in our hook
-  if (isBrowser) {
-    const [width, setWidth] = React.useState(window.innerWidth);
-    const [height, setHeight] = React.useState(window.innerHeight);
-
-    const handleWindowResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
-    }
-
-    React.useEffect(() => {
-      window.addEventListener("resize", handleWindowResize);
-      return () => window.removeEventListener("resize", handleWindowResize);
-    }, []);
-
-    /* Now we are dealing with a context instead of a Hook, so instead
-      of returning the width and height we store the values in the
-      value of the Provider */
-    return (
-      <viewportContext.Provider value={{ width, height }}>
-        {children}
-      </viewportContext.Provider>
-    );
-  } else {
-    return null
-  }
-};
-
-/* Rewrite the "useViewport" hook to pull the width and height values
-   out of the context instead of calculating them itself */
-const useViewport = () => {
-  /* We can use the "useContext" Hook to acccess a context from within
-     another Hook, remember, Hooks are composable! */
-  const { width, height } = React.useContext(viewportContext);
-  return { width, height };
-}
-
-// posts responsiveness
-function PostResponsivness(props) {
-  const { width } = useViewport()
-  const allPosts = props.data;
-
-  if (width >= 992) {
-    return (
-      allPosts.slice(0,3).map(p => (
-        <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
-        </article>
-      ))
-    )
-  } else if (width >= 768) {
-    return (
-      allPosts.slice(0,2).map(p => (
-        <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
-        </article>
-      ))
-    )
-  } else {
-    return (
-      allPosts.slice(0,1).map(p => (
-        <article key={p.node.id}>
-          <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
-        </article>
-      ))
-    )
-  }
-}
 
 const BlogPost = ({ data }) => {
   const post = data.ghostPost
@@ -86,7 +13,6 @@ const BlogPost = ({ data }) => {
   const featureImage = getImage(data.ghostPost.localFeatureImage)
 
   return (
-    <ViewportProvider>
     <Layout pageTitle={post.title}>
       <Seo
         title={post.title}
@@ -125,15 +51,20 @@ const BlogPost = ({ data }) => {
         allPosts.length ? 
           <aside className="read-more-wrap pb-5 pt-3">
             <h2 className="text-center">Other Posts</h2>
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 inner">
-              <PostResponsivness data={allPosts}/>
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 inner responsive">
+              {
+                allPosts.slice(0,3).map(p => (
+                  <article key={p.node.id}>
+                    <BlogCard cardTitle={p.node.title} featuredImage={p.node.localFeatureImage} cardLink={`/blog/${p.node.slug}`} cardExcerpt={p.node.excerpt} authorImage={p.node.authors[0].localProfileImage} authorName={p.node.authors[0].name} published={p.node.published_at_pretty} readingTime={p.node.reading_time}/>
+                  </article>
+                ))
+              }
             </div>
           </aside>
           :
           null
       }
     </Layout>
-    </ViewportProvider>
   )
 }
 

@@ -432,3 +432,23 @@ blockquote{
   margin: 0px auto;
   max-width: 1200px;
 }
+
+// Posts suggestions
+@media screen and (max-width: 992px) {
+  .responsive {
+    article:nth-child(3) {
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .responsive {
+    article:nth-child(2) {
+      display: none;
+    }
+
+    article:nth-child(3) {
+      display: none;
+    }
+  }
+}
