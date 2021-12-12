@@ -122,7 +122,7 @@ const IndexPage = ({data}) => {
             </div>
 
             <div className="d-flex justify-content-center pt-5">
-                <Link className="btn btn-outline-light btn-lg" to="/portfolio">See All</Link>
+                <Link className="btn btn-outline-dark btn-lg" to="/portfolio">See All</Link>
             </div>
           </div>
         </section>
