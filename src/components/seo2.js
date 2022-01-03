@@ -47,36 +47,40 @@ function SEO({ description, lang, meta, image: metaImage, title, pathname }) {
       }
       meta={[
         {
+          name: `author`,
+          content: site.siteMetadata.author,
+        },
+        {
           name: `description`,
           content: metaDescription,
         },
         {
-          name: "keywords",
+          name: `keywords`,
           content: site.siteMetadata.keywords.join(","),
         },
         {
-            property: `og:title`,
-            content: title,
+          property: `og:title`,
+          content: title,
         },
         {
-            property: `og:description`,
-            content: metaDescription,
+          property: `og:description`,
+          content: metaDescription,
         },
         {
-            property: `og:type`,
-            content: `website`,
+          property: `og:type`,
+          content: `website`,
         },
         {
-            name: `twitter:creator`,
-            content: site.siteMetadata.twitterUsername,
+          name: `twitter:creator`,
+          content: site.siteMetadata.twitterUsername,
         },
         {
-            name: `twitter:title`,
-            content: title,
+          name: `twitter:title`,
+          content: title,
         },
         {
-            name: `twitter:description`,
-            content: metaDescription,
+          name: `twitter:description`,
+          content: metaDescription,
         },
       ]
       .concat(
