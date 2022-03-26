@@ -124,7 +124,7 @@ const Layout = ({pageTitle, children}) => {
                         <div className="col">
                             <a className="btn btn-outline-light social-media-btn m-1" href="https://twitter.com/riccardorion" aria-label="Twitter"><FontAwesomeIcon icon={faTwitter}/></a>
 
-                            <a className="btn btn-outline-light social-media-btn m-1" href="https://www.instagram.com/riccardorion/" aria-label="Instagram"><FontAwesomeIcon icon={faInstagram}/></a>
+                            <a className="btn btn-outline-light social-media-btn m-1" href="https://www.instagram.com/riccardofeingold/" aria-label="Instagram"><FontAwesomeIcon icon={faInstagram}/></a>
 
                             <a className="btn btn-outline-light social-media-btn m-1" href="https://www.linkedin.com/in/riccardofeingold/" aria-label="Linkedin"><FontAwesomeIcon icon={faLinkedin}/></a>
 

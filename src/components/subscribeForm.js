@@ -40,16 +40,12 @@ class SubscribeForm extends React.Component {
                 >
                     <input type="hidden" name="form-name" value="subscribeForm" />
                     <div className="container py-3" style={{maxWidth: `1040px`}}>
-                        <h2 className="text-center py-3">Sign up for more like this.</h2>
+                        <h3 className="text-center py-3">Sign up for more like this.</h3>
                         <div className="row">
-                            <div className="col-lg">
-                                <p style={{color: `#3D4661`}}>In my weekly Code Snippets 📧, I share actionable coding tips 🧑‍💻, some music stuff 🎹, as well as high-quality insights from the life as a Mechanical Engineer 🤖!</p>
-                            </div>
-
-                            <div className="col-lg">
-                                <div className="input-group mb-3 container">
-                                    <input type="email" name="email" className="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2" value={this.state.email} onChange={this.handleInputChange}/>
-                                    <button className={`btn btn-primary ${this.state.email ? "" : "disabled"}`} type="submit" id="button-addon2" style={activeBtnStyleForDisableState}>Sign Up</button>
+                            <div className="col-lg mx-5">
+                                <div className="input-group mb-3 container" style={{maxWidth: `500px`}}>
+                                    <input type="email" name="email" className="form-control shadow" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2" value={this.state.email} onChange={this.handleInputChange}/>
+                                    <button className={`btn btn-primary shadow ${this.state.email ? "" : "disabled"}`} type="submit" id="button-addon2" style={activeBtnStyleForDisableState}>Sign Up</button>
                                 </div>
                             </div>
                         </div>

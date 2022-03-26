@@ -23,7 +23,7 @@ const BlogPost = ({ data }) => {
       <div className="container-fluid home-section justify-content-center">
         <div className="bg-primary post-full-content">
 
-          <GatsbyImage image={featureImage} alt={post.title} className="mx-auto d-block rounded kg-image" style={{maxWidth: `500px`}}/>
+          <GatsbyImage image={featureImage} alt={post.title} className="mx-auto d-block rounded kg-image shadow-lg" style={{maxWidth: `500px`}}/>
 
           <h1 className="text-light text-center pt-3 pb-4">{post.title}</h1>
           <h5 className="fw-bold text-center" style={{color: `#f8f9fa`}}>
