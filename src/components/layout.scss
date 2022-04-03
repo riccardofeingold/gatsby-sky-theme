@@ -452,3 +452,78 @@ blockquote{
     }
   }
 }
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  html.auto-color .text-dark {
+    color: var(--bs-white) !important;
+  }
+
+  html.auto-color h1, 
+  html.auto-color h2, 
+  html.auto-color h3,
+  html.auto-color h5 {
+    color: var(--bs-white);
+  }
+
+  html.auto-color .read-more-wrap {
+    border: none;
+    background: $darker-dark;
+  }
+
+  html.auto-color body {
+      color: rgba(255, 255, 255, 0.75);
+      background: var(--bs-gray-900);
+  }
+
+  html.auto-color img {
+      opacity: 0.9;
+  }
+
+  html.auto-color .post {
+      background: var(--bs-gray-900);
+  }
+
+  html.auto-color figcaption {
+      color: rgba(255, 255, 255, 0.6);
+  }
+
+  html.auto-color .social-media-footer {
+    background-color: rgb(var(--bs-black-rgb));
+  }
+
+  html.auto-color strong {
+    color: var(--bs-gray-100);
+  }
+  
+  html.auto-color p {
+    color: var(--bs-gray-500);
+  }
+
+  html.auto-color .card-body {
+    background-color: var(--bs-gray-900);
+    border-radius: 0px 0px 10px 10px;
+  }
+
+  html.auto-color .card {
+    background-color: var(--bs-gray-900);
+  }
+
+  html.auto-color .shadow {
+    box-shadow:  0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
+  }
+
+  html.auto-color .btn-outline-dark:hover {
+    color: var(--bs-dark);
+    background-color: var(--bs-white);
+  }
+
+  html.auto-color .btn-outline-dark {
+    color: var(--bs-white);
+    border-color: var(--bs-white);
+  }
+
+  html.auto-color pre {
+    background-color: $darker-dark;
+  }
+}
