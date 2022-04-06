@@ -29,11 +29,8 @@ const IndexPage = ({data}) => {
 
         <section id="about-me">
           <div className="container py-5">
-            <h1 className="text-center" style={impactFontStyle}>👨🏻‍🎓 About Me</h1>
+            <h2 className="display-4" style={impactFontStyle}>👨🏻‍🎓 About Me</h2>
             <div className="row">
-              <div className="col-md-6 pb-3">
-                <StaticImage alt="Riccardo Orion Feingold - Profile" style={{borderRadius: `10px`}} src="../images/profile-rect.jpeg"/>
-              </div>
               <div className="col-md-6">
                 <h3>Hi, my name is Riccardo Feingold!</h3>
                 <p style={{fontSize: `20px`}}>
@@ -71,6 +68,9 @@ const IndexPage = ({data}) => {
                   For that and more, see you in my posts and vids! Peace ✌🏻!
                 </p>
               </div>
+              <div className="col-md-6 pb-3">
+                <StaticImage alt="Riccardo Orion Feingold - Profile" style={{borderRadius: `10px`}} src="../images/profile-rect.jpeg"/>
+              </div>
 
               <div className="d-flex mt-4 justify-content-center">
                 <div className="fancy-border-box p-4">
@@ -87,8 +87,8 @@ const IndexPage = ({data}) => {
 
         <section id="blog" className="home-section">
           <div className="container py-5">
-            <h1 className="text-center text-light" style={impactFontStyle}>✏️ Blog</h1>
-            <h1 className="text-light pb-2">My Recent Posts</h1>
+            <h2 className="display-4 text-light" style={impactFontStyle}>✏️ Blog</h2>
+            <h3 className="text-light pb-2 display-5 fw-bold">My Recent Posts</h3>
             
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 responsive">
               {
@@ -108,8 +108,8 @@ const IndexPage = ({data}) => {
 
         <section id="projects">
           <div className="container py-5">
-            <h1 className="text-center" style={impactFontStyle}>🚀 Projects</h1>
-            <h1 className="pb-2">My Recent Projects</h1>
+            <h2 className="display-4" style={impactFontStyle}>🚀 Projects</h2>
+            <h3 className="pb-2 display-5 fw-bold">My Recent Projects</h3>
             
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 responsive">
               {

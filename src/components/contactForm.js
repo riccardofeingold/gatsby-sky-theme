@@ -85,8 +85,9 @@ class ContactForm extends React.Component {
                         <label htmlFor="message"><strong>Message</strong></label>
                         <textarea name="message" className="form-control" id="message" rows="3" onChange={this.handleChange}></textarea>
                     </div>
-
-                    <button className={`btn btn-primary ${this.state.message && this.state.name && this.state.email ? "" : "disabled"}`} type="submit" style={activeBtnStyleForDisableState}>Send</button>
+                    <div className="text-end">
+                        <button className={`btn btn-primary ${this.state.message && this.state.name && this.state.email ? "" : "disabled"}`} type="submit" style={activeBtnStyleForDisableState}>Send</button>
+                    </div>
                 </form>
             </div>
         )
